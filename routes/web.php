@@ -27,6 +27,14 @@ Route::domain($subDomainPortal)->group(function () {
     });
 });
 
-Route::get('/', function() {
-    return view("welcome");
+
+Route::group(['middleware' => 'locale'], function() {
+    Route::namespace('Client')->group(function () {
+        Route::get('change-language/{language}', 'HomeController@changeLanguage')->name('user.change-language');
+        
+        Route::get('/', function() {
+            return view("welcome");
+        });
+    });
 });
+
