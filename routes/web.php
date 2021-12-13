@@ -23,6 +23,11 @@ Route::domain($subDomainPortal)->group(function () {
 
         Route::middleware(['auth'])->group(function() {
             Route::get('/', 'HomeController@index')->name('dashboard');
+            Route::get('/users', 'UserController@index')->name('user.list');
+            Route::get('/users/create', 'UserController@create')->name('user.create');
+            Route::post('/users/create', 'UserController@store')->name('user.store');
+            Route::get('/users/edit', 'UserController@index')->name('user.edit');
+            Route::get('/users/{id}/destroy', 'UserController@destroy')->name('user.delete');
         });
     });
 });

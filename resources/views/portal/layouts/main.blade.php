@@ -12,15 +12,18 @@
     <title>@yield('title')</title>
     <link href="{{ asset('assets/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/bower_components/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('assets/bower_components/datatables-responsive/css/dataTables.responsive.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('assets/dist/css/timeline.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/dist/css/sb-admin-2.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/bower_components/morrisjs/morris.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/bower_components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/dist/css/sb-admin-2.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
 
 <body>
     <div id="wrapper">
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;">
             @include('portal.layouts.header')
             @include('portal.layouts.sidebar')
          </nav>
@@ -32,11 +35,14 @@
     <script src="{{ asset('assets/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/bower_components/metisMenu/dist/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('assets/bower_components/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/bower_components/raphael/raphael-min.js') }}"></script>
-    <script src="{{ asset('assets/bower_components/morrisjs/morris.min.js') }}"></script>
-    <script src="{{ asset('assets/js/morris-data.js') }}"></script>
+    {{-- <script src="{{ asset('assets/bower_components/morrisjs/morris.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/morris-data.js') }}"></script> --}}
     <script src="{{ asset('assets/dist/js/sb-admin-2.js') }}"></script>
-
+    @yield('js')
+    
 </body>
 
 </html>
