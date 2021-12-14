@@ -1,0 +1,160 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+:root{
+    --blue-vnu: #0d2c6c;
+    --yellow-vnu: #dd8d00;
+    --text-white: #fff;
+    --text-black: #000;
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+/* Responsive */
+.grid {
+    width: 1028px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+.grid__full-width {
+    width: 100%;
+}
+.grid__row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Header */
+.header__nav {
+    background-color: var(--blue-vnu);
+} 
+
+.header__nav-list {
+    list-style: none;
+    text-align: right;
+}
+
+.header__nav-item {
+    display: inline-block;
+    margin: 0 3px;
+    color: var(--text-white);
+    font-size: 1.2rem;
+}
+
+.header__nav-item a {
+    font-size: 1.2rem;
+    color: var(--text-white);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.header-with-search{
+    display: flex;
+    justify-content: space-between;
+}
+.header__logo img {
+    width: 400px;
+    height: 150px;
+}
+
+.header__search-lang-list{
+    list-style: none;
+    text-align: right;
+    margin: 20px 0;
+}
+
+.header__search {
+    width: 190px;
+    height: 25px;
+    border: 1px solid var(--blue-vnu);
+}
+
+.header__search-item {
+    margin: 20px 0;
+}
+
+.header__search-item p {
+    font-size: 1.2rem;
+}
+
+.header__search input {
+    width: 160px;
+    height: 100%;
+    outline: none;
+    border: none;
+}
+
+.header__search button {
+    width: 20px;
+    height: 100%;
+    padding: 1px;
+    font-size: 1.4rem;
+    background-color: var(--text-white);
+    border: none;
+    cursor: pointer;
+}
+
+.header__navbar {
+    text-align: center;
+}
+.header__navbar, .header__subnav{
+    list-style-type: none;
+}
+
+.header__navbar>li {
+    display: inline-block;
+}
+
+.header__navbar li {
+    position: relative;
+}
+
+.header__navbar>li>a {
+    color: var(--text-white);
+}
+
+.header__navbar li a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: block;
+    padding: 10px 24px;
+}
+
+.header__navbar li:hover .header__subnav{
+    display: block;
+}
+
+.header__subnav li:hover a,
+.header__navbar>li:hover>a {
+    background-color: var(--yellow-vnu);
+    color: var(--text-black);
+}
+
+.header__subnav {
+    display: none;
+    position: absolute;
+    background-color: var(--text-white);
+    width: max-content;
+    text-align: left;
+}
+
+.header__subnav a {
+    color: var(--text-black);
+}
+
+
+/* Container */
+.container {
+    background-color: gray;
+    height: 300px;
+}
+/* Footer */
