@@ -42,7 +42,7 @@
     {{-- <script src="{{ asset('assets/js/morris-data.js') }}"></script> --}}
     <script src="{{ asset('assets/dist/js/sb-admin-2.js') }}"></script>
     @yield('js')
-    
+
 </body>
 
 </html>
