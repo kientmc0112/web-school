@@ -181,13 +181,13 @@
 
     <div class="header-with-search grid">
         <div class="header__logo">
-            <img alt="" src="/public/images/VNU-SIS-logo(vns).png">
+            <img alt="" src="{{ url('images/VNU-SIS-logo(vns).png') }}">
         </div>
 
         <div class="header__search-lang">
             <ul class="header__search-lang-list">
                 <li class="header__search-item">
-                    <img alt="" src="/public/images/en.jpg">
+                    <img alt="" src="{{ url('images/en.jpg') }}">
                     <img alt="" src="/public/images/vi.jpg">
                 </li>
                 <li class="header__search-item">
