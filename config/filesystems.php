@@ -61,6 +61,11 @@ return [
             'driver' => 'local',
             'root'   => public_path(''),
         ],
+
+        'avatar_path' => [
+            'driver' => 'local',
+            'root'   => public_path('/avatar'),
+        ],
     ],
 
     /*
