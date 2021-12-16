@@ -13,4 +13,8 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+    public function index() {
+        $name = 'kien';
+        return view('client.index', compact('name'));
+    }
 }

@@ -32,6 +32,7 @@
                                     <td>{{ $user->email }}</td>
                                     <td class="center" style="text-align: center;">{{ $user->role }}</td>
                                     <td class="center" style="text-align: center;">
+
                                         {{-- <a href="#" class="btn btn-primary btn-sm">
                                             <i class="fa fa-eye"></i>
                                         </a>
