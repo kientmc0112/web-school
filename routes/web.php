@@ -20,14 +20,22 @@ Route::domain($subDomainPortal)->group(function () {
     Route::namespace('Portal')->group(function () {
         Route::get('/login', 'AuthController@index')->name('login');
         Route::post('/login', 'AuthController@login')->name('auth.post.login');
+        Route::post('/logout', 'AuthController@logout')->name('auth.post.logout');
 
         Route::middleware(['auth'])->group(function() {
             Route::get('/', 'HomeController@index')->name('dashboard');
+            // user
             Route::get('/users', 'UserController@index')->name('user.list');
             Route::get('/users/create', 'UserController@create')->name('user.create');
             Route::post('/users/create', 'UserController@store')->name('user.store');
-            Route::get('/users/edit', 'UserController@index')->name('user.edit');
             Route::get('/users/{id}/destroy', 'UserController@destroy')->name('user.delete');
+            Route::get('/users/profile', 'UserController@profile')->name('user.profile');
+            Route::post('/users/update', 'UserController@update')->name('user.profile.update');
+
+            //department
+            Route::get('/departments', 'DepartmentController@index')->name('department.list');
+            Route::post('/departments', 'DepartmentController@store')->name('department.store');
+            Route::get('/departments/{id}/destroy', 'DepartmentController@destroy')->name('department.delete');
         });
     });
 });

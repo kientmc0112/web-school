@@ -31,16 +31,6 @@ class StoreRequest extends FormRequest
         ];
     }
 
-    public function messages()
-    {
-        return [
-            'email.required' => trans('messages.user.validate.email_required'),
-            'email.unique' => trans('messages.user.validate.email_unique'),
-            'password.required' => trans('messages.user.validate.password_required'),
-            'role.required' => trans('messages.user.validate.role_required'),
-        ];
-    }
-
     public function validated()
     {
         $paramValidated = $this->validator->validated();
