@@ -36,6 +36,10 @@ Route::domain($subDomainPortal)->group(function () {
             Route::get('/departments', 'DepartmentController@index')->name('department.list');
             Route::post('/departments', 'DepartmentController@store')->name('department.store');
             Route::get('/departments/{id}/destroy', 'DepartmentController@destroy')->name('department.delete');
+
+            Route::resource('categories', 'CategoryController');
+
+            Route::resource('posts', 'PostController');
         });
     });
 });

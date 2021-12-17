@@ -52,5 +52,18 @@ return [
             'submit' => 'Lưu',
             'reset' => 'Reset',
         ],
+    ],
+    'category' => [
+        'validate' => [
+            'name_required' => 'Tên trống!!! Bạn vui lòng nhập đầy đủ dữ liệu!!!'
+        ]
+    ],
+    'post' => [
+        'validate' => [
+            'title_required' => 'Tiêu đề trống!!! Bạn vui lòng nhập đầy đủ dữ liệu!!!',
+            'category_required' => 'Danh mục trống!!! Bạn vui lòng nhập đầy đủ dữ liệu!!!',
+            'thumbnail_required' => 'Thumbail trống!!! Bạn vui lòng nhập đầy đủ dữ liệu!!!',
+            'thumbnail_image' => 'Thumbnail phải là một ảnh!!!'
+        ]
     ]
 ];
