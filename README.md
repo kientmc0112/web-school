@@ -10,7 +10,11 @@ composer install
 
 php artisan key:generate
 
+php artisan ckfinder:download
+
 php artisan vendor:publish --tag=ckfinder-assets --tag=ckfinder-config
+
+mkdir -m 777 public/userfiles
 
 php artisan storage:link
 
