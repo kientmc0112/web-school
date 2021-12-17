@@ -13,5 +13,5 @@ npm-debug.log
 yarn-error.log
 public/js/*
 public/images/posts
-public/userfiles
+public/userfiles/*
 composer.lock
