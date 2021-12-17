@@ -50,7 +50,7 @@ Route::group(['middleware' => 'locale'], function() {
         Route::get('change-language/{language}', 'HomeController@changeLanguage')->name('user.change-language');
         
         Route::get('/', function() {
-            return view("welcome");
+            return view("client.home.index");
         });
     });
 });
