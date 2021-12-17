@@ -18,6 +18,7 @@
     <link href="{{ asset('assets/bower_components/morrisjs/morris.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/bower_components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/dist/css/sb-admin-2.css') }}" rel="stylesheet">
+    <script src="{{ asset('assets/bower_components/jquery/dist/jquery.min.js') }}"></script>
     @yield('css')
 </head>
 
@@ -32,7 +33,6 @@
             @yield('content')
         </div>
     </div>
-    <script src="{{ asset('assets/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/bower_components/metisMenu/dist/metisMenu.min.js') }}"></script>
     <script src="{{ asset('assets/bower_components/datatables/media/js/jquery.dataTables.min.js') }}"></script>
