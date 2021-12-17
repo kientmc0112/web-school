@@ -16,3 +16,6 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     require('tailwindcss'),
     require('autoprefixer'),
 ]);
+mix.copy("node_modules/owl.carousel/dist/assets/owl.carousel.min.css", "public/css");
+mix.copy("node_modules/jquery/dist/jquery.js", "public/js");
+mix.copy("node_modules/owl.carousel/dist/owl.carousel.min.js", "public/js");
