@@ -30,12 +30,12 @@
                                 <label>Parent Category</label>
                                 <select class="form-control" name="parent_id">
                                     <option></option>
-                                    @foreach ($categories as $category)
-                                    @if ($category->id === $category->parent_id)
-                                    <option selected value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @else
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endif
+                                    @foreach ($cats as $cat)
+                                        @if ($category->id === $cat['id'])
+                                            <option selected value="{{ $cat['id'] }}">{!! $cat['name'] !!}</option>
+                                        @else
+                                            <option value="{{ $cat['id'] }}">{!! $cat['name'] !!}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
