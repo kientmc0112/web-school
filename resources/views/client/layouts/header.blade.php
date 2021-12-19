@@ -2,25 +2,36 @@
 
 $navbar = '';
 foreach ($categoriesHeader as $key => $category) {
+  if ($category["id"] === 1) {
+    $url = route('home.index');
+  } else {
+    $url = route('categories') . "?category_id=". $category["id"];
+  }
   if (count($category['child']) > 0) {
-    $navbar .= '<li class="nav-item dropdown"><strong class="dropdown-toggle text-white"><a href="#" class="d-block px-5 py-3 text-white">' . $category['name'] . '</a></strong><ul class="dropdown-menu" style="margin-top: -1px">';
+    // dd($category);
+    $navbar .= '<li class="nav-item dropdown"><strong class="dropdown-toggle text-white"><a href="' . $url . '" class="d-block px-5 py-3 text-white">' . $category['name'] . '</a></strong><ul class="dropdown-menu" style="margin-top: -1px">';
     getChild($navbar, $category);
     $navbar .= '</ul></li>';
   } else {
-    $navbar .= '<li class="nav-item"><strong class="dropdown-toggle text-white"><a href="#" class="d-block px-5 py-3 text-white">' . $category['name'] . '</a></strong></li>';
+    $navbar .= '<li class="nav-item"><strong class="dropdown-toggle text-white"><a href="' . $url . '" class="d-block px-5 py-3 text-white">' . $category['name'] . '</a></strong></li>';
   }
 }
 
 function getChild(&$navbar, $category)
 {
+  if ($category["id"] === 1) {
+    $url = route('home.index');
+  } else {
+    $url = route('categories') . "?category_id=". $category["id"];
+  }
   if (count($category['child']) > 0) {
-    $navbar .= '<li class="dropdown-submenu"><a href="#" class="d-block text-dark py-2 px-3">' . $category['name'] . '</a><ul class="dropdown-menu">';
+    $navbar .= '<li class="dropdown-submenu"><a href="' . $url . '" class="d-block text-dark py-2 px-3">' . $category['name'] . '</a><ul class="dropdown-menu">';
     foreach ($category['child'] as $key => $childCategory) {
       getChild($navbar, $childCategory);
     }
     $navbar .= '</ul></li>';
   } else {
-    $navbar .= '<li><a href="#" class="d-block text-dark py-2 px-3">' . $category['name'] . '</a></li>';
+    $navbar .= '<li><a href="' . $url . '" class="d-block text-dark py-2 px-3">' . $category['name'] . '</a></li>';
   }
 }
  
@@ -40,7 +51,7 @@ function getChild(&$navbar, $category)
   <div class="container text-right py-2">
     <div class="row d-flex align-items-center">
       <div class="col-md-6 text-left">
-        <img style="width: 100%; max-width: 400; max-height: 150px" alt="" src="{{ asset('images/VNU-SIS-logo(vns).png') }}" />
+        <img style="width: 100%; max-width: 400px; max-height: 150px" alt="" src="{{ asset('images/VNU-SIS-logo(vns).png') }}" />
       </div>
       <div class="col-md-6 text-right">
         <div class="mb-3">
@@ -68,42 +79,6 @@ function getChild(&$navbar, $category)
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav d-flex align-items-center justify-content-center w-100">
-          {{-- <li class="nav-item">
-            <strong><a href="#" class="d-block px-5 py-3 text-white">Trang chủ</a></strong>
-          </li>
-          <li class="nav-item">
-            <strong><a href="#" class="d-block px-5 py-3 text-white">Giới thiệu</a></strong>
-          </li>
-          <li class="nav-item dropdown">
-            <strong class="dropdown-toggle text-white"><a href="#" class="d-block px-5 py-3 text-white">Tuyển sinh</a></strong>
-            <ul class="dropdown-menu" style="margin-top: -1px">
-              <li><a href="#" class="d-block text-dark py-2 px-3">HTML</a></li>
-              <li><a href="#" class="d-block text-dark py-2 px-3">CSS</a></li>
-              <li class="dropdown-submenu">
-                <a class="d-block text-dark py-2 px-3" href="#">New dropdown</a>
-                <ul class="dropdown-menu">
-                  <li><a href="#" class="d-block text-dark py-2 px-3">2nd level dropdown</a></li>
-                  <li class="dropdown-submenu">
-                    <a href="#" class="d-block text-dark py-2 px-3">Another dropdown</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#" class="d-block text-dark py-2 px-3">3rd level dropdown</a></li>
-                      <li><a href="#" class="d-block text-dark py-2 px-3">3rd level dropdown</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="#" class="d-block text-dark py-2 px-3">2nd level dropdownaaaaaaaaaaaaaaaaaaaaa</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <strong><a href="#" class="d-block px-5 py-3 text-white">Đào tạo</a></strong>
-          </li>
-          <li class="nav-item">
-            <strong><a href="#" class="d-block px-5 py-3 text-white">Tin tức</a></strong>
-          </li>
-          <li class="nav-item">
-            <strong><a href="#" class="d-block px-5 py-3 text-white">Hợp tác phát triển</a></strong>
-          </li> --}}
           {!! $navbar !!}
         </ul>
       </div>
