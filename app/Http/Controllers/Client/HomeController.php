@@ -19,10 +19,10 @@ class HomeController extends Controller
     public function index()
     {
         $cats = Category::all();
-        $categories = [];
-        $this->getChild($categories, $cats);
+        $categoriesHeader = [];
+        $this->getChild($categoriesHeader, $cats);
 
-        return view('client.home', compact('categories'));
+        return view('client.home', compact('categoriesHeader'));
     }
     
     public function getChild(&$arr, $categories, $id = null, $parentId = 0)
@@ -57,17 +57,19 @@ class HomeController extends Controller
     public function categories(Request $request)
     {
         $cats = Category::all();
-        $categories = [];
-        $this->getChild($categories, $cats);
+        $categoriesHeader = [];
+        $this->getChild($categoriesHeader, $cats);
 
-        $listCategories = $this->getSubCategories(0);
+        $categories = $this->getSubCategories(0);
         $isSingle = false;
 
         if (isset($request->category_id)) {
             $subPanel = $this->getSubPanel($request->category_id);
 
             $isSingle = true;
-            $cateSelect = DB::table('categories')->where('id', $request->category_id)->first();
+            $cateSelect = DB::table('categories')
+                ->where('id', $request->category_id)
+                ->first();
             
             if (isset($request->post_id)) {
                 $arryPosts = DB::table('posts')
@@ -75,23 +77,40 @@ class HomeController extends Controller
                     ->orderBy('updated_at', 'desc')
                     ->paginate(10)
                     ->toArray();
+
                 $post = DB::table('posts')
                     ->where('id', $request->post_id)
                     ->first();
 
-                return view('client.posts.listPostWithCate', compact('isSingle', 'listCategories', 'cateSelect', 'arryPosts', 'post', 'subPanel', 'categories'));
+                return view('client.posts.listPostWithCate', compact(
+                    'isSingle', 
+                    'categories', 
+                    'cateSelect', 
+                    'arryPosts', 
+                    'post', 
+                    'subPanel', 
+                    'categoriesHeader'
+                ));
             }
+
             $arryPosts = DB::table('posts')
                 ->where('category_id', $request->category_id)
                 ->orderBy('updated_at', 'desc')
                 ->paginate(30)
                 ->toArray();
 
-            return view('client.posts.listPostWithCate', compact('isSingle', 'listCategories', 'cateSelect', 'arryPosts', 'subPanel', 'categories'));
+            return view('client.posts.listPostWithCate', compact(
+                'isSingle', 
+                'categories', 
+                'cateSelect', 
+                'arryPosts', 
+                'subPanel', 
+                'categoriesHeader'
+            ));
         }
         $arryPosts = [];
 
-        foreach ($listCategories as $key => $cate) {
+        foreach ($categories as $key => $cate) {
             $postOfCate = DB::table('posts')
                 ->where('category_id', $cate->id)
                 ->orderBy('updated_at', 'desc')
@@ -101,7 +120,12 @@ class HomeController extends Controller
             array_push($arryPosts, $postOfCate);
         }
 
-        return view('client.posts.listPostWithCate', compact('isSingle', 'listCategories', 'arryPosts', 'categories'));
+        return view('client.posts.listPostWithCate', compact(
+            'isSingle', 
+            'categories', 
+            'arryPosts', 
+            'categoriesHeader'
+        ));
     }
 
     public function getSubPanel($categoryId)

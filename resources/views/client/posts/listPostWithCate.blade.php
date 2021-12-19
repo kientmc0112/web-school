@@ -171,13 +171,6 @@
                         <div class="home_news_category_bar">
                             <a class="home_parent_category" href=''>{{ $cate->name }}</a>
                             <div class="home_news_sub_panel">
-                                {{-- <a id="194" rel='67' href=''>Tuyển sinh</a>
-                                &nbsp;|&nbsp;
-                                <a id="76" rel='67' href=''>Đại học</a>
-                                &nbsp;|&nbsp;
-                                <a id="77" rel='67' href=''>Sau đại học</a>
-                                &nbsp;|&nbsp;
-                                <a id="75" rel='67' href=''>Đào tạo ngắn hạn</a> --}}
                             </div>
                         </div>
                     </div>

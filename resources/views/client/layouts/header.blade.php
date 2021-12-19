@@ -1,8 +1,7 @@
 <?php
 
 $navbar = '';
-
-foreach ($categories as $key => $category) {
+foreach ($categoriesHeader as $key => $category) {
   if (count($category['child']) > 0) {
     $navbar .= '<li class="nav-item dropdown"><strong class="dropdown-toggle text-white"><a href="#" class="d-block px-5 py-3 text-white">' . $category['name'] . '</a></strong><ul class="dropdown-menu" style="margin-top: -1px">';
     getChild($navbar, $category);
@@ -24,7 +23,7 @@ function getChild(&$navbar, $category)
     $navbar .= '<li><a href="#" class="d-block text-dark py-2 px-3">' . $category['name'] . '</a></li>';
   }
 }
-
+ 
 ?>
 <div class="header">
   <div class="bg-vnu-blue">
