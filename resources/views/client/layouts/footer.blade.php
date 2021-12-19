@@ -1,7 +1,7 @@
 <div class="bg-vnu-gray" style="font-size: 12px">
   <div class="container px-0 py-3">
     <div class="row">
-      <div class="col-lg-3 col-md-6 col-md-6">
+      <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
         <ul style="list-style-type: none">
           <li class="mb-1"><strong style="font-size: 13px">GIỚI THIỆU</strong></li>
           <li class="mb-1"><a class="text-dark" href="#">Giới thiệu về ĐHKT</a></li>
@@ -11,7 +11,7 @@
           <li class="mb-1"><a class="text-dark" href="#">Liên hệ</a></li>
         </ul>
       </div>
-      <div class="col-lg-3 col-md-6 col-md-6">
+      <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
         <ul style="list-style-type: none">
           <li class="mb-1"><strong style="font-size: 13px">TIN TỨC</strong></li>
           <li class="mb-1"><a class="text-dark" href="#">Tin đào tạo</a></li>
@@ -21,7 +21,7 @@
           <li class="mb-1"><a class="text-dark" href="#">Tuyển dụng</a></li>
         </ul>
       </div>
-      <div class="col-lg-3 col-md-6 col-md-6">
+      <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
         <ul style="list-style-type: none">
           <li class="mb-1"><strong style="font-size: 13px">CHƯƠNG TRÌNH ĐÀO TẠO</strong></li>
           <li class="mb-1"><a class="text-dark" href="#">Giới thiệu hoạt động đào tạo</a></li>
@@ -30,7 +30,7 @@
           <li class="mb-1"><a class="text-dark" href="#">Chương trình ĐT Tiến sĩ</a></li>
         </ul>
       </div>
-      <div class="col-lg-3 col-md-6 col-md-6">
+      <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
         <ul style="list-style-type: none">
           <li class="mb-1"><strong style="font-size: 13px">NGHIÊN CỨU KHOA HỌC</strong></li>
           <li class="mb-1"><a class="text-dark" href="#">Giới thiệu hoạt động NCKH</a></li>
@@ -38,7 +38,7 @@
           <li class="mb-1"><a class="text-dark" href="#">Thống kê</a></li>
         </ul>
       </div>
-      <div class="col-lg-3 col-md-6 col-md-6">
+      <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
         <ul style="list-style-type: none">
           <li class="mb-1"><strong style="font-size: 13px">TUYỂN SINH</strong></li>
           <li class="mb-1"><a class="text-dark" href="#">Tuyển sinh Cử nhân</a></li>
@@ -46,7 +46,7 @@
           <li class="mb-1"><a class="text-dark" href="#">Tuyển sinh Tiến sĩ</a></li>
         </ul>
       </div>
-      <div class="col-lg-3 col-md-6 col-md-6">
+      <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
         <ul style="list-style-type: none">
           <li class="mb-1"><strong style="font-size: 13px">THÔNG TIN HỮU ÍCH</strong></li>
           <li class="mb-1"><a class="text-dark" href="#">Web ĐHQG Hà Nội</a></li>
@@ -55,9 +55,11 @@
           <li class="mb-1"><a class="text-dark" href="#">Học liệu số</a></li>
         </ul>
       </div>
-      <div class="col-lg-3 col-md-6 col-md-6"></div>
-      <div class="col-lg-3 col-md-6 col-md-6">
-        icon
+      <div class="col-lg-3 col-md-6 col-sm-6 mb-3"></div>
+      <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+        <a class="mr-2" href=""><img src="{{ url('images/facebook.jpg') }}" style="height: 40px"></a>
+        <a class="mr-2" href=""><img src="{{ url('images/youtube.png') }}" style="height: 40px"></a>
+        <a class="mr-2" href=""><img src="{{ url('images/gmail.png') }}" style="height: 40px"></a>
       </div>
     </div>
   </div>

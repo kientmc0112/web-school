@@ -29,6 +29,13 @@
       width: 1em;
       clip-path: polygon(0 0, 100% 50%, 0 100%, 0 50%);
     }
+    .bg-vnu-gray {
+      background-color: #e6e6e8;
+    }
+
+    .bg-vnu-blue {
+      background-color: var(--blue-vnu);
+    }
   </style>
 @endsection
 <div class="row mb-3">
@@ -88,7 +95,7 @@
       <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Tin tức</strong>
     </div>
     @for ($i = 0; $i < 4; $i++)
-      <div style="font-size: 12px">
+      <div class="mb-2" style="font-size: 12px">
         <img class="w-50 mr-2" src="{{ asset('images/news2.jpg') }}"  style="float: left; border: 2px solid gray"/>
         <strong>Trường ĐH Kinh tế, ĐHQGHN - Nơi chào đón và nâng bước giảng viên tài năng</strong>
         <p>Trường Đại học Kinh tế, ĐHQGHN thực hiện Chiến lược phát triển đội ngũ nhân sự, chào đón các Tiến sĩ (trong nước, nước ngoài) và các Thạc sĩ tốt nghiệp ĐH nước ngoài trở thành giảng viên - thành viên ...</p>
@@ -132,8 +139,8 @@
           <a href="#" class="list-group-item list-group-item-action px-0">
             <div class="row">
               <div class="col-2 pr-1 d-flex flex-column justify-content-center">
-                <strong class="text-center" style="background-color: #7a7979; font-size: 15px">23</strong>
-                <p class="text-white text-center mb-0" style="background-color: #0d2c6c; font-size: 10px">NOV</p>
+                <strong class="text-center bg-vnu-gray" style="font-size: 15px">23</strong>
+                <p class="text-white text-center mb-0 bg-vnu-blue" style="font-size: 10px">NOV</p>
               </div>
               <div class="col-10 px-0">
                 UEB JOB FAIR 2021 – Ngày hội tuyển dụng việc làm lớn nhất UEB năm nay có gì khác biệt? 
@@ -166,9 +173,9 @@
       </div>
     </div>
     <div class="mb-3">
-      <div class="input-group" style="border:1px solid #0d2c6c; border-radius: 0.25rem">
+      <div class="input-group" style="border-radius: 0.25rem">
         <input type="text" class="form-control" placeholder="Tìm trong thư viện ĐHQG" style="font-size: 15px">
-        <button class="btn btn-outline-primary text-white" type="button" style="background-color:#0d2c6c; border:1px solid #0d2c6c"><i class="bi bi-search"></i></button>
+        <button class="btn btn-outline-primary text-white bg-vnu-blue" type="button" style="border:1px solid #0d2c6c"><i class="bi bi-search"></i></button>
       </div>
     </div>
   </div>
