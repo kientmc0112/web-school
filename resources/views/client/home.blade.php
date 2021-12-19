@@ -95,8 +95,8 @@
       <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Tin tức</strong>
     </div>
     @for ($i = 0; $i < 4; $i++)
-      <div class="mb-2" style="font-size: 12px">
-        <img class="w-50 mr-2" src="{{ asset('images/news2.jpg') }}"  style="float: left; border: 2px solid gray"/>
+      <div class="mb-2" style="font-size: 12px; min-height: 100px">
+        <img class="w-50 mr-2" src="{{ asset('images/news2.jpg') }}"  style="float: left; border: 2px solid gray; max-width: 150px; max-height: 100px"/>
         <strong>Trường ĐH Kinh tế, ĐHQGHN - Nơi chào đón và nâng bước giảng viên tài năng</strong>
         <p>Trường Đại học Kinh tế, ĐHQGHN thực hiện Chiến lược phát triển đội ngũ nhân sự, chào đón các Tiến sĩ (trong nước, nước ngoài) và các Thạc sĩ tốt nghiệp ĐH nước ngoài trở thành giảng viên - thành viên ...</p>
       </div>
