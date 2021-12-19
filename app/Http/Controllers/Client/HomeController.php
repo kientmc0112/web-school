@@ -25,7 +25,7 @@ class HomeController extends Controller
         return view('client.home', compact('categories'));
     }
     
-    public function getChild(&$arr, $categories, $id = null, $parentId = null)
+    public function getChild(&$arr, $categories, $id = null, $parentId = 0)
     {
         foreach ($categories as $key => $category) {
             if ($category->parent_id === $parentId) {
