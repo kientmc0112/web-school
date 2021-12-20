@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Category;
+use App\Models\Post;
 
 class HomeController extends Controller
 {
@@ -21,8 +22,13 @@ class HomeController extends Controller
         $cats = Category::all();
         $categoriesHeader = [];
         $this->getChild($categoriesHeader, $cats);
+        $cats1 = Category::all();
+        $childCategories = [];
+        $this->getChildCategories($childCategories, $cats1);
+        $edus = Post::whereIn('category_id', $childCategories[14])->orderBy('created_at', 'desc')->paginate(3);
+        $news = Post::whereIn('category_id', $childCategories[44])->orderBy('created_at', 'desc')->paginate(5);
 
-        return view('client.home', compact('categoriesHeader'));
+        return view('client.home', compact('categoriesHeader', 'news', 'edus'));
     }
     
     public function getChild(&$arr, $categories, $parentId = 0)
@@ -34,6 +40,34 @@ class HomeController extends Controller
                 $arr[$key]['child'] = [];
                 unset($categories[$key]);
                 $this->getChild($arr[$key]['child'], $categories, $category->id);
+            }
+        }
+    }
+
+    public function getChildCategories(&$arr, $categories, $parentId = [])
+    {
+        foreach ($categories as $key => $category) {
+            if (in_array($category->parent_id, $parentId) || (count($parentId) === 0 && $category->parent_id === 0)) {
+                if ($category->parent_id === 0) {
+                    $arr[$category->id][] = $category->id;    
+                    unset($categories[$key]);
+                    $this->getChildCategories($arr[$category->id], $categories, [$category->id]);
+                } else {
+                    $arr[] = $category->id;
+                    unset($categories[$key]);
+                    $this->getChildCategories($arr, $categories, [$category->id]);
+                }
+            }
+        }
+    }
+
+    public function getChildCategoryIds(&$arr, $categories, $parentId = 0)
+    {
+        foreach ($categories as $key => $category) {
+            if ($category->parent_id === $parentId) {
+                $arr[$key] = $category->id;
+                unset($categories[$key]);
+                $this->getChildCategoryIds($arr, $categories, $category->id);
             }
         }
     }
@@ -70,7 +104,7 @@ class HomeController extends Controller
             $cateSelect = DB::table('categories')
                 ->where('id', $request->category_id)
                 ->first();
-            
+                
             if (isset($request->post_id)) {
                 $arryPosts = DB::table('posts')
                     ->where('category_id', $request->category_id)
@@ -93,9 +127,12 @@ class HomeController extends Controller
                     'parentId'
                 ));
             }
-
+            
+            $childCategories = [intval($request->category_id)];
+            $cates = Category::all();
+            $this->getChildCategoryIds($childCategories, $cates, intval($request->category_id));
             $arryPosts = DB::table('posts')
-                ->where('category_id', $request->category_id)
+                ->whereIn('category_id', $childCategories)
                 ->orderBy('updated_at', 'desc')
                 ->paginate(30)
                 ->toArray();

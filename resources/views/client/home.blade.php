@@ -48,13 +48,13 @@
         </ol>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img class="d-block w-100 image-slider" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" alt="First slide">
+          <img class="d-block w-100 image-slider" src="{{ asset('images/banner1.jpg') }}" alt="First slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100 image-slider" src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" alt="Second slide">
+          <img class="d-block w-100 image-slider" src="{{ asset('images/banner2.jpg') }}" alt="Second slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100 image-slider" src="https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg" alt="Third slide">
+          <img class="d-block w-100 image-slider" src="{{ asset('images/banner3.jpg') }}" alt="Third slide">
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselSlider" role="button" data-slide="prev">
@@ -94,16 +94,16 @@
     <div class="mb-3">
       <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Tin tức</strong>
     </div>
-    @for ($i = 0; $i < 5; $i++)
+    @foreach ($news as $new)
       <div class="mb-2" style="font-size: 12px; min-height: 100px">
         <a href="#">
-          <img class="w-50 mr-2" src="{{ asset('images/news2.jpg') }}"  style="float: left; border: 2px solid gray; max-width: 150px; max-height: 100px"/>
-          <strong>Trường ĐH Kinh tế, ĐHQGHN - Nơi chào đón và nâng bước giảng viên tài năng</strong>
-          <p style="color: #666;">Trường Đại học Kinh tế, ĐHQGHN thực hiện Chiến lược phát triển đội ngũ nhân sự, chào đón các Tiến sĩ (trong nước, nước ngoài) và các Thạc sĩ tốt nghiệp ĐH nước ngoài trở thành giảng viên - thành viên ...</p>
+          <img class="w-50 mr-2" src="{{ asset($new->thumbnail_url) }}"  style="float: left; border: 2px solid gray; width: 150px; height: 100px; object-fit: cover"/>
+          <p class="mb-1" style="font-size: 14px; font-weight: bold">{{ $new->title }}</p>
+          <p style="color: #666;">Trường Đại học Kinh tế, ĐHQGHN thực hiện Chiến lược phát triển đội ngũ nhân sự, chào đón các Tiến sĩ (trong nước, nước ngoài) và các Thạc sĩ tốt nghiệp ĐH nước ngoài...</p>
         </a>
       </div>
-    @endfor
-    <nav aria-label="navigation" style="font-size: 12px">
+    @endforeach
+    {{-- <nav aria-label="navigation" style="font-size: 12px">
       <ul class="pagination">
         <li class="page-item">
           <a class="page-link text-secondary" href="#" aria-label="Previous">
@@ -119,28 +119,28 @@
           </a>
         </li>
       </ul>
-    </nav>
+    </nav> --}}
   </div>
   <div class="col-lg-8 col-md-8 col-sm-12 px-2">
     <div class="mb-3">
       <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Tuyển sinh</strong>
     </div>
-    @for ($i = 0; $i < 3; $i++)
+    @foreach ($edus as $edu)
       <div class="row" style="font-size: 12px; margin-bottom: 20px">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
           <a href="#">
-            <img class="w-100 mr-2 border-0" src="{{ asset('images/news3.png') }}" style="width: 400px; height: 250px; object-fit: cover"/>
+            <img class="w-100 mr-2 border-0" src="{{ asset($edu->thumbnail_url) }}" style="width: 400px; height: 250px; object-fit: cover"/>
           </a>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 px-0" style="border-top: 1px solid #eaeaea">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="border-top: 1px solid #eaeaea">
           <a href="#">
-            <h3 style="font-size: 21px; padding-top: 17px">Tuyển sinh Tiến sĩ chuyên ngành Biến đổi khí hậu và Phát triển bền vững</h3>
-            <p style="color: #666; margin-top: 25px; margin-bottom: 22px">Căn cứ Hướng dẫn thực hiện công tác tuyển sinh sau đại học năm 2020 của Đại học Quốc gia Hà Nội (ĐHQGHN) tại công văn số 36/HD-ĐHQGHN, ngày 08/01/2020, Khoa Các khoa học liên ngành thông báo tuyển sinh đào tạo trình độ tiến sĩ như sau: 1. Thông tin chung – Chuyên ngành:  […]</p>
-            <p style="color: #666;">By Nam Le | Chương trình liên kết đào tạo</p>
+            <h3 style="font-size: 20px; padding-top: 17px; font-weight: bold">{{ $edu->title }}</h3>
+            <p style="color: #666; margin-top: 25px; margin-bottom: 22px">Căn cứ Hướng dẫn thực hiện công tác tuyển sinh sau đại học năm 2020 của Đại học Quốc gia Hà Nội (ĐHQGHN) tại công văn số 36/HD-ĐHQGHN, ngày 08/01/2020, Khoa Các khoa học liên ngành thông báo tuyển sinh đào tạo trình độ tiến sĩ như sau: </p>
+            <p style="color: #666;">By {{ $edu->user->name }} | {{ $edu->category->name }}</p>
           </a>
         </div>
       </div>
-    @endfor
+    @endforeach
   </div>
   {{-- <div class="col-lg-4 col-md-4 col-sm-12 px-2">
     <div class="mb-3">
