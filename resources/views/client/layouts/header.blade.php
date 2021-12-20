@@ -25,13 +25,13 @@ function getChild(&$navbar, $category)
     $url = route('categories') . "?category_id=". $category["id"];
   }
   if (count($category['child']) > 0) {
-    $navbar .= '<li class="dropdown-submenu"><a href="' . $url . '" class="d-block text-dark py-2 px-3">' . $category['name'] . '</a><ul class="dropdown-menu">';
     foreach ($category['child'] as $key => $childCategory) {
+      $navbar .= '<li class="dropdown-submenu"><a href="#" class="text-white d-block py-2 px-3">' . $childCategory['name'] . '</a><ul class="dropdown-menu">';
       getChild($navbar, $childCategory);
+      $navbar .= '</ul></li>';
     }
-    $navbar .= '</ul></li>';
   } else {
-    $navbar .= '<li><a href="' . $url . '" class="d-block text-dark py-2 px-3">' . $category['name'] . '</a></li>';
+    $navbar .= '<li><a href="#" class="text-white d-block py-2 px-3">' . $category['name'] . '</a></li>';
   }
 }
  
@@ -73,7 +73,7 @@ function getChild(&$navbar, $category)
     </div>
   </div>
   <div class="bg-vnu-blue">
-    <nav class="navbar navbar-expand-md navbar-light bg-vnu-blue" style="font-size: 15px">
+    <nav class="navbar navbar-expand-xl navbar-light py-0" style="font-size: 15px">
       <button class="navbar-toggler bg-white ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -88,7 +88,9 @@ function getChild(&$navbar, $category)
 <script>
   $(document).ready(function(){
     $('.dropdown-submenu, .dropdown').hover(function (e) {
-      $(this).children('ul').toggle();
+      if ($(window).width() >= 1200) {
+        $(this).children('ul').toggle();
+      }
     });
   });
 </script>
@@ -104,6 +106,12 @@ function getChild(&$navbar, $category)
     font-size: 15px;
     padding: 0;
   }
+  .nav-item:hover {
+    background-color: #46a5e5;
+  }
+  .dropdown-menu li {
+    background-color: #46a5e5;
+  }
 
   .dropdown-menu li a {
     white-space: nowrap;
@@ -111,24 +119,19 @@ function getChild(&$navbar, $category)
     text-overflow: ellipsis;
   }
   .dropdown-menu li:hover {
-    background-color: var(--yellow-vnu);
     color: var(--text-white);
+    background-color: #176ac4;
   }
   .dropdown-menu li:hover > a {
     color: white !important;
   }
   .dropdown-submenu {
     position: relative;
+    background-color: #46a5e5;
   }
   .dropdown-submenu .dropdown-menu {
     top: 0;
     left: 100%;
     margin-top: -1px;
-  }
-  .bg-vnu-gray {
-    background-color: #e6e6e8;
-  }
-  .bg-vnu-blue {
-    background-color: var(--blue-vnu);
   }
 </style>

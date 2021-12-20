@@ -9,13 +9,24 @@
     --yellow-vnu: #dd8d00;
     --text-white: #fff;
     --text-black: #000;
+    --text-gray: #e6e6e8;
 }
 
 html {
-    font-size: 62.5%;
-    line-height: 1.6rem;
+    font-size: 12px;
+    line-height: 2;
     font-family: "Open Sans", sans-serif;
     box-sizing: border-box;
+}
+
+a {
+    color: var(--text-black);
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0d2c6c;
+    text-decoration: none;
 }
 
 /* Responsive */
@@ -150,6 +161,14 @@ html {
 
 .header__subnav a {
     color: var(--text-black);
+}
+
+.bg-vnu-gray {
+    background-color: var(--gray-vnu);
+}
+
+.bg-vnu-blue {
+    background-color: var(--blue-vnu);
 }
 
 /* Container */

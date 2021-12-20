@@ -29,10 +29,10 @@
                                 <label>Category</label>
                                 <select class="form-control" name="category_id">
                                     @foreach ($categories as $category)
-                                        @if ($category->id === $post->category_id)
-                                            <option selected value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @if ($category['id'] === $post->category_id)
+                                            <option selected value="{{ $category['id'] }}">{!! $category['name'] !!}</option>
                                         @else
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option value="{{ $category['id'] }}">{!! $category['name'] !!}</option>
                                         @endif
                                     @endforeach
                                 </select>

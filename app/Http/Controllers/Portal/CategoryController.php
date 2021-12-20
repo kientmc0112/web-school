@@ -16,7 +16,7 @@ class CategoryController extends Controller
         return view('portal.categories.index', compact('categories'));
     }
 
-    public function getChild(&$arr, $categories, $id = null, $parentId = null, $char = '')
+    public function getChild(&$arr, $categories, $id = null, $parentId = 0, $char = '')
     {
         foreach ($categories as $key => $category) {
             if ($category->parent_id === $parentId) {
