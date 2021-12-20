@@ -136,6 +136,7 @@
           <a href="#">
             <h3 style="font-size: 21px; padding-top: 17px">Tuyển sinh Tiến sĩ chuyên ngành Biến đổi khí hậu và Phát triển bền vững</h3>
             <p style="color: #666; margin-top: 25px; margin-bottom: 22px">Căn cứ Hướng dẫn thực hiện công tác tuyển sinh sau đại học năm 2020 của Đại học Quốc gia Hà Nội (ĐHQGHN) tại công văn số 36/HD-ĐHQGHN, ngày 08/01/2020, Khoa Các khoa học liên ngành thông báo tuyển sinh đào tạo trình độ tiến sĩ như sau: 1. Thông tin chung – Chuyên ngành:  […]</p>
+            <p style="color: #666;">By Nam Le | Chương trình liên kết đào tạo</p>
           </a>
         </div>
       </div>
