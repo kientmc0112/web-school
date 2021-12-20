@@ -10,10 +10,7 @@
         display: block;
         height: 150px;
     }
-    a {
-        text-decoration: none;
-    }
-    ul {
+    .home_news_item ul {
         margin:0;
         padding:0;
         list-style-position: outside;
