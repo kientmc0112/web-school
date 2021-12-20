@@ -5,28 +5,28 @@ foreach ($categoriesHeader as $key => $category) {
   if ($category["id"] === 1) {
     $url = route('home.index');
   } else {
-    $url = route('categories') . "?category_id=". $category["id"];
+    $url = route('categories') . "?parent_id=". $category["id"];
   }
   if (count($category['child']) > 0) {
     $navbar .= '<li class="nav-item dropdown"><strong class="dropdown-toggle text-white"><a href="' . $url . '" class="d-block px-5 py-3 text-white">' . $category['name'] . '</a></strong><ul class="dropdown-menu" style="margin-top: -1px">';
-    getChild($navbar, $category['child']);
+    getChild($navbar, $category['child'], $category["id"]);
     $navbar .= '</ul></li>';
   } else {
     $navbar .= '<li class="nav-item"><strong class="dropdown-toggle text-white"><a href="' . $url . '" class="d-block px-5 py-3 text-white">' . $category['name'] . '</a></strong></li>';
   }
 }
 
-function getChild(&$navbar, $categories)
+function getChild(&$navbar, $categories, $parentId)
 {
   foreach ($categories as $key => $childCategory) {
     if ($childCategory["id"] === 1) {
       $url = route('home.index');
     } else {
-      $url = route('categories') . "?category_id=". $childCategory["id"];
+      $url = route('categories') . "?parent_id=". $parentId . "&category_id=". $childCategory["id"];
     }
     if (count($childCategory['child']) > 0) {
       $navbar .= '<li class="dropdown-submenu"><a href="' . $url . '" class="text-white d-block py-2 px-3">' . $childCategory['name'] . '</a><ul class="dropdown-menu">';
-      getChild($navbar, $childCategory['child']);
+      getChild($navbar, $childCategory['child'], $parentId);
       $navbar .= '</ul></li>';
     } 
     else {

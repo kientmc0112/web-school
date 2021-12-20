@@ -155,7 +155,6 @@
 
 @section('content')
 <div class="row list-post-with-category">
-    {{-- @include('client.components.listCate', $cateParent) --}}
     <div class="col-lg-3 col-md-4 col-sm-12">
         @include('client.partials.categories_rows', ['level' => 0])
     </div>
@@ -175,7 +174,7 @@
                         @foreach ($arryPosts[$key] as $post)
                             <div class="content__item">
                                 <img class="cate__icon" src="{{ asset('images/next_new_category.png') }}">
-                                <a href="{{ route('categories') . '?category_id=' . $cate->id . "&post_id=" . $post->id }}" class="cate__title">{{ $post->title }}</a>
+                                <a href="{{ route('categories') . '?parent_id='.$parentId.'&category_id=' . $cate->id . "&post_id=" . $post->id }}" class="cate__title">{{ $post->title }}</a>
                                 <img class="cate__icon-new" src="{{ asset('images/newnew.gif') }}">
                             </div>
                         @endforeach
@@ -200,7 +199,7 @@
                             @foreach ($arryPosts['data'] as $post)
                                 <div class="content__item">
                                     <img class="cate__icon" src="{{ asset('images/next_new_category.png') }}">
-                                    <a href="{{ route('categories') . '?category_id=' . $cateSelect->id . "&post_id=" . $post->id }}" class="cate__title">
+                                    <a href="{{ route('categories') . '?parent_id=' . $parentId.'&category_id=' . $cateSelect->id . "&post_id=" . $post->id }}" class="cate__title">
                                         {{ $post->title }}
                                     </a>
                                     <img class="cate__icon-new" src="{{ asset('images/newnew.gif') }}">
@@ -217,7 +216,7 @@
                                     </li>
                                     @for ($i = 1; $i <= $arryPosts["last_page"]; $i++)  
                                         <li class="page-item {{ $arryPosts["current_page"] === $i ? "active" : "" }}">
-                                            <a class="page-link" href="{{ route('categories') . '?category_id=' . $cateSelect->id . "&post_id=" . $post->id . "&page=" . $i }}">{{ $i }}</a></li>
+                                            <a class="page-link" href="{{ route('categories') . '&parent_id='.$parentId. '?category_id=' . $cateSelect->id . "&post_id=" . $post->id . "&page=" . $i }}">{{ $i }}</a></li>
                                     @endfor
                                     <li class="page-item">
                                         <a class="page-link" href="{{ $arryPosts['next_page_url'] !== null ?  $arryPosts['next_page_url'] . '&category_id=' . $cateSelect->id . "&post_id=" . $post->id : "#"}}" aria-label="Next">
@@ -250,7 +249,7 @@
                         @foreach ($arryPosts['data'] as $post)
                             <div class="content__item">
                                 <img class="cate__icon" src="{{ asset('images/next_new_category.png') }}">
-                                <a href="{{ route('categories') . '?category_id=' . $cateSelect->id . "&post_id=" . $post->id }}" class="cate__title">
+                                <a href="{{ route('categories') . '?parent_id='.$parentId.'&category_id=' . $cateSelect->id . "&post_id=" . $post->id }}" class="cate__title">
                                     {{ $post->title }}
                                 </a>
                                 <img class="cate__icon-new" src="{{ asset('images/newnew.gif') }}">
@@ -267,7 +266,7 @@
                                 </li>
                                 @for ($i = 1; $i <= $arryPosts["last_page"]; $i++)  
                                     <li class="page-item {{ $arryPosts["current_page"] === $i ? "active" : "" }}">
-                                        <a class="page-link" href="{{ route('categories') . '?category_id=' . $cateSelect->id . "&page=" . $i }}">{{ $i }}</a></li>
+                                        <a class="page-link" href="{{ route('categories') . '&parent_id='.$parentId.'?category_id=' . $cateSelect->id . "&page=" . $i }}">{{ $i }}</a></li>
                                 @endfor
                                 <li class="page-item">
                                     <a class="page-link" href="{{ $arryPosts['next_page_url'] !== null ?  $arryPosts['next_page_url'] . '&category_id=' . $cateSelect->id : "#"}}" aria-label="Next">
