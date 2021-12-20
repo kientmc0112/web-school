@@ -2,16 +2,13 @@
 @section('title', 'SIS')
 @section('css')
     <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 10pt;
-        }
-        a {
+        .list-post-with-category a {
             color: #fff;
-            font: bold 12px arial;
-            text-decoration: none
+            font-weight: bold;
+            font-size: 12px;
+            text-decoration: none;
         }
-        a:hover {
+        .list-post-with-category a:hover {
             text-decoration: none
         }
         .left-sidebar {
@@ -157,7 +154,7 @@
 @endsection
 
 @section('content')
-<div class="row">
+<div class="row list-post-with-category">
     {{-- @include('client.components.listCate', $cateParent) --}}
     <div class="col-lg-3 col-md-4 col-sm-12">
         @include('client.partials.categories_rows', ['level' => 0])
