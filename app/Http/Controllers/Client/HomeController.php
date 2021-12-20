@@ -58,7 +58,9 @@ class HomeController extends Controller
         $categoriesHeader = [];
         $this->getChild($categoriesHeader, $cats);
 
-        $categories = $this->getSubCategories(0);
+        $parentId = $request->parent_id ?? 0;
+
+        $categories = $this->getSubCategories($parentId);
         $isSingle = false;
 
         if (isset($request->category_id)) {
@@ -87,7 +89,8 @@ class HomeController extends Controller
                     'arryPosts', 
                     'post', 
                     'subPanel', 
-                    'categoriesHeader'
+                    'categoriesHeader',
+                    'parentId'
                 ));
             }
 
@@ -103,7 +106,8 @@ class HomeController extends Controller
                 'cateSelect', 
                 'arryPosts', 
                 'subPanel', 
-                'categoriesHeader'
+                'categoriesHeader',
+                'parentId'
             ));
         }
         $arryPosts = [];
@@ -122,7 +126,8 @@ class HomeController extends Controller
             'isSingle', 
             'categories', 
             'arryPosts', 
-            'categoriesHeader'
+            'categoriesHeader',
+            'parentId'
         ));
     }
 
