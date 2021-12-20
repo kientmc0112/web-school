@@ -25,7 +25,7 @@ class HomeController extends Controller
         return view('client.home', compact('categoriesHeader'));
     }
     
-    public function getChild(&$arr, $categories, $id = null, $parentId = 0)
+    public function getChild(&$arr, $categories, $parentId = 0)
     {
         foreach ($categories as $key => $category) {
             if ($category->parent_id === $parentId) {
@@ -33,9 +33,7 @@ class HomeController extends Controller
                 $arr[$key]['name'] = $category->name;
                 $arr[$key]['child'] = [];
                 unset($categories[$key]);
-                if ($id !== $category->id) {
-                    $this->getChild($arr[$key]['child'], $categories, $id, $category->id);
-                }
+                $this->getChild($arr[$key]['child'], $categories, $category->id);
             }
         }
     }

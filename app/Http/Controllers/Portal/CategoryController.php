@@ -16,7 +16,7 @@ class CategoryController extends Controller
         return view('portal.categories.index', compact('categories'));
     }
 
-    public function getChild(&$arr, $categories, $id = null, $parentId = 0, $char = '')
+    public function getChild(&$arr, $categories, $parentId = 0, $char = '')
     {
         foreach ($categories as $key => $category) {
             if ($category->parent_id === $parentId) {
@@ -25,9 +25,7 @@ class CategoryController extends Controller
                     'name' => $char . $category->name
                 ];
                 unset($categories[$key]);
-                if ($id !== $category->id) {
-                    $this->getChild($arr, $categories, $id, $category->id, $char . '&nbsp;&nbsp;&nbsp;');
-                }
+                $this->getChild($arr, $categories, $category->id, $char . '&nbsp;&nbsp;&nbsp;');
             }
         }
     }
@@ -61,7 +59,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $categories = Category::where('id', '!=', $id)->get();
         $cats = [];
-        $this->getChild($cats, $categories, $id);
+        $this->getChild($cats, $categories);
 
         return view('portal.categories.edit', compact('category', 'cats'));
     }
