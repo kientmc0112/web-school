@@ -26,9 +26,27 @@ class PostController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
+        $cats = Category::all();
+        $categories = [];
+        $this->getChild($categories, $cats);
 
         return view('portal.posts.create', compact('categories'));
+    }
+
+    public function getChild(&$arr, $categories, $id = null, $parentId = 0, $char = '')
+    {
+        foreach ($categories as $key => $category) {
+            if ($category->parent_id === $parentId) {
+                $arr[$key] = [
+                    'id' => $category->id,
+                    'name' => $char . $category->name
+                ];
+                unset($categories[$key]);
+                if ($id !== $category->id) {
+                    $this->getChild($arr, $categories, $id, $category->id, $char . '&nbsp;&nbsp;&nbsp;');
+                }
+            }
+        }
     }
 
     public function store(PostRequest $request)
@@ -68,7 +86,9 @@ class PostController extends Controller
 
     public function edit($id)
     {
-        $categories = Category::all();
+        $cats = Category::all();
+        $categories = [];
+        $this->getChild($categories, $cats);
         $post = Post::find($id);
 
         return view('portal.posts.edit', compact('post', 'categories'));

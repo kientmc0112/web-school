@@ -94,11 +94,13 @@
     <div class="mb-3">
       <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Tin tức</strong>
     </div>
-    @for ($i = 0; $i < 4; $i++)
+    @for ($i = 0; $i < 5; $i++)
       <div class="mb-2" style="font-size: 12px; min-height: 100px">
-        <img class="w-50 mr-2" src="{{ asset('images/news2.jpg') }}"  style="float: left; border: 2px solid gray; max-width: 150px; max-height: 100px"/>
-        <strong>Trường ĐH Kinh tế, ĐHQGHN - Nơi chào đón và nâng bước giảng viên tài năng</strong>
-        <p>Trường Đại học Kinh tế, ĐHQGHN thực hiện Chiến lược phát triển đội ngũ nhân sự, chào đón các Tiến sĩ (trong nước, nước ngoài) và các Thạc sĩ tốt nghiệp ĐH nước ngoài trở thành giảng viên - thành viên ...</p>
+        <a href="#">
+          <img class="w-50 mr-2" src="{{ asset('images/news2.jpg') }}"  style="float: left; border: 2px solid gray; max-width: 150px; max-height: 100px"/>
+          <strong>Trường ĐH Kinh tế, ĐHQGHN - Nơi chào đón và nâng bước giảng viên tài năng</strong>
+          <p style="color: #666;">Trường Đại học Kinh tế, ĐHQGHN thực hiện Chiến lược phát triển đội ngũ nhân sự, chào đón các Tiến sĩ (trong nước, nước ngoài) và các Thạc sĩ tốt nghiệp ĐH nước ngoài trở thành giảng viên - thành viên ...</p>
+        </a>
       </div>
     @endfor
     <nav aria-label="navigation" style="font-size: 12px">
@@ -119,7 +121,27 @@
       </ul>
     </nav>
   </div>
-  <div class="col-lg-4 col-md-4 col-sm-12 px-2">
+  <div class="col-lg-8 col-md-8 col-sm-12 px-2">
+    <div class="mb-3">
+      <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Tuyển sinh</strong>
+    </div>
+    @for ($i = 0; $i < 3; $i++)
+      <div class="row" style="font-size: 12px; margin-bottom: 20px">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <a href="#">
+            <img class="w-100 mr-2 border-0" src="{{ asset('images/news3.png') }}" style="width: 400px; height: 250px; object-fit: cover"/>
+          </a>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 px-0" style="border-top: 1px solid #eaeaea">
+          <a href="#">
+            <h3 style="font-size: 21px; padding-top: 17px">Tuyển sinh Tiến sĩ chuyên ngành Biến đổi khí hậu và Phát triển bền vững</h3>
+            <p style="color: #666; margin-top: 25px; margin-bottom: 22px">Căn cứ Hướng dẫn thực hiện công tác tuyển sinh sau đại học năm 2020 của Đại học Quốc gia Hà Nội (ĐHQGHN) tại công văn số 36/HD-ĐHQGHN, ngày 08/01/2020, Khoa Các khoa học liên ngành thông báo tuyển sinh đào tạo trình độ tiến sĩ như sau: 1. Thông tin chung – Chuyên ngành:  […]</p>
+          </a>
+        </div>
+      </div>
+    @endfor
+  </div>
+  {{-- <div class="col-lg-4 col-md-4 col-sm-12 px-2">
     <div class="mb-3">
       <div class="mb-3">
         <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Thông báo</strong>
@@ -178,6 +200,6 @@
         <button class="btn btn-outline-primary text-white bg-vnu-blue" type="button" style="border:1px solid #0d2c6c"><i class="bi bi-search"></i></button>
       </div>
     </div>
-  </div>
+  </div> --}}
 </div>
 @endsection
