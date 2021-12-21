@@ -26,7 +26,7 @@
                             <tr class="odd gradeX">
                                 <td style="text-align: center;">{{ $key + 1 }}</td>
                                 <td>{{ $category->name }}</td>
-                                <td>{{ $category->description }}</td>
+                                <td>{!! Str::limit(strip_tags($category->description), $limit = 1000, $end = '...') !!}</td>
                                 <td class="text-center">
                                     @if ($category->category)
                                         {{ $category->category->name }}
