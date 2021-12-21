@@ -96,10 +96,10 @@
     </div>
     @foreach ($news as $new)
       <div class="mb-2" style="font-size: 12px; min-height: 100px">
-        <a href="#">
+        <a href="{{ route('categories') . '?category_id=' . $new->category_id. '&post_id=' . $new->id }}">
           <img class="w-50 mr-2" src="{{ asset($new->thumbnail_url) }}"  style="float: left; border: 2px solid gray; width: 150px; height: 100px; object-fit: cover"/>
           <p class="mb-1" style="font-size: 14px; font-weight: bold">{{ $new->title }}</p>
-          <p style="color: #666;">Trường Đại học Kinh tế, ĐHQGHN thực hiện Chiến lược phát triển đội ngũ nhân sự, chào đón các Tiến sĩ (trong nước, nước ngoài) và các Thạc sĩ tốt nghiệp ĐH nước ngoài...</p>
+          <p style="color: #666;">{!! Str::limit(strip_tags($new->content), $limit = 250, $end = '...') !!}</p>
         </a>
       </div>
     @endforeach
@@ -128,14 +128,14 @@
     @foreach ($edus as $edu)
       <div class="row" style="font-size: 12px; margin-bottom: 20px">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-          <a href="#">
+          <a href="{{ route('categories') . '?category_id=' . $edu->category_id. '&post_id=' . $edu->id }}">
             <img class="w-100 mr-2 border-0" src="{{ asset($edu->thumbnail_url) }}" style="width: 400px; height: 250px; object-fit: cover"/>
           </a>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="border-top: 1px solid #eaeaea">
-          <a href="#">
+          <a href="{{ route('categories') . '?category_id=' . $edu->category_id. '&post_id=' . $edu->id }}">
             <h3 style="font-size: 20px; padding-top: 17px; font-weight: bold">{{ $edu->title }}</h3>
-            <p style="color: #666; margin-top: 25px; margin-bottom: 22px">Căn cứ Hướng dẫn thực hiện công tác tuyển sinh sau đại học năm 2020 của Đại học Quốc gia Hà Nội (ĐHQGHN) tại công văn số 36/HD-ĐHQGHN, ngày 08/01/2020, Khoa Các khoa học liên ngành thông báo tuyển sinh đào tạo trình độ tiến sĩ như sau: </p>
+            <p style="color: #666; margin-top: 25px; margin-bottom: 22px">{!! Str::limit(strip_tags($edu->content), $limit = 300, $end = '...') !!}</p>
             <p style="color: #666;">By {{ $edu->user->name }} | {{ $edu->category->name }}</p>
           </a>
         </div>
