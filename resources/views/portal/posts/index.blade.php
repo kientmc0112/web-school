@@ -40,7 +40,7 @@
                                     <img style="width: 100%" src="{{ asset($post->thumbnail_url) }}">
                                 </td>
                                 <td class="text-left">
-                                    <div class="content">{!! $post->content !!}</div>
+                                    <div class="content">{!! Str::limit(strip_tags($post->content), $limit = 1000, $end = '...') !!}</div>
                                 </td>
                                 <td class="text-left">
                                     @if ($post->user)
