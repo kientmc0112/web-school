@@ -40,9 +40,14 @@
     @yield('js')
     <script>
         $(document).ready(function(){
-            $('.dropdown-submenu, .dropdown').hover(function (e) {
+            $('.dropdown-submenu, .dropdown').mouseout(function (e) {
                 if ($(window).width() >= 1200) {
-                    $(this).children('ul').toggle();
+                    $(this).children('ul').removeClass('show');
+                }
+            });
+            $('.dropdown-submenu, .dropdown').mouseover(function (e) {
+                if ($(window).width() >= 1200) {
+                    $(this).children('ul').addClass('show');
                 }
             });
         });

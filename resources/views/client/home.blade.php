@@ -96,7 +96,7 @@
     </div>
     @foreach ($news as $new)
       <div class="post-preview__sm">
-        <a href="{{ route('categories') . '?category_id=' . $new->category_id. '&post_id=' . $new->id }}">
+        <a href="{{ route('categories.show', $newCate) . '?post_id=' . $new->id }}">
           <img class="w-50 mr-2 float-left post-preview__img__sm" src="{{ asset($new->thumbnail_url) }}"/>
           <h3 class="mb-1 post-preview__h3__sm">{{ $new->title }}</h3>
           <span class="post-preview__p">{!! Str::limit(strip_tags($new->content), $limit = 250, $end = '...') !!}</span>
@@ -128,12 +128,12 @@
     @foreach ($edus as $edu)
       <div class="row post-preview">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-          <a href="{{ route('categories') . '?category_id=' . $edu->category_id. '&post_id=' . $edu->id }}">
+          <a href="{{ route('categories.show', $eduCate) . '?post_id=' . $edu->id }}">
             <img class="w-100 mr-2 border-0 post-preview__img" src="{{ asset($edu->thumbnail_url) }}"/>
           </a>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 post-preview__div">
-          <a href="{{ route('categories') . '?category_id=' . $edu->category_id. '&post_id=' . $edu->id }}">
+          <a href="{{ route('categories.show', $eduCate) . '?post_id=' . $edu->id }}">
             <h3 class="post-preview__h3">{{ $edu->title }}</h3>
             <p class="post-preview__p">{!! Str::limit(strip_tags($edu->content), $limit = 300, $end = '...') !!}</p>
             <span class="post-preview__span">By {{ $edu->user->name }} | {{ $edu->category->name }}</span>

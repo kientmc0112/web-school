@@ -23,13 +23,17 @@ class HomeController extends Controller
         $cats = Category::all();
         $categoriesHeader = [];
         $this->getChild($categoriesHeader, $cats);
+
         $cats1 = Category::all();
         $childCategories = [];
         $this->getChildCategories($childCategories, $cats1);
-        $edus = Post::whereIn('category_id', $childCategories[DBConstant::EDUCATION])->orderBy('created_at', 'desc')->paginate(3);
-        $news = Post::whereIn('category_id', $childCategories[DBConstant::NEWS])->orderBy('created_at', 'desc')->paginate(5);
 
-        return view('client.home', compact('categoriesHeader', 'news', 'edus'));
+        $edus = Post::whereIn('category_id', $childCategories[DBConstant::EDUCATION])->orderBy('updated_at', 'desc')->paginate(3);
+        $eduCate = DBConstant::EDUCATION;
+        $news = Post::whereIn('category_id', $childCategories[DBConstant::NEWS])->orderBy('updated_at', 'desc')->paginate(5);
+        $newCate = DBConstant::NEWS;
+
+        return view('client.home', compact('categoriesHeader', 'news', 'edus', 'eduCate', 'newCate'));
     }
     
     public function getChild(&$arr, $categories, $parentId = 0)
@@ -55,22 +59,44 @@ class HomeController extends Controller
                     $this->getChildCategories($arr[$category->id], $categories, [$category->id]);
                 } else {
                     $arr[] = $category->id;
-                    unset($categories[$key]);
                     $this->getChildCategories($arr, $categories, [$category->id]);
                 }
             }
         }
     }
 
-    public function getChildCategoryIds(&$arr, $categories, $parentId = 0)
+    public function show(Request $request, $id)
     {
-        foreach ($categories as $key => $category) {
-            if ($category->parent_id === $parentId) {
-                $arr[$key] = $category->id;
-                unset($categories[$key]);
-                $this->getChildCategoryIds($arr, $categories, $category->id);
-            }
+        $cats = Category::all();
+        $categoriesHeader = [];
+        $this->getChild($categoriesHeader, $cats);
+
+        $categories = $this->getSubCategories($id);
+
+        $cats1 = Category::all();
+        $childCategories = [];
+        foreach ($cats1 as $key => $cat1) {
+            $childCategories[$cat1->id][] = $cat1->id;
+            $this->getChildCategories($childCategories[$cat1->id], $cats1, [$cat1->id]);
         }
+
+        if (isset($request->post_id)) {
+            $post = Post::find($request->post_id);
+            $similarPosts = DB::table('posts')
+                ->where('category_id', $childCategories[$id])
+                ->orderBy('updated_at', 'desc')
+                ->paginate(10);
+
+            return view('client.posts.show', compact('categoriesHeader', 'categories', 'post', 'similarPosts', 'id'));
+        }
+
+        if (isset($request->child_id)) {
+            $posts = Post::whereIn('category_id', $childCategories[$request->child_id])->orderBy('updated_at', 'desc')->paginate(3);
+        } else {
+            $posts = Post::whereIn('category_id', $childCategories[$id])->orderBy('updated_at', 'desc')->paginate(3);
+        }
+
+        return view('client.posts.show', compact('categoriesHeader', 'categories', 'posts', 'id'));
     }
 
     private function getSubCategories($parent_id, $ignore_id=null)
@@ -85,6 +111,17 @@ class HomeController extends Controller
             });
 
         return $categories;
+    }
+
+    public function getChildCategoryIds(&$arr, $categories, $parentId = 0)
+    {
+        foreach ($categories as $key => $category) {
+            if ($category->parent_id === $parentId) {
+                $arr[$key] = $category->id;
+                unset($categories[$key]);
+                $this->getChildCategoryIds($arr, $categories, $category->id);
+            }
+        }
     }
 
     public function categories(Request $request)
@@ -117,7 +154,7 @@ class HomeController extends Controller
                     ->where('id', $request->post_id)
                     ->first();
 
-                return view('client.posts.show', compact(
+                return view('client.posts.show1', compact(
                     'isSingle', 
                     'categories', 
                     'cateSelect', 
@@ -138,7 +175,7 @@ class HomeController extends Controller
                 ->paginate(30)
                 ->toArray();
 
-            return view('client.posts.show', compact(
+            return view('client.posts.show1', compact(
                 'isSingle', 
                 'categories', 
                 'cateSelect', 
@@ -160,7 +197,7 @@ class HomeController extends Controller
             array_push($arryPosts, $postOfCate);
         }
 
-        return view('client.posts.show', compact(
+        return view('client.posts.show1', compact(
             'isSingle', 
             'categories', 
             'arryPosts', 

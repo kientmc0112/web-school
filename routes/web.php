@@ -50,7 +50,8 @@ Route::group(['middleware' => 'locale'], function() {
         Route::get('change-language/{language}', 'HomeController@changeLanguage')->name('user.change-language');
         
         Route::get('/', 'HomeController@index')->name('home.index');
-        Route::get('categories', 'HomeController@categories')->name('categories');
+        // Route::get('categories', 'HomeController@categories')->name('categories');
+        Route::get('/categories/{id}', 'HomeController@show')->name('categories.show');
     });
 });
 
