@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Models\Category;
 use App\Models\Post;
+use App\Enums\DBConstant;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,8 @@ class HomeController extends Controller
         $cats1 = Category::all();
         $childCategories = [];
         $this->getChildCategories($childCategories, $cats1);
-        $edus = Post::whereIn('category_id', $childCategories[14])->orderBy('created_at', 'desc')->paginate(3);
-        $news = Post::whereIn('category_id', $childCategories[44])->orderBy('created_at', 'desc')->paginate(5);
+        $edus = Post::whereIn('category_id', $childCategories[DBConstant::EDUCATION])->orderBy('created_at', 'desc')->paginate(3);
+        $news = Post::whereIn('category_id', $childCategories[DBConstant::NEWS])->orderBy('created_at', 'desc')->paginate(5);
 
         return view('client.home', compact('categoriesHeader', 'news', 'edus'));
     }
@@ -116,7 +117,7 @@ class HomeController extends Controller
                     ->where('id', $request->post_id)
                     ->first();
 
-                return view('client.posts.listPostWithCate', compact(
+                return view('client.posts.show', compact(
                     'isSingle', 
                     'categories', 
                     'cateSelect', 
@@ -137,7 +138,7 @@ class HomeController extends Controller
                 ->paginate(30)
                 ->toArray();
 
-            return view('client.posts.listPostWithCate', compact(
+            return view('client.posts.show', compact(
                 'isSingle', 
                 'categories', 
                 'cateSelect', 
@@ -159,7 +160,7 @@ class HomeController extends Controller
             array_push($arryPosts, $postOfCate);
         }
 
-        return view('client.posts.listPostWithCate', compact(
+        return view('client.posts.show', compact(
             'isSingle', 
             'categories', 
             'arryPosts', 
