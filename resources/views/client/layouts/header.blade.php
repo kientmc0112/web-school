@@ -2,7 +2,8 @@
 
 $navbar = '';
 foreach ($categoriesHeader as $key => $category) {
-  $url = route('categories') . "?parent_id=". $category["id"];
+  // $url = route('categories') . "?parent_id=". $category["id"];
+  $url = route('categories.show', $category["id"]);
   if (count($category['child']) > 0) {
     $navbar .= '<li class="nav-item dropdown"><strong class="dropdown-toggle text-white"><a href="' . $url . '" class="d-block px-5 py-3 text-white">' . $category['name'] . '</a></strong><ul class="dropdown-menu" style="margin-top: -1px">';
     getChild($navbar, $category['child'], $category["id"]);
@@ -15,7 +16,8 @@ foreach ($categoriesHeader as $key => $category) {
 function getChild(&$navbar, $categories, $parentId)
 {
   foreach ($categories as $key => $childCategory) {
-    $url = route('categories') . "?parent_id=". $parentId . "&category_id=". $childCategory["id"];
+    // $url = route('categories') . "?parent_id=". $parentId . "&category_id=". $childCategory["id"];
+    $url = route('categories.show', $parentId) . "?child_id=" . $childCategory["id"];
     if (count($childCategory['child']) > 0) {
       $navbar .= '<li class="dropdown-submenu"><a href="' . $url . '" class="text-white d-block py-2 px-3">' . $childCategory['name'] . '</a><ul class="dropdown-menu">';
       getChild($navbar, $childCategory['child'], $parentId);

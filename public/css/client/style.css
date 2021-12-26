@@ -68,7 +68,7 @@ a:hover {
 }
 .post-preview__sm {
     min-height: 100px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 .post-preview__h3__sm {
     font-size: 14px;
@@ -79,5 +79,51 @@ a:hover {
     width: 150px;
     height: 100px;
     object-fit: cover;
+}
+
+/* sidebar */
+.sidebar a {
+    font-weight: bold;
+    text-decoration: none;
+}
+.sidebar a:hover {
+    text-decoration: none;
+}
+.sidebar {
+    height: auto;
+    background: #0d2c6c;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    margin: 5px 0;
+    border-radius: 3px;
+    cursor: pointer;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* post */
+.post {
+    padding: 10px;
+}
+.post .post__title a {
+    color: #0d2c6c;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.post .post__title a:hover {
+    color: red;
+}
+.post__content img {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.post__other {
+    margin-left: 10px;
+    margin-top: 30px;
 }
 
