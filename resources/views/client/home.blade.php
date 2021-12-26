@@ -95,11 +95,11 @@
       <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Tin tức</strong>
     </div>
     @foreach ($news as $new)
-      <div class="mb-2" style="font-size: 12px; min-height: 100px">
+      <div class="post-preview__sm">
         <a href="{{ route('categories') . '?category_id=' . $new->category_id. '&post_id=' . $new->id }}">
-          <img class="w-50 mr-2" src="{{ asset($new->thumbnail_url) }}"  style="float: left; border: 2px solid gray; width: 150px; height: 100px; object-fit: cover"/>
-          <p class="mb-1" style="font-size: 14px; font-weight: bold">{{ $new->title }}</p>
-          <p style="color: #666;">{!! Str::limit(strip_tags($new->content), $limit = 250, $end = '...') !!}</p>
+          <img class="w-50 mr-2 float-left post-preview__img__sm" src="{{ asset($new->thumbnail_url) }}"/>
+          <h3 class="mb-1 post-preview__h3__sm">{{ $new->title }}</h3>
+          <span class="post-preview__p">{!! Str::limit(strip_tags($new->content), $limit = 250, $end = '...') !!}</span>
         </a>
       </div>
     @endforeach
@@ -126,17 +126,17 @@
       <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Tuyển sinh</strong>
     </div>
     @foreach ($edus as $edu)
-      <div class="row" style="font-size: 12px; margin-bottom: 20px">
+      <div class="row post-preview">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
           <a href="{{ route('categories') . '?category_id=' . $edu->category_id. '&post_id=' . $edu->id }}">
-            <img class="w-100 mr-2 border-0" src="{{ asset($edu->thumbnail_url) }}" style="width: 400px; height: 250px; object-fit: cover"/>
+            <img class="w-100 mr-2 border-0 post-preview__img" src="{{ asset($edu->thumbnail_url) }}"/>
           </a>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="border-top: 1px solid #eaeaea">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 post-preview__div">
           <a href="{{ route('categories') . '?category_id=' . $edu->category_id. '&post_id=' . $edu->id }}">
-            <h3 style="font-size: 20px; padding-top: 17px; font-weight: bold">{{ $edu->title }}</h3>
-            <p style="color: #666; margin-top: 25px; margin-bottom: 22px">{!! Str::limit(strip_tags($edu->content), $limit = 300, $end = '...') !!}</p>
-            <p style="color: #666;">By {{ $edu->user->name }} | {{ $edu->category->name }}</p>
+            <h3 class="post-preview__h3">{{ $edu->title }}</h3>
+            <p class="post-preview__p">{!! Str::limit(strip_tags($edu->content), $limit = 300, $end = '...') !!}</p>
+            <span class="post-preview__span">By {{ $edu->user->name }} | {{ $edu->category->name }}</span>
           </a>
         </div>
       </div>

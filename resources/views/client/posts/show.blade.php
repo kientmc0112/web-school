@@ -156,7 +156,7 @@
 @section('content')
 <div class="row list-post-with-category">
     <div class="col-lg-3 col-md-4 col-sm-12">
-        @include('client.partials.categories_rows', ['level' => 0])
+        @include('client.layouts.sidebar', ['level' => 0])
     </div>
 
     <div class="col-lg-9 col-md-8 col-sm-12 right-content">
@@ -288,14 +288,16 @@
 @section('js')
     <script>
         function onClickCategory(e) {
-            const cateId = e.target.dataset.cate_id
+            const cateId = e.target.dataset.cate_id;
             const cateChild = document.querySelector('div[data-child="' + cateId +'"]');
-            if (cateChild.style.display === "none") {
-                cateChild.style.display = "block"
-                e.target.children[1].innerText = "-"
-            } else {
-                cateChild.style.display = "none"
-                e.target.children[1].innerText = "+"
+            if (cateChild) {    
+                if (cateChild.style.display === "none") {
+                    cateChild.style.display = "block"
+                    e.target.children[1].innerText = "-"
+                } else {
+                    cateChild.style.display = "none"
+                    e.target.children[1].innerText = "+"
+                }
             }
         }
     </script>

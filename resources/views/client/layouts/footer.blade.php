@@ -3,7 +3,7 @@
     <div class="container px-2 py-3">
       <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
-          <ul class="px-0" style="list-style-type: none">
+          <ul class="px-0">
             <li class="mb-1"><strong style="font-size: 13px">GIỚI THIỆU</strong></li>
             <li class="mb-1"><a class="text-dark" href="#">Giới thiệu về ĐHKT</a></li>
             <li class="mb-1"><a class="text-dark" href="#">Tin Nghiên cứu khoa học</a></li>
@@ -13,7 +13,7 @@
           </ul>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
-          <ul class="px-0" style="list-style-type: none">
+          <ul class="px-0">
             <li class="mb-1"><strong style="font-size: 13px">TIN TỨC</strong></li>
             <li class="mb-1"><a class="text-dark" href="#">Tin đào tạo</a></li>
             <li class="mb-1"><a class="text-dark" href="#">Chương trình đào tạo</a></li>
@@ -23,7 +23,7 @@
           </ul>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
-          <ul class="px-0" style="list-style-type: none">
+          <ul class="px-0">
             <li class="mb-1"><strong style="font-size: 13px">CHƯƠNG TRÌNH ĐÀO TẠO</strong></li>
             <li class="mb-1"><a class="text-dark" href="#">Giới thiệu hoạt động đào tạo</a></li>
             <li class="mb-1"><a class="text-dark" href="#">Chương trình ĐT Cử nhân</a></li>
@@ -32,7 +32,7 @@
           </ul>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
-          <ul class="px-0" style="list-style-type: none">
+          <ul class="px-0">
             <li class="mb-1"><strong style="font-size: 13px">NGHIÊN CỨU KHOA HỌC</strong></li>
             <li class="mb-1"><a class="text-dark" href="#">Giới thiệu hoạt động NCKH</a></li>
             <li class="mb-1"><a class="text-dark" href="#">Nhóm nghiên cứu mạnh</a></li>
@@ -40,7 +40,7 @@
           </ul>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
-          <ul class="px-0" style="list-style-type: none">
+          <ul class="px-0">
             <li class="mb-1"><strong style="font-size: 13px">TUYỂN SINH</strong></li>
             <li class="mb-1"><a class="text-dark" href="#">Tuyển sinh Cử nhân</a></li>
             <li class="mb-1"><a class="text-dark" href="#">Tuyển sinh Thạc sĩ</a></li>
@@ -48,7 +48,7 @@
           </ul>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
-          <ul class="px-0" style="list-style-type: none">
+          <ul class="px-0">
             <li class="mb-1"><strong style="font-size: 13px">THÔNG TIN HỮU ÍCH</strong></li>
             <li class="mb-1"><a class="text-dark" href="#">Web ĐHQG Hà Nội</a></li>
             <li class="mb-1"><a class="text-dark" href="#">Thư viện Đại học Quốc gia HN</a></li>
