@@ -15,20 +15,49 @@ class DatabaseSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $this->call([
-            CategoryTableSeeder::class
-        ]);
-        // \App\Models\User::factory(100)->create();
+        // $this->call([
+        //     CategoryTableSeeder::class
+        // ]);
+        \App\Models\User::factory(100)->create();
         // \App\Models\Category::factory(10)->create();
+        // $arrayLevel = [
+        //     'Chi ủy',
+        //     'Hội đồng khoa học và đào tạo',
+        //     'Ban chủ nhiêm khoa',
+        //     'tổ chức đoàn thể xã hội',
+        //     'tổ chuyên môn',
+        //     'phòng ban chức năng',
+        //     'tổ liên ngành khoa học quản lí kinh tế luật',
+        //     'tổ liên ngành khoa học xã hội và nhân văn',
+        //     'phòng tổ chức - hành chính',
+        //     'phòng kế hoạch tài chính',
+        //     'tổ liên ngành học tự nhiên, công nghệ và kỹ thuật',
+        //     'phòng khoa học công nghệ và hợp tác phát triển',
+        //     'phòng đào tạo và công tác sinh viên',
+        //     'phòng truyền thông và tuyển sinh',
+        // ];
 
-        // for ($i=1; $i <= 100; $i++) { 
-        //     DB::table('posts')->insert([
-        //         'title' => $faker->text($maxNbChars = 50),
-        //         'thumbnail_url' => "https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg",
-        //         'category_id' => $faker->numberBetween(1,52),
-        //         'content' => $faker->randomHtml(2,3),
-        //         'created_by' => 1,
-        //         'updated_by' => 1,
+        // foreach ($arrayLevel as $key => $level) {
+        //     DB::table('levels')->insert([
+        //         'id' => $key + 1,
+        //         'title' => $level,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ]);
+        // }
+
+        // $arrayPosition = [
+        //     'Chủ nhiệm khoa',
+        //     'Phó chủ nhiệm khoa',
+        //     'Trưởng phòng',
+        //     'Phó Trưởng phòng',
+        //     'Trưởng bộ phận',
+        // ];
+
+        // foreach ($arrayPosition as $key => $position) {
+        //     DB::table('positions')->insert([
+        //         'id' => $key + 1,
+        //         'name' => $position,
         //         'created_at' => now(),
         //         'updated_at' => now(),
         //     ]);

@@ -2,7 +2,7 @@
 return [
     'welcome' => 'Chào mừng bạn đến với Website!',
     'role' => [
-        'admin' => 'Admin',
+        'teacher' => 'Giảng Viên',
         'sp_admin' => 'Super Admin',
     ],
     'sex' => [
@@ -24,6 +24,10 @@ return [
             'sex' => 'Giới tính',
             'profile' => 'Cập nhật thông tin',
             'date_of_birth' => 'Ngày sinh',
+            'structure' => 'Bộ phận',
+            'create' => 'Tạo người dùng',
+            'edit' => 'Sửa người dùng',
+            'position' => 'Chức vụ',
         ],
         'placeholder' => [
             'name' => 'Nhập họ và tên',
