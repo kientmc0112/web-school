@@ -1534,28 +1534,30 @@
     @if (isset($post))
       <div class="post">
         <div class="post__title">
-          <a href="">{{ $post->title }}</a>
+          <a href="">{{ Session::get('website_language') == 'en' && isset($post->title_en) ? $post->title_en : $post->title }}</a>
           <p>Cập nhật lúc {{ $post->updated_at }} </p>
         </div>
         <div class="post__content">
           <img src="{{ $post->thumbnail_url }}" alt="">
-          {!! $post->content !!}
+          {!! Session::get('website_language') == 'en' && isset($post->content_en) ? $post->content_en : $post->content !!}
         </div>
 
-        <div class="post__other">
-          <p>CÁC TIN KHÁC</p>
-          <div style="margin-left: 30px">
-            @foreach ($similarPosts as $similarPost)
-              <div class="content__item">
-                <img class="cate__icon" src="{{ asset('images/next_new_category.png') }}">
-                <a href="{{ route('categories.show', $id) . '?post_id=' . $similarPost->id }}" class="cate__title">
-                  {{ $similarPost->title }}
-                </a>
-                <img class="cate__icon-new" src="{{ asset('images/newnew.gif') }}">
-              </div>
-            @endforeach
-          </div>
-        </div>
+        @if (count($similarPosts) > 0)
+            <div class="post__other">
+            <p>CÁC TIN KHÁC</p>
+            <div style="margin-left: 30px">
+                @foreach ($similarPosts as $similarPost)
+                <div class="content__item">
+                    <img class="cate__icon" src="{{ asset('images/next_new_category.png') }}">
+                    <a href="{{ route('categories.show', $id) . '?post_id=' . $similarPost->id }}" class="cate__title">
+                    {{ Session::get('website_language') == 'en' && isset($similarPost->title_en) ? $similarPost->title_en : $similarPost->title }}
+                    </a>
+                    <img class="cate__icon-new" src="{{ asset('images/newnew.gif') }}">
+                </div>
+                @endforeach
+            </div>
+            </div>
+        @endif
       </div>
     @else
       @if (Request::get('child_id') == 13)
@@ -1570,9 +1572,13 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 post-preview__div">
               <a href="{{ route('categories.show', $id) . '?post_id=' . $post->id }}">
-                <h3 class="post-preview__h3">{{ $post->title }}</h3>
-                <p class="post-preview__p">{!! Str::limit(strip_tags($post->content), $limit = 300, $end = '...') !!}</p>
-                <span class="post-preview__span">By {{ $post->user->name }} | {{ $post->category->name }}</span>
+                <h3 class="post-preview__h3">{{ Session::get('website_language') == 'en' && isset($post->title_en) ? $post->title_en : $post->title }}</h3>
+                @if (Session::get('website_language') == 'en' && isset($post->content_en))
+                    <p class="post-preview__p">{!! Str::limit(strip_tags($post->content_en), $limit = 300, $end = '...') !!}</p>
+                @else
+                    <p class="post-preview__p">{!! Str::limit(strip_tags($post->content), $limit = 300, $end = '...') !!}</p>
+                @endif
+                <span class="post-preview__span">By {{ $post->user->name }} | {{ Session::get('website_language') == 'en' && isset($post->category->name_en) ? $post->category->name_en : $post->category->name }}</span>
               </a>
             </div>
           </div>

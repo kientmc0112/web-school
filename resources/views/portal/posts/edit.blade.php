@@ -22,8 +22,22 @@
                             @method('PUT')
                             <div class="form-group">
                                 <label>Title</label>
-                                <input class="form-control" name="title" placeholder="Name....."
-                                    value="{{ $post->title }}">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#title" data-toggle="tab" aria-expanded="false">Vietnamese</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#title_en" data-toggle="tab" aria-expanded="false">English</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="title">
+                                        <input class="form-control" name="title" placeholder="Name....." value="{{ $post->title }}">
+                                    </div>
+                                    <div class="tab-pane fade" id="title_en">
+                                        <input class="form-control" name="title_en" placeholder="Name....." value="{{ $post->title_en }}">
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Category</label>
@@ -45,7 +59,22 @@
                             </div>
                             <div class="form-group">
                                 <label>Content</label>
-                                <textarea name="content" placeholder="Content....." class="form-control" id="editor" rows="10">{!! $post->content !!}</textarea>
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#content" data-toggle="tab" aria-expanded="false">Vietnamese</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#content_en" data-toggle="tab" aria-expanded="false">English</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="content">
+                                        <textarea name="content" placeholder="Content....." class="form-control" id="editor" rows="10">{!! $post->content !!}</textarea>
+                                    </div>
+                                    <div class="tab-pane fade" id="content_en">
+                                        <textarea name="content_en" placeholder="Content....." class="form-control" id="editor_en" rows="10">{!! $post->content_en !!}</textarea>
+                                    </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-default">Submit Button</button>
                             <button type="reset" class="btn btn-default">Reset Button</button>
@@ -63,6 +92,30 @@
         $("#uploadImage").val(null);
         
         CKEDITOR.replace('editor', {
+            filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
+            toolbarGroups: [
+                { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+                { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+                { name: 'styles', groups: [ 'styles' ] },
+                { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+                { name: 'forms', groups: [ 'forms' ] },
+                { name: 'colors', groups: [ 'colors' ] },
+                { name: 'tools', groups: [ 'tools' ] },
+                '/',
+                { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+                { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+                { name: 'links', groups: [ 'links' ] },
+                { name: 'insert', groups: [ 'insert' ] },
+                '/',
+                { name: 'others', groups: [ 'others' ] },
+                { name: 'about', groups: [ 'about' ] }
+            ],
+            removeButtons: 'Source,Save,Templates,NewPage,ExportPdf,Preview,Print,Find,Replace,SelectAll,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,CopyFormatting,CreateDiv,PageBreak,Iframe,ShowBlocks,About,Smiley,Anchor',
+            editorplaceholder: 'Type your content...',
+            height: '500'
+        });
+
+        CKEDITOR.replace('editor_en', {
             filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
             toolbarGroups: [
                 { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },

@@ -15,9 +15,11 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
-                                <th>Description</th>
+                                <th>Name (Vi)</th>
+                                <th>Name (En)</th>
                                 <th>Parent category</th>
+                                <th>Description (Vi)</th>
+                                <th>Description (En)</th>
                                 <th>Options</th>
                             </tr>
                         </thead>
@@ -26,12 +28,14 @@
                             <tr class="odd gradeX">
                                 <td style="text-align: center;">{{ $key + 1 }}</td>
                                 <td>{{ $category->name }}</td>
-                                <td>{!! Str::limit(strip_tags($category->description), $limit = 1000, $end = '...') !!}</td>
+                                <td>{{ $category->name_en }}</td>
                                 <td class="text-center">
                                     @if ($category->category)
                                         {{ $category->category->name }}
                                     @endif
                                 </td>
+                                <td>{!! Str::limit(strip_tags($category->description), $limit = 1000, $end = '...') !!}</td>
+                                <td>{!! Str::limit(strip_tags($category->description_en), $limit = 1000, $end = '...') !!}</td>
                                 <td class="text-center d-flex">
                                     <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-info btn-sm">
                                         <i class="fa fa-pencil"></i>

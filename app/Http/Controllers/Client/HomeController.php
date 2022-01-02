@@ -42,6 +42,7 @@ class HomeController extends Controller
             if ($category->parent_id === $parentId) {
                 $arr[$key]['id'] = $category->id;
                 $arr[$key]['name'] = $category->name;
+                $arr[$key]['name_en'] = $category->name_en;
                 $arr[$key]['child'] = [];
                 unset($categories[$key]);
                 $this->getChild($arr[$key]['child'], $categories, $category->id);
