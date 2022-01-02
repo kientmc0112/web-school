@@ -12,7 +12,9 @@
 
 @forelse ($categories as $category)
     <div class="sidebar" data-cate_id="{{ $category->id }}" data-parent_id="{{ $category->parent_id }}" style="margin-left: {{ $level * 10 }}px;" onclick="onClickCategory(event)">
-        <a class="text-white" style="max-width: 90%" href="{{ route('categories.show', $id) . "?child_id=" . $category->id }}">{{ $category->name }}</a>
+        <a class="text-white" style="max-width: 90%" href="{{ route('categories.show', $id) . "?child_id=" . $category->id }}">
+            {{ Session::get('website_language') == 'en' && isset($category['name_en']) ? $category->name_en : $category->name }}
+        </a>
         <span style="color: white; pointer-events: none;">+</span>
     </div>
     <div data-child="{{ $category->id }}" style="display: none">

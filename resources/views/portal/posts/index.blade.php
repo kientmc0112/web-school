@@ -18,10 +18,13 @@
                         <thead>
                             <tr>
                                 <th width="50">#</th>
-                                <th width="200">Title</th>
-                                <th width="100">Category</th>
+                                <th width="200">Title (Vi)</th>
+                                <th width="200">Title (En)</th>
+                                <th width="100">Category (Vi)</th>
+                                <th width="100">Category (En)</th>
                                 <th width="200">Thumbnail</th>
-                                <th>Content</th>
+                                <th>Content (Vi)</th>
+                                <th>Content (En)</th>
                                 <th>Created by</th>
                                 <th width="100">Options</th>
                             </tr>
@@ -31,9 +34,15 @@
                             <tr class="odd gradeX">
                                 <td style="text-align: center;">{{ $key + 1 }}</td>
                                 <td>{{ $post->title }}</td>
+                                <td>{{ $post->title_en }}</td>
                                 <td>
                                     @if ($post->category)
                                         {{ $post->category->name }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($post->category)
+                                        {{ $post->category->name_en }}
                                     @endif
                                 </td>
                                 <td class="text-center">
@@ -41,6 +50,9 @@
                                 </td>
                                 <td class="text-left">
                                     <div class="content">{!! Str::limit(strip_tags($post->content), $limit = 1000, $end = '...') !!}</div>
+                                </td>
+                                <td class="text-left">
+                                    <div class="content">{!! Str::limit(strip_tags($post->content_en), $limit = 1000, $end = '...') !!}</div>
                                 </td>
                                 <td class="text-left">
                                     @if ($post->user)
