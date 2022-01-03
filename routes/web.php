@@ -30,6 +30,8 @@ Route::domain($subDomainPortal)->group(function () {
             Route::post('/users/create', 'UserController@store')->name('user.store');
             Route::get('/users/{id}/destroy', 'UserController@destroy')->name('user.delete');
             Route::get('/users/profile', 'UserController@profile')->name('user.profile');
+            Route::get('/users/edit/{id}', 'UserController@edit')->name('user.edit');
+            Route::post('/users/update/{id}', 'UserController@updateUser')->name('user.updateUser');
             Route::post('/users/update', 'UserController@update')->name('user.profile.update');
 
             //department
@@ -52,6 +54,9 @@ Route::group(['middleware' => 'locale'], function() {
         Route::get('/', 'HomeController@index')->name('home.index');
         // Route::get('categories', 'HomeController@categories')->name('categories');
         Route::get('/categories/{id}', 'HomeController@show')->name('categories.show');
+
+        //user
+        Route::get('/user/info', 'HomeController@previewUser')->name('user.info');
     });
 });
 

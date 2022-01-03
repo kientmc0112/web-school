@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Enums\DBConstant;
 use App\Http\Requests\User\StoreRequest;
 use App\Http\Requests\User\UpdateRequest;
+use App\Http\Requests\User\UpdateUserRequest;
 use DB;
 use Auth;
 use File;
@@ -18,7 +19,7 @@ class UserController extends Controller
         $auth = Auth::user();
         $users = DB::table('users')
             ->where('id', '!=', $auth->id)
-            ->where('role', '<', $auth->role)
+            ->where('role', '<=', $auth->role)
             ->get();
         $departments = DB::table('departments')->get();
 
@@ -30,8 +31,10 @@ class UserController extends Controller
         $auth = Auth::user();
         if ($auth->role == DBConstant::SUPPER_ADMIN) {
             $departments = DB::table('departments')->get();
+            $levels = DB::table('levels')->get();
+            $positions = DB::table('positions')->get();
 
-            return view('portal.users.form', compact('departments'));
+            return view('portal.users.form', compact('departments', 'levels', 'positions'));
         }
         
         return redirect()->route('user.list');
@@ -40,12 +43,11 @@ class UserController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->only([
-            'name', 'email', 'password', 'role', 'phone', 'department_id'
+            'name', 'email', 'password', 'role', 'phone', 'department_id', 'level', 'position'
         ]);
         $auth = Auth::user();
         if ($auth->role == DBConstant::SUPPER_ADMIN) {
             $data['password'] = bcrypt($data['password']);
-            $data['level'] = 0;
             $data['created_at'] = now();
             $data['updated_at'] = now();
             $users = DB::table('users')->insert($data);
@@ -60,10 +62,33 @@ class UserController extends Controller
     {
         $auth = Auth::user();
         if ($auth->role == DBConstant::SUPPER_ADMIN) {
-            return view('portal.users.form');
+            $departments = DB::table('departments')->get();
+            $levels = DB::table('levels')->get();
+            $positions = DB::table('positions')->get();
+            $user = DB::table('users')->where('id', $id)->first();
+
+            return view('portal.users.form', compact('departments', 'levels', 'user', 'positions'));
         }
         
         return redirect()->route('user.list');
+    }
+
+    public function updateUser(UpdateUserRequest $request, $id)
+    {
+        $data = $request->only([
+            'name', 'email', 'password', 'role', 'phone', 'department_id', 'level', 'position'
+        ]);
+        $auth = Auth::user();
+        if ($auth->role == DBConstant::SUPPER_ADMIN) {
+            $data['password'] = bcrypt($data['password']);
+            $data['created_at'] = now();
+            $data['updated_at'] = now();
+            $users = DB::table('users')->where('id', $id)->update($data);
+
+            return redirect()->route('user.list');
+        }
+
+        return view('portal.users.form');
     }
 
     public function update(UpdateRequest $request)
@@ -79,12 +104,14 @@ class UserController extends Controller
         }
 
         $data = $request->only([
-            'name', 'sex', 'phone', 'facebook_link', 'department_id', 'date_of_birth'
+            'name', 'sex', 'phone', 'facebook_link', 'department_id', 'date_of_birth', 'position'
         ]);
 
         if (isset($auth->avatar)) File::delete($auth->avatar);
         $data['updated_at'] = now();
-        $data['date_of_birth'] = $data['date_of_birth'] . " 00:00:00";
+        if (!is_null($data['date_of_birth'])) {
+            $data['date_of_birth'] = $data['date_of_birth'];
+        }
         if (isset($request->avatar)) $data['avatar'] = "/avatar/" . $path;
 
         $user = DB::table('users')->where('id', $auth->id)->update($data);

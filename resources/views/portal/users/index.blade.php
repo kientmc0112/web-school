@@ -10,7 +10,9 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <a href="{{ route('user.create') }}">+ Thêm nhân sự</a>
+                @if (Auth::user()->role === \App\Enums\DBConstant::SUPPER_ADMIN )
+                    <a href="{{ route('user.create') }}">+ Thêm nhân sự</a>
+                @endif
             </div>
             <div class="panel-body">
                 <div class="dataTable_wrapper">
@@ -33,18 +35,18 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td class="center" style="text-align: center;">
-                                        {{ $user->role === \App\Enums\DBConstant::ADMIN 
-                                            ? trans('messages.role.admin') 
+                                        {{ $user->role === \App\Enums\DBConstant::TEACHER 
+                                            ? trans('messages.role.teacher') 
                                             :  trans('messages.role.sp_admin') }}
                                     </td>
                                     @if (Auth::user()->role === \App\Enums\DBConstant::SUPPER_ADMIN)
                                         <td class="center" style="text-align: center;">
                                             {{-- <a href="#" class="btn btn-primary btn-sm">
                                                 <i class="fa fa-eye"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-info btn-sm">
-                                                <i class="fa fa-pencil"></i>
                                             </a> --}}
+                                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info btn-sm">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
                                             <a href="{{ route('user.delete', $user->id) }}" class="btn btn-danger btn-sm">
                                                 <i class="fa fa-trash-o"></i>
                                             </a>

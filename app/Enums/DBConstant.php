@@ -10,7 +10,7 @@ namespace App\Enums;
 class DBConstant
 {
     // user role
-    const ADMIN = 1;
+    const TEACHER = 1;
     const SUPPER_ADMIN = 2;
 
     // categories
