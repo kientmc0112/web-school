@@ -19,6 +19,7 @@ return [
             'user_list' => 'Danh sách nhân sự',
             'option' => 'Tùy chọn',
             'department' => 'Khoa',
+            'info' => 'Thông tin khác',
             'phone' => 'Số điện thoại',
             'facebook' => 'Facebook',
             'sex' => 'Giới tính',
