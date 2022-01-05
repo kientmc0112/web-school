@@ -138,13 +138,14 @@ a:hover {
     border-collapse: collapse;
     text-align: center;
     text-transform: uppercase;
-    padding: 3px;
+    position: relative;
 }
 #structure .b-all {
     border: 1px solid #213671;
     background-color: #213671;
     color: #fff;
     cursor: pointer;
+    padding: 3px;
 }
 #structure .b-left {
     border-left: 2px solid #213671;

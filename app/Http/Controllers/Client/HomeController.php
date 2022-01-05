@@ -256,8 +256,8 @@ class HomeController extends Controller
                 ->leftJoin('positions', 'positions.id', '=', 'users.position')
                 ->leftJoin('departments', 'departments.id', '=', 'users.department_id')
                 ->select(
-                    'users.name', 'users.email', 'users.avatar', 'users.facebook_link',
-                    'users.phone', 'users.date_of_birth', 'users.sex', 'departments.name as department', 
+                    'users.name', 'users.email', 'users.avatar', 'users.facebook_link', 'users.phone', 'users.date_of_birth', 'users.sex', 'users.info', 'users.info_en',
+                    'departments.name as department', 
                     'levels.title as level', 'positions.name as position' 
                 )
                 ->first();

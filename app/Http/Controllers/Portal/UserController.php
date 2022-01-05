@@ -104,7 +104,7 @@ class UserController extends Controller
         }
 
         $data = $request->only([
-            'name', 'sex', 'phone', 'facebook_link', 'department_id', 'date_of_birth', 'position'
+            'name', 'sex', 'phone', 'facebook_link', 'department_id', 'date_of_birth', 'position', 'info', 'info_en'
         ]);
 
         if (isset($auth->avatar)) File::delete($auth->avatar);
