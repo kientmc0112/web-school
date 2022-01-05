@@ -31,9 +31,7 @@
                                                     class=cat-link>
                                                     {{ $user->level }}
                                                 </a>
-                                                
                                             </div>
-                                            
                                             <p>
                                                 Email: {{ $user->email }}
                                             </p>
@@ -52,9 +50,7 @@
                                                     ĐT: {{ $user->facebook_link }}
                                                 </p>
                                             @endif
-
-                                            <ul class="list-inline social-light">
-                                            </ul>
+                                            <ul class="list-inline social-light"></ul>
                                         </div>
                                     </div>
                                 </div>
@@ -62,48 +58,13 @@
                         </div>
                         <div class=pure-content>
                             <div class=content-pad>
-                                <p>
-                                <p><span style=font-family:arial,helvetica,sans-serif;font-size:14pt><strong><b>Học
-                                                vấn</b></strong></span></p>
-                                <p><span style=font-family:arial,helvetica,sans-serif;font-size:14pt>Tiến sĩ
-                                        – Đại học Rikkyo, Nhật Bản (2005)</span></p>
-                                <p><span style=font-family:arial,helvetica,sans-serif;font-size:14pt><strong><b>Lĩnh
-                                                vực nghiên cứu</b></strong></span></p>
-                                <p><span style=font-family:arial,helvetica,sans-serif;font-size:14pt>Di sản
-                                        văn hóa phi vật thể</span></p>
-                                <p><span style=font-family:arial,helvetica,sans-serif;font-size:14pt><strong><b>Kinh
-                                                nghiệm làm việc</b></strong></span></p>
-                                <p><span style=font-family:arial,helvetica,sans-serif;font-size:14pt>Giám
-                                        đốc Đối ngoại, Trưởng ban Thông tin và Nghiên cứu, Ban Tri thức và
-                                        Xuất bản, Ban Công nghệ thông tin và quản lý, Trung tâm Thông tin và
-                                        Mạng lưới quốc tế về Di sản văn hóa phi vật thể ở Khu vực Châu Á –
-                                        Thái Bình Dương dưới sự bảo trợ của UNESCO (ICHCAP) (2011 –
-                                        nay)</span></p>
-                                <p><span style=font-family:arial,helvetica,sans-serif;font-size:14pt>Giảng
-                                        viên kiêm nhiệm, Đại học Di sản văn hóa quốc gia (National
-                                        University of Cultural Heritage) (2007 – nay)</span></p>
-                                <p><span style=font-family:arial,helvetica,sans-serif;font-size:14pt>Giảng
-                                        viên, Cao đẳng Khoa học Sức khỏe Daejeon (Daejeon Health Sciences
-                                        College), Đại học Yonsei (Yonsei University), Đại học Quốc gia
-                                        Kyeongsang (National Kyeongsang University), Đại học Ngoại ngữ
-                                        Hankuk&nbsp;(Hankuk University of Foreign Studies)…&nbsp;(2007 –
-                                        nay)</span></p>
-                                <p><span style=font-family:arial,helvetica,sans-serif;font-size:14pt>Nghiên
-                                        cứu viên, Viện nghiên cứu quốc gia Tokyo về Tài sản văn hóa quốc
-                                        (tháng 12/2011 – 01/2012)</span></p>
-                                <p><span style=font-family:arial,helvetica,sans-serif;font-size:14pt>Trưởng
-                                        phòng Thông tin và Nghiên cứu, Trung tâm Di sản Văn hóa Phi vật thể
-                                        Châu Á – Thái Bình Dương, Quỹ Di sản Văn hóa Hàn Quốc (tháng 11/2006
-                                        – tháng 07/2011)</span></p>
-                                <p><span style=font-family:arial,helvetica,sans-serif;font-size:14pt>Chuyên
-                                        viên, Viện Nghiên cứu di sản văn hóa quốc gia (National Research
-                                        Institute of Cultural Heritage) (tháng 05/2003 – tháng
-                                        10/2006)</span></p>
-                                <p></p>
+                                @if (Session::get('website_language') == 'en')
+                                    {!! $user->info_en !!}
+                                @else
+                                    {!! $user->info !!}
+                                @endif
                             </div>
                         </div>
-
-
                     </article>
                 </div>
             </div>
