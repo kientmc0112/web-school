@@ -19,5 +19,7 @@ class DBConstant
     const EDUCATION = 3;
     const NEWS = 4;
     const COOPERATION = 5;
-    const DIGITAL_RESOURCES = 6;
+    const SCIENTIFIC_RESEARCH = 6;
+    const SIS_ALUMNI = 7;
+    const SIS_STUDENT = 8;
 }

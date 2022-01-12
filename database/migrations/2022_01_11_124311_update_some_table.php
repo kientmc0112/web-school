@@ -17,7 +17,7 @@ class UpdateSomeTable extends Migration
             $table->string('thumbnail_url')->nullable()->change();
         });
         Schema::table('categories', function (Blueprint $table) {
-            $table->integer('order');
+            $table->integer('order')->nullable();
         });
     }
 
