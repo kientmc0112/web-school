@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Forms</h1>
+        <h1 class="page-header">{{ trans('messages.category.label.edit') }}</h1>
     </div>
 </div>
 <div class="row">
@@ -17,12 +17,11 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form role="form" name="user-form" class="form-transparent clearfix" method="POST"
-                            action="{{ route('categories.update', $category->id) }}">
+                        <form role="form" name="user-form" class="form-transparent clearfix" method="POST" action="{{ route('categories.update', $category->id) }}">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
-                                <label>Name</label>
+                                <label>{{ trans('messages.category.label.name') }}</label>
                                 <ul class="nav nav-tabs">
                                     <li class="active">
                                         <a href="#name" data-toggle="tab" aria-expanded="false">Vietnamese</a>
@@ -33,15 +32,15 @@
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="name">
-                                        <input class="form-control" name="name" placeholder="Name....." value="{{ $category->name }}">
+                                        <input class="form-control" name="name" placeholder="{{ trans('messages.category.label.name') }} ....." value="{{ $category->name }}">
                                     </div>
                                     <div class="tab-pane fade" id="name_en">
-                                        <input class="form-control" name="name_en" placeholder="Name....." value="{{ $category->name_en }}">
+                                        <input class="form-control" name="name_en" placeholder="{{ trans('messages.category.label.name') }} ....." value="{{ $category->name_en }}">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Parent Category</label>
+                                <label>{{ trans('messages.category.label.parent') }}</label>
                                 <select class="form-control" name="parent_id">
                                     <option></option>
                                     @foreach ($cats as $cat)
@@ -54,7 +53,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Description</label>
+                                <label>{{ trans('messages.category.label.description') }}</label>
                                 <ul class="nav nav-tabs">
                                     <li class="active">
                                         <a href="#description" data-toggle="tab" aria-expanded="false">Vietnamese</a>
@@ -65,16 +64,16 @@
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="description">
-                                        <textarea name="description" placeholder="Description....." class="form-control" id="editor" rows="10">{{ $category->description }}</textarea>
+                                        <textarea name="description" placeholder="{{ trans('messages.category.label.description') }} ....." class="form-control" id="editor" rows="10">{{ $category->description }}</textarea>
                                     </div>
                                     <div class="tab-pane fade" id="description_en">
-                                        <textarea name="description_en" placeholder="Description....." class="form-control" id="editor_en" rows="10">{{ $category->description_en }}</textarea>
+                                        <textarea name="description_en" placeholder="{{ trans('messages.category.label.description') }} ....." class="form-control" id="editor_en" rows="10">{{ $category->description_en }}</textarea>
                                     </div>
                                 </div>
                                 
                             </div>
-                            <button type="submit" class="btn btn-default">Submit Button</button>
-                            <button type="reset" class="btn btn-default">Reset Button</button>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
                         </form>
                     </div>
                 </div>

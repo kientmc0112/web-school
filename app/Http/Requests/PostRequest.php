@@ -26,7 +26,7 @@ class PostRequest extends FormRequest
         return [
             'title' => 'required',
             'category_id' => 'required',
-            'thumbnail_url' => 'required|image'
+            'content' => 'required',
         ];
     }
 
@@ -36,7 +36,8 @@ class PostRequest extends FormRequest
             'title.required' => trans('messages.post.validate.title_required'),
             'category_id.required' => trans('messages.post.validate.category_required'),
             'thumbnail_url.required' => trans('messages.post.validate.thumbnail_required'),
-            'thumbnail_url.image' => trans('messages.post.validate.thumbnail_image')
+            'thumbnail_url.image' => trans('messages.post.validate.thumbnail_image'),
+            'content.required' => trans('messages.post.validate.content_required'),
         ];
     }
 }

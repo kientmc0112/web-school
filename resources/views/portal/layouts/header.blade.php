@@ -5,7 +5,7 @@
   <span class="icon-bar"></span>
   <span class="icon-bar"></span>
   </button>
-  <a class="navbar-brand" href="{{ route('dashboard') }}">SB Admin v2.0</a>
+  <a class="navbar-brand" href="{{ route('dashboard') }}">Quản lí</a>
 </div>
 <ul class="nav navbar-top-links navbar-right">
   <li class="dropdown">

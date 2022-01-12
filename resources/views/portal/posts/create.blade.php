@@ -4,7 +4,7 @@
 @include('ckfinder::setup')
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Forms</h1>
+        <h1 class="page-header">{{ trans('messages.post.label.create') }}</h1>
     </div>
 </div>
 <div class="row">
@@ -21,7 +21,7 @@
                         <form role="form" name="user-form" class="form-transparent clearfix" enctype="multipart/form-data" method="POST" action="{{ route('posts.store') }}">
                             @csrf
                             <div class="form-group">
-                                <label>Title</label>
+                                <label>{{ trans('messages.post.label.title') }}</label>
                                 <ul class="nav nav-tabs">
                                     <li class="active">
                                         <a href="#title" data-toggle="tab" aria-expanded="false">Vietnamese</a>
@@ -32,15 +32,15 @@
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="title">
-                                        <input class="form-control" name="title" placeholder="Name....." value="{{ old('title') }}">
+                                        <input class="form-control" name="title" placeholder="{{ trans('messages.post.label.title') }} ....." value="{{ old('title') }}">
                                     </div>
                                     <div class="tab-pane fade" id="title_en">
-                                        <input class="form-control" name="title_en" placeholder="Name....." value="{{ old('title_en') }}">
+                                        <input class="form-control" name="title_en" placeholder="{{ trans('messages.post.label.title') }} ....." value="{{ old('title_en') }}">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Category</label>
+                                <label>{{ trans('messages.post.label.category') }}</label>
                                 <select class="form-control" name="category_id">
                                     @foreach ($categories as $category)
                                         <option value="{{ $category['id'] }}">{!! $category['name'] !!}</option>
@@ -48,13 +48,14 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Thumbnail</label>
-                                <button type="button" class="btn btn-primary" onclick="document.getElementById('uploadImage').click()" style="display: block">Upload thumbnail</button>
-                                <input name="thumbnail_url" id="uploadImage" type="file" style="display: none">
-                                <img style="max-width: 400px; max-height: 400px" />
+                                <label>{{ trans('messages.post.label.thumbnail') }}</label>
+                                <div class="drop-region" onclick="document.getElementById('uploadImage').click()">
+                                    <input name="thumbnail_url" id="uploadImage" type="file" style="display: none">
+                                    <h4 class="text-center">Drop files here or click to upload</h4>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label>Content</label>
+                                <label>{{ trans('messages.post.label.content') }}</label>
                                 <ul class="nav nav-tabs">
                                     <li class="active">
                                         <a href="#content" data-toggle="tab" aria-expanded="false">Vietnamese</a>
@@ -72,8 +73,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-default">Submit Button</button>
-                            <button type="reset" class="btn btn-default">Reset Button</button>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
                         </form>
                     </div>
                 </div>
@@ -81,6 +82,16 @@
         </div>
     </div>
 </div>
+<style>
+    .drop-region {
+        width: 400px;
+        height: 250px;
+        border: 2px dashed #028AF4 !important; 
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+</style>
 {{-- <script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script> --}}
 <script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
 <script>
@@ -139,14 +150,15 @@
         
         $('#uploadImage').on('change', function () {
             if (this.files && this.files[0]) {
-                var image = $(this).parents(".form-group").children("img");
+                var image = $(this).parents(".drop-region");
+                image.children('h4').remove();
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    image.attr('src', e.target.result);
+                    image.css('background-image', "url(" + e.target.result + ")");
                 };
                 reader.readAsDataURL(this.files[0]);
             }
-        })
+        });
     });
 </script>
 @endsection

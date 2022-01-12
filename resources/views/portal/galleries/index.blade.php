@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">{{ trans('messages.post.label.list') }}</h1>
+        <h1 class="page-header">{{ trans('messages.gallery.label.list') }}</h1>
     </div>
 </div>
 <div class="row">
@@ -18,52 +18,32 @@
                         <thead>
                             <tr>
                                 <th width="50">#</th>
-                                <th width="200">{{ trans('messages.post.label.title') }} (Vi)</th>
-                                <th width="200">{{ trans('messages.post.label.title') }} (En)</th>
-                                <th width="100">{{ trans('messages.post.label.category') }} (Vi)</th>
-                                <th width="100">{{ trans('messages.post.label.category') }} (En)</th>
-                                <th width="200">{{ trans('messages.post.label.thumbnail') }}</th>
-                                <th>{{ trans('messages.post.label.content') }} (Vi)</th>
-                                <th>{{ trans('messages.post.label.content') }} (En)</th>
+                                <th width="200">{{ trans('messages.gallery.label.title') }} (Vi)</th>
+                                <th width="200">{{ trans('messages.gallery.label.title') }} (En)</th>
+                                <th width="200">{{ trans('messages.gallery.label.thumbnail') }}</th>
                                 <th>{{ trans('messages.created_by') }}</th>
                                 <th width="100">{{ trans('messages.options') }}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($posts as $key => $post)
+                            @foreach ($galleries as $key => $gallery)
                             <tr class="odd gradeX">
                                 <td style="text-align: center;">{{ $key + 1 }}</td>
-                                <td>{{ $post->title }}</td>
-                                <td>{{ $post->title_en }}</td>
-                                <td>
-                                    @if ($post->category)
-                                        {{ $post->category->name }}
-                                    @endif
-                                </td>
-                                <td>
-                                    @if ($post->category)
-                                        {{ $post->category->name_en }}
-                                    @endif
-                                </td>
+                                <td>{{ $gallery->title }}</td>
+                                <td>{{ $gallery->title_en }}</td>
                                 <td class="text-center">
-                                    <img style="width: 100%" src="{{ asset($post->thumbnail_url) }}">
+                                    <img style="width: 100%" src="{{ asset($gallery->thumbnail_url) }}">
                                 </td>
                                 <td class="text-left">
-                                    <div class="content">{!! Str::limit(strip_tags($post->content), $limit = 1000, $end = '...') !!}</div>
-                                </td>
-                                <td class="text-left">
-                                    <div class="content">{!! Str::limit(strip_tags($post->content_en), $limit = 1000, $end = '...') !!}</div>
-                                </td>
-                                <td class="text-left">
-                                    @if ($post->user)
-                                        {{ $post->user->name }}
+                                    @if ($gallery->user)
+                                        {{ $gallery->user->name }}
                                     @endif
                                 </td>
                                 <td class="text-center d-flex">
-                                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-sm">
+                                    <a href="{{ route('galleries.edit', $gallery->id) }}" class="btn btn-info btn-sm">
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline-block">
+                                    <form action="{{ route('galleries.destroy', $gallery->id) }}" method="POST" style="display: inline-block">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-sm" type="submit">
@@ -80,14 +60,6 @@
         </div>
     </div>
 </div>
-<style>
-    .content {
-        max-height: 200px;
-        word-break: break-word;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-</style>
 @endsection
 
 @section('js')

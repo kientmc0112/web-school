@@ -19,7 +19,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::with(['category', 'user'])->get();
+        $posts = Post::with(['category', 'user'])->orderBy('updated_at', 'DESC')->get();
 
         return view('portal.posts.index', compact('posts'));
     }
@@ -56,19 +56,17 @@ class PostController extends Controller
             $data = $request->only([
                 'title', 'title_en', 'thumbnail_url', 'category_id', 'content', 'content_en'
             ]);
+            $data = array_merge($data, ['created_by' => Auth::user()->id, 'thumbnail_url' => null]);
+            $post = Post::create($data);
             if ($request->hasFile('thumbnail_url')) {
                 $image = $request->file('thumbnail_url');
                 $name = Carbon::now()->format('Y_m_d_his') . '.' . $image->getClientOriginalExtension();
-                $path = 'images/posts/thumbnails';
+                $path = config('filesystems.file_upload_path.post_path') . $post->id;
                 $image->move($path, $name, 'public');
+                $post->update(['thumbnail_url' => $path . '/' . $name]);
             } else {
                 return redirect()->back()->withErrors(['msg' => trans('messages.post.validate.thumbnail_image')]);
             }
-            $data = array_merge($data, [
-                'thumbnail_url' => $path . '/' . $name,
-                'created_by' => Auth::user()->id
-            ]);
-            Post::create($data);
             DB::commit();
 
             return redirect()->route('posts.index');
@@ -77,11 +75,6 @@ class PostController extends Controller
 
             return redirect()->route('posts.index');
         }
-    }
-
-    public function show($id)
-    {
-        //
     }
 
     public function edit($id)
@@ -94,7 +87,7 @@ class PostController extends Controller
         return view('portal.posts.edit', compact('post', 'categories'));
     }
 
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
         DB::beginTransaction();
         try {
@@ -108,11 +101,11 @@ class PostController extends Controller
                 }
                 $image = $request->file('thumbnail_url');
                 $name = Carbon::now()->format('Y_m_d_his') . '.' . $image->getClientOriginalExtension();
-                $path = 'images/posts/thumbnails';
+                $path = config('filesystems.file_upload_path.post_path') . $id;
                 $image->move($path, $name, 'public');
                 $data['thumbnail_url'] = $path . '/' . $name;
             }
-            $data['created_by'] = Auth::user()->id;
+            $data['updated_by'] = Auth::user()->id;
             $post->update($data);
             DB::commit();
 
@@ -131,6 +124,11 @@ class PostController extends Controller
             $post = Post::find($id);
             if (File::exists($post->thumbnail_url)) {
                 File::delete($post->thumbnail_url);
+                $path = public_path(config('filesystems.file_upload_path.post_path') . $id);
+                $files = scandir($path);
+                if (count($files) <= 2) {
+                    File::deleteDirectory($path);
+                }
             }
             $post->delete();
             DB::commit();
