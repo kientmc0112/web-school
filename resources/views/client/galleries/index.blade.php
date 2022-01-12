@@ -3,7 +3,7 @@
 @section('content')
 <div class="row" style="padding-top: 20px">
     @foreach ($galleries as $gallery)
-        <div class="col-md-6">
+        <div class="col-md-6" style="padding: 15px">
             <div class="gallery position-relative">
                 <a href="{{ route('galleries.show', $gallery->id) }}">
                     <img class="gallery__img" src="{{ asset($gallery->thumbnail_url) }}" />

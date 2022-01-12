@@ -31,9 +31,9 @@ class GalleryController extends Controller
         DB::beginTransaction();
         try {
             $data = $request->only([
-                'title', 'title_en', 'thumbnail_url'
+                'title', 'title_en'
             ]);
-            $data = array_merge($data, ['created_by' => Auth::user()->id, 'thumbnail_url' => null]);
+            $data = array_merge($data, ['created_by' => Auth::user()->id]);
             $gallery = Gallery::create($data);
             if ($request->hasFile('thumbnail_url')) {
                 $image = $request->file('thumbnail_url');
@@ -67,7 +67,7 @@ class GalleryController extends Controller
         try {
             $gallery = Gallery::find($id);
             $data = $request->only([
-                'title', 'title_en', 'thumbnail_url'
+                'title', 'title_en'
             ]);
             if ($request->hasFile('thumbnail_url')) {
                 if (File::exists($gallery->thumbnail_url)) {
