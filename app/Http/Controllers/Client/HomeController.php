@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Category;
+use App\Models\Gallery;
+use App\Models\Image;
 use App\Models\Post;
 use App\Enums\DBConstant;
 use Exception;
@@ -272,5 +274,44 @@ class HomeController extends Controller
         } else {
             return redirect()->route('home.index');
         }
+    }
+
+    public function getListGallery()
+    {
+        $cats = Category::all();
+        $categoriesHeader = [];
+        $this->getChild($categoriesHeader, $cats);
+        $galleries = Gallery::select(
+            '*',
+            DB::raw('DATE_FORMAT(created_at, "%M %e, %Y") as created_date')
+        )->orderBy('created_at', 'DESC')->get();
+
+        return view('client.galleries.index', compact('galleries', 'categoriesHeader'));
+    }
+
+    public function showGallery($id)
+    {
+        $cats = Category::all();
+        $categoriesHeader = [];
+        $this->getChild($categoriesHeader, $cats);
+
+        $gallery = Gallery::select(
+            '*',
+            DB::raw('DATE_FORMAT(created_at, "%M %e, %Y") as created_date')
+        )->find($id);
+        $images = Image::where('gallery_id', $id)->orderBy('created_at', 'DESC')->get()->map(function ($image) use ($id) {
+            $image->img_url = config('filesystems.file_upload_path.gallery_path') . $id . '/' . $image->filename;
+
+            return $image;
+        });
+        $posts = Post::select(
+            '*',
+            DB::raw('DATE_FORMAT(created_at, "%M %e, %Y") as created_date')
+        )->orderBy('created_at', 'DESC')
+        ->skip(0)
+        ->take(5)
+        ->get();
+
+        return view('client.galleries.show', compact('gallery', 'images', 'posts', 'categoriesHeader'));
     }
 }

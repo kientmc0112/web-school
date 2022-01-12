@@ -136,7 +136,7 @@
           <a href="{{ route('categories.show', $eduCate) . '?post_id=' . $edu->id }}">
             <h3 class="post-preview__h3">{{ $edu->title }}</h3>
             <p class="post-preview__p">{!! Str::limit(strip_tags($edu->content), $limit = 300, $end = '...') !!}</p>
-            <span class="post-preview__span">By {{ $edu->user->name }} | {{ $edu->category->name }}</span>
+            <span class="post-preview__span">By {{ $edu->user->name }} &nbsp; | &nbsp; {{ $edu->category->name }}</span>
           </a>
         </div>
       </div>

@@ -61,8 +61,12 @@ Route::group(['middleware' => 'locale'], function() {
         // Route::get('categories', 'HomeController@categories')->name('categories');
         Route::get('/categories/{id}', 'HomeController@show')->name('categories.show');
 
-        //user
+        // user
         Route::get('/user/info', 'HomeController@previewUser')->name('user.info');
+
+        // gallery
+        Route::get('/galleries', 'HomeController@getListGallery')->name('galleries.list');
+        Route::get('/galleries/{id}', 'HomeController@showGallery')->name('galleries.show');
     });
 });
 
