@@ -26,7 +26,6 @@
             <img alt="" width="30" height="20" src="{{ asset('images/vi.jpg') }}" />
           </a>
         </div>
-        {{ Session::get('website_language') }}
         <div class="mb-3">
           <ul style="font-size: 12px">
             <li class="d-inline-block"><a href="" class="text-dark">Search</a></li>

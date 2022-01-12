@@ -34,12 +34,18 @@ Route::domain($subDomainPortal)->group(function () {
             Route::post('/users/update/{id}', 'UserController@updateUser')->name('user.updateUser');
             Route::post('/users/update', 'UserController@update')->name('user.profile.update');
 
-            //department
+            // department
             Route::get('/departments', 'DepartmentController@index')->name('department.list');
             Route::post('/departments', 'DepartmentController@store')->name('department.store');
             Route::get('/departments/{id}/destroy', 'DepartmentController@destroy')->name('department.delete');
-
-            Route::resource('categories', 'CategoryController');
+            
+            // gallery
+            Route::resource('galleries', 'GalleryController')->except(['show']);
+            Route::post('/galleries/{id}/upload', 'GalleryController@upload')->name('galleries.upload');
+            Route::delete('/gallery/{id}/remove', 'GalleryController@remove')->name('galleries.remove');
+            Route::get('/galleries/{id}/list', 'GalleryController@getList')->name('galleries.getList');
+            
+            Route::resource('categories', 'CategoryController')->except(['show']);
 
             Route::resource('posts', 'PostController');
         });

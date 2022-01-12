@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Forms</h1>
+        <h1 class="page-header">{{ trans('messages.category.label.create') }}</h1>
     </div>
 </div>
 <div class="row">
@@ -21,7 +21,7 @@
                             action="{{ route('categories.store') }}">
                             @csrf
                             <div class="form-group">
-                                <label>Name</label>
+                                <label>{{ trans('messages.category.label.name') }}</label>
                                 <ul class="nav nav-tabs">
                                     <li class="active">
                                         <a href="#name" data-toggle="tab" aria-expanded="false">Vietnamese</a>
@@ -32,15 +32,15 @@
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="name">
-                                        <input class="form-control" name="name" placeholder="Name....." value="{{ old('name')}}" />
+                                        <input class="form-control" name="name" placeholder="{{ trans('messages.category.label.name') }} ....." value="{{ old('name')}}" />
                                     </div>
                                     <div class="tab-pane fade" id="name_en">
-                                        <input class="form-control" name="name_en" placeholder="Name....." value="{{ old('name_en')}}" />
+                                        <input class="form-control" name="name_en" placeholder="{{ trans('messages.category.label.name') }} ....." value="{{ old('name_en')}}" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Parent category</label>
+                                <label>{{ trans('messages.category.label.parent') }}</label>
                                 <select class="form-control" name="parent_id">
                                     <option></option>
                                     @foreach ($categories as $category)
@@ -49,7 +49,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Description</label>
+                                <label>{{ trans('messages.category.label.description') }}</label>
                                 <ul class="nav nav-tabs">
                                     <li class="active">
                                         <a href="#description" data-toggle="tab" aria-expanded="false">Vietnamese</a>
@@ -60,15 +60,15 @@
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="description">
-                                        <textarea name="description" placeholder="Description....." class="form-control" id="editor" rows="10">{{ old('description') }}</textarea>
+                                        <textarea name="description" placeholder="{{ trans('messages.category.label.description') }} ....." class="form-control" id="editor" rows="10">{{ old('description') }}</textarea>
                                     </div>
                                     <div class="tab-pane fade" id="description_en">
-                                        <textarea name="description_en" placeholder="Description....." class="form-control" id="editor_en" rows="10">{{ old('description_en') }}</textarea>
+                                        <textarea name="description_en" placeholder="{{ trans('messages.category.label.description') }} ....." class="form-control" id="editor_en" rows="10">{{ old('description_en') }}</textarea>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-default">Submit Button</button>
-                            <button type="reset" class="btn btn-default">Reset Button</button>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
                         </form>
                     </div>
                 </div>

@@ -10,6 +10,7 @@ return [
         'female' => 'Nữ',
     ],
     'user' => [
+        'name' => 'Người dùng',
         'label' => [
             'title_form' => 'Danh sách người dùng',
             'name' => 'Họ và tên',
@@ -44,6 +45,7 @@ return [
         ],
     ],
     'departments' => [
+        'name' => 'Khoa',
         'label' => [
             'title_form' => 'Danh sách khoa',
             'name' => 'Tên khoa',
@@ -59,16 +61,55 @@ return [
         ],
     ],
     'category' => [
+        'name' => 'Danh mục',
+        'label' => [
+            'name' => 'Tên danh mục',
+            'parent' => 'Danh mục cha',
+            'description' => 'Mô tả',
+            'create' => 'Tạo danh mục',
+            'edit' => 'Chỉnh sửa danh mục',
+            'list' => 'Danh sách danh mục'
+        ],
         'validate' => [
             'name_required' => 'Tên trống!!! Bạn vui lòng nhập đầy đủ dữ liệu!!!'
         ]
     ],
     'post' => [
+        'name' => 'Bài viết',
+        'label' => [
+            'title' => 'Tiêu đề',
+            'thumbnail' => 'Thumnail',
+            'category' => 'Danh mục',
+            'content' => 'Nội dung',
+            'create' => 'Tạo bài viết',
+            'edit' => 'Chỉnh sửa bài viết',
+            'list' => 'Danh sách bài viết'
+        ],
         'validate' => [
             'title_required' => 'Tiêu đề trống!!! Bạn vui lòng nhập đầy đủ dữ liệu!!!',
             'category_required' => 'Danh mục trống!!! Bạn vui lòng nhập đầy đủ dữ liệu!!!',
             'thumbnail_required' => 'Thumbail trống!!! Bạn vui lòng nhập đầy đủ dữ liệu!!!',
+            'thumbnail_image' => 'Thumbnail phải là một ảnh!!!',
+            'content_required' => 'Nội dung trống!!! Bạn vui lòng nhập đầy đủ dữ liệu!!!',
+        ]
+    ],
+    'gallery' => [
+        'name' => 'Thư viện ảnh',
+        'label' => [
+            'title' => 'Tiêu đề',
+            'thumbnail' => 'Thumnail',
+            'create' => 'Tạo album',
+            'edit' => 'Chỉnh sửa album',
+            'list' => 'Danh sách album',
+            'upload' => 'Tải ảnh lên',
+            'info' => 'Thông tin'
+        ],
+        'validate' => [
+            'title_required' => 'Tiêu đề trống!!! Bạn vui lòng nhập đầy đủ dữ liệu!!!',
+            'thumbnail_required' => 'Thumbail trống!!! Bạn vui lòng nhập đầy đủ dữ liệu!!!',
             'thumbnail_image' => 'Thumbnail phải là một ảnh!!!'
         ]
-    ]
+    ],
+    'options' => 'Tùy chọn',
+    'created_by' => 'Người tạo'
 ];

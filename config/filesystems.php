@@ -83,4 +83,9 @@ return [
         public_path('storage') => storage_path('app/public'),
     ],
 
+    'file_upload_path' => [
+        'post_path' => env('POST_PATH', 'images/posts/'),
+        'gallery_path' => env('GALLERY_PATH', 'images/galleries/'),
+    ],
+
 ];

@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Tables</h1>
+        <h1 class="page-header">{{ trans('messages.category.label.list') }}</h1>
     </div>
 </div>
 <div class="row">
@@ -15,12 +15,12 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name (Vi)</th>
-                                <th>Name (En)</th>
-                                <th>Parent category</th>
-                                <th>Description (Vi)</th>
-                                <th>Description (En)</th>
-                                <th>Options</th>
+                                <th>{{ trans('messages.category.label.name') }} (Vi)</th>
+                                <th>{{ trans('messages.category.label.name') }} (En)</th>
+                                <th>{{ trans('messages.category.label.parent') }}</th>
+                                <th>{{ trans('messages.category.label.description') }} (Vi)</th>
+                                <th>{{ trans('messages.category.label.description') }} (En)</th>
+                                <th>{{ trans('messages.options') }}</th>
                             </tr>
                         </thead>
                         <tbody>

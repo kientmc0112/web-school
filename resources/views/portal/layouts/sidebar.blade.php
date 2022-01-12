@@ -15,33 +15,44 @@
             <a href="{{ route('dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
          </li>
          <li>
-            <a href="{{ route('categories.index') }}"><i class="fa fa-th-list fa-fw"></i> Category<span
+            <a href="{{ route('categories.index') }}"><i class="fa fa-th-list fa-fw"></i> {{ trans('messages.category.name') }}<span
                   class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
                <li>
-                  <a href="{{ route('categories.create') }}">Create</a>
+                  <a href="{{ route('categories.create') }}">{{ trans('messages.category.label.create') }}</a>
                </li>
                <li>
-                  <a href="{{ route('categories.index') }}">List</a>
+                  <a href="{{ route('categories.index') }}">{{ trans('messages.category.label.list') }}</a>
                </li>
             </ul>
          </li>
          <li>
-            <a href="#"><i class="fa fa-book fa-fw"></i> Post<span class="fa arrow"></span></a>
+            <a href="#"><i class="fa fa-book fa-fw"></i> {{ trans('messages.post.name') }}<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
                <li>
-                  <a href="{{ route('posts.create') }}">Create</a>
+                  <a href="{{ route('posts.create') }}">{{ trans('messages.post.label.create') }}</a>
                </li>
                <li>
-                  <a href="{{ route('posts.index') }}">List</a>
+                  <a href="{{ route('posts.index') }}">{{ trans('messages.post.label.list') }}</a>
                </li>
             </ul>
          </li>
          <li>
-            <a href="{{ route('user.list') }}"><i class="fa fa-user fa-fw"></i> Users</a>
+            <a href="{{ route('user.list') }}"><i class="fa fa-user fa-fw"></i> {{ trans('messages.user.name') }}</a>
          </li>
          <li>
-            <a href="{{ route('department.list') }}"><i class="fa fa-group fa-fw"></i> Departments</a>
+            <a href="{{ route('department.list') }}"><i class="fa fa-group fa-fw"></i> {{ trans('messages.departments.name') }}</a>
+         </li>
+         <li>
+            <a href="#"><i class="fa fa-image fa-fw"></i> {{ trans('messages.gallery.name') }}<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+               <li>
+                  <a href="{{ route('galleries.create') }}">{{ trans('messages.gallery.label.create') }}</a>
+               </li>
+               <li>
+                  <a href="{{ route('galleries.index') }}">{{ trans('messages.gallery.label.list') }}</a>
+               </li>
+            </ul>
          </li>
       </ul>
    </div>
