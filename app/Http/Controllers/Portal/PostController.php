@@ -54,9 +54,9 @@ class PostController extends Controller
         DB::beginTransaction();
         try {
             $data = $request->only([
-                'title', 'title_en', 'thumbnail_url', 'category_id', 'content', 'content_en'
+                'title', 'title_en', 'category_id', 'content', 'content_en'
             ]);
-            $data = array_merge($data, ['created_by' => Auth::user()->id, 'thumbnail_url' => null]);
+            $data = array_merge($data, ['created_by' => Auth::user()->id]);
             $post = Post::create($data);
             if ($request->hasFile('thumbnail_url')) {
                 $image = $request->file('thumbnail_url');
@@ -93,7 +93,7 @@ class PostController extends Controller
         try {
             $post = Post::find($id);
             $data = $request->only([
-                'title', 'title_en', 'thumbnail_url', 'category_id', 'content', 'content_en'
+                'title', 'title_en', 'category_id', 'content', 'content_en'
             ]);
             if ($request->hasFile('thumbnail_url')) {
                 if (File::exists($post->thumbnail_url)) {
