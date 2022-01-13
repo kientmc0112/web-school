@@ -126,10 +126,10 @@
       <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Tuyển sinh</strong>
     </div>
     @foreach ($edus as $edu)
-      <div class="row post-preview">
+      <div class="row post-preview mr-0">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
           <a href="{{ route('categories.show', $eduCate) . '?post_id=' . $edu->id }}">
-            <img class="w-100 mr-2 border-0 post-preview__img" src="{{ asset($edu->thumbnail_url) }}"/>
+            <img class="w-100 border-0 post-preview__img" src="{{ asset($edu->thumbnail_url) }}"/>
           </a>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 post-preview__div">
