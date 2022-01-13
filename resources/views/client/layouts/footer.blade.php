@@ -1,7 +1,7 @@
 <div class="footer">
   <div class="bg-vnu-gray" style="font-size: 12px">
     <div class="container px-2 py-3">
-      <div class="row">
+      <div class="row mr-0">
         <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
           <ul class="px-0">
             <li class="mb-1"><strong style="font-size: 13px">GIỚI THIỆU</strong></li>
