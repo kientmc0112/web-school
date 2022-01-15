@@ -29,9 +29,33 @@
       <td colspan="4">&nbsp;</td>
     </tr>
     <tr>
-      <td colspan="4">&nbsp;</td>
-      <td colspan="5" class="b-left b-right">&nbsp;</td>
-      <td colspan="5" class="b-right">&nbsp;</td>
+      <td colspan="4">
+        <div
+          style="width: 2px; height: calc(100% - 2px); background-color: #213671; position: absolute; right: -2px; top: 0;">
+        </div>
+        <i style="position: absolute;
+        bottom: -3px;
+        right: -5px; color: #213671;" class="fas fa-caret-down">
+        </i>
+      </td>
+      <td colspan="5">
+        <div
+          style="width: 2px; height: calc(100% - 2px); background-color: #213671; position: absolute; right: -1px; top: 0;">
+        </div>
+        <i style="position: absolute;
+        bottom: -3px;
+        right: -3.5px; color: #213671;" class="fas fa-caret-down">
+        </i>
+      </td>
+      <td colspan="5">
+        <div
+          style="width: 2px; height: calc(100% - 2px); background-color: #213671; position: absolute; right: 0px; top: 0;">
+        </div>
+        <i style="position: absolute;
+        bottom: -3px;
+        right: -2.5px; color: #213671;" class="fas fa-caret-down">
+        </i>
+      </td>
       <td colspan="4">&nbsp;</td>
     </tr>
     <tr>
@@ -40,9 +64,34 @@
       <td colspan="4" rowspan="2" class="b-all" data-id="2">
         hội đồng khoa học và đào tạo
       </td>
-      <td class="b-bottom">&nbsp;</td>
+      <td>
+        <i class="fas fa-caret-left" style="position: absolute;
+        bottom: -6.5px; 
+        color: #213671;
+        left: 0;">
+        </i>
+        <div
+          style="width: calc(100% - 2px); height: 2px; background-color: #213671; position: absolute; bottom: -1px; right: 0;">
+        </div>
+      </td>
       <td colspan="4" rowspan="2" class="b-all" data-id="3">ban chủ nhiêm khoa</td>
-      <td class="b-bottom">&nbsp;</td>
+      <td>
+        <i class="fas fa-caret-left" style="
+        position: absolute;
+        bottom: -6.5px; 
+        color: #213671;
+        left: 0;">
+        </i>
+        <i class="fas fa-caret-right" style="
+        position: absolute;
+        bottom: -6.5px; 
+        color: #213671;
+        right: 0;">
+        </i>
+        <div
+          style="width: calc(100% - 5px); height: 2px; background-color: #213671; position: absolute; bottom: -1px; right: 3px;">
+        </div>
+      </td>
       <td colspan="4" rowspan="2" class="b-all" data-id="4">tổ chức đoàn thể xã hội</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
@@ -63,8 +112,27 @@
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td colspan="4" rowspan="2" class="b-all" data-id="5">tổ chuyên môn</td>
-      <td colspan="3" class="b-right b-bottom">&nbsp;</td>
-      <td colspan="3" class="b-bottom">&nbsp;</td>
+      <td colspan="3" class="b-right">
+        <i class="fas fa-caret-left" style="position: absolute;
+        bottom: -6px; 
+        color: #213671;
+        left: 0;">
+        </i>
+        <div
+          style="width: calc(100% - 2px); height: 2px; background-color: #213671; position: absolute; bottom: 0px; right: 0;">
+        </div>
+      </td>
+      <td colspan="3">
+        <i class="fas fa-caret-right" style="
+        position: absolute;
+        bottom: -6px; 
+        color: #213671;
+        right: 0;">
+        </i>
+        <div
+          style="width: calc(100% - 2px); height: 2px; background-color: #213671; position: absolute; bottom: 0px; left: 0;">
+        </div>
+      </td>
       <td colspan="4" rowspan="2" class="b-all" data-id="6">phòng ban chức năng</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
