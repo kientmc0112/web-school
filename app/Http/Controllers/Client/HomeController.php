@@ -95,7 +95,7 @@ class HomeController extends Controller
         }
 
         if (isset($request->child_id)) {
-            if ($request->child_id == 14) {
+            if ($request->child_id == 13) {
                 return redirect()->route('galleries.list');
             } else {
                 $posts = Post::whereIn('category_id', $childCategories[$request->child_id])->orderBy('updated_at', 'desc')->paginate(3);
