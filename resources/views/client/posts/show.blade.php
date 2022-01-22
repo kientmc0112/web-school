@@ -14,7 +14,7 @@
           <p>Cập nhật lúc {{ $post->updated_at }} </p>
         </div>
         <div class="post__content">
-          <img src="{{ $post->thumbnail_url }}" alt="">
+          <img src="{{ asset($post->thumbnail_url) }}" alt="">
           {!! Session::get('website_language') == 'en' && isset($post->content_en) ? $post->content_en : $post->content !!}
         </div>
 
