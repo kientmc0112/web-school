@@ -15,10 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        // $this->call([
-        //     CategoryTableSeeder::class
-        // ]);
-        \App\Models\User::factory(100)->create();
+        $this->call([
+            CategoryTableSeeder::class,
+            UserTableSeeder::class
+        ]);
+        // \App\Models\User::factory(100)->create();
         // \App\Models\Category::factory(10)->create();
         // $arrayLevel = [
         //     'Chi ủy',

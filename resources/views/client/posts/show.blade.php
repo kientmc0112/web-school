@@ -36,7 +36,7 @@
         @endif
       </div>
     @else
-      @if (Request::get('child_id') == 13)
+      @if (Request::get('child_id') == 12)
         @include('client.components.structure')
       @else
         @foreach ($posts as $post)
