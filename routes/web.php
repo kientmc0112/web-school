@@ -16,7 +16,7 @@ use App\Http\Controllers\HomeController;
 
 $subDomainPortal = config('app.subdomain_portal');
 
-Route::domain($subDomainPortal)->group(function () {
+Route::prefix('admin')->group(function () {
     Route::namespace('Portal')->group(function () {
         Route::get('/login', 'AuthController@index')->name('login');
         Route::post('/login', 'AuthController@login')->name('auth.post.login');
