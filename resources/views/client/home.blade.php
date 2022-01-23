@@ -28,6 +28,7 @@
       left: 100%;
       width: 1em;
       clip-path: polygon(0 0, 100% 50%, 0 100%, 0 50%);
+      transform: translateX(-0.1px);
     }
     .bg-vnu-gray {
       background-color: #e6e6e8;
