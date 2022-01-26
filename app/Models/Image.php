@@ -13,6 +13,8 @@ class Image extends Model
         'filename',
         'path',
         'gallery_id',
+        'url',
+        'type',
         'created_by',
         'updated_by'
     ];

@@ -40,9 +40,9 @@
          <li>
             <a href="{{ route('user.list') }}"><i class="fa fa-user fa-fw"></i> {{ trans('messages.user.name') }}</a>
          </li>
-         <li>
+         {{-- <li>
             <a href="{{ route('department.list') }}"><i class="fa fa-group fa-fw"></i> {{ trans('messages.departments.name') }}</a>
-         </li>
+         </li> --}}
          <li>
             <a href="#"><i class="fa fa-image fa-fw"></i> {{ trans('messages.gallery.name') }}<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">

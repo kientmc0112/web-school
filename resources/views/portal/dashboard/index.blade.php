@@ -59,18 +59,18 @@
       <div class="panel-heading">
         <div class="row">
           <div class="col-xs-3">
-            <i class="fa fa-group fa-5x"></i>
+            <i class="fa fa-image fa-5x"></i>
           </div>
           <div class="col-xs-9 text-right">
-            <div class="huge">{{ $numberDepartment }}</div>
-            <div>Khoa!</div>
+            <div class="huge">{{ $numberGallery }}</div>
+            <div>Thư viện ảnh!</div>
           </div>
         </div>
       </div>
       <a href="#">
         <div class="panel-footer">
           <span class="pull-left">Chi tiết</span>
-          <a href="{{ route('department.list') }}" class="pull-right"><i class="fa fa-arrow-circle-right"></i></a>
+          <a href="{{ route('galleries.index') }}" class="pull-right"><i class="fa fa-arrow-circle-right"></i></a>
           <div class="clearfix"></div>
         </div>
       </a>
@@ -104,6 +104,13 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <i class="fa fa-bar-chart-o fa-fw"></i> Slider
+        <div class="pull-right">
+          <div class="btn-group">
+            <a href="{{ route('dashboard.images', 1) }}" type="button" class="btn btn-default btn-xs">
+              Set URL
+            </a>
+          </div>
+        </div>
       </div>
       <div class="panel-body">
         <div id="slider">
@@ -121,6 +128,13 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <i class="fa fa-bar-chart-o fa-fw"></i> Top Banner
+        <div class="pull-right">
+          <div class="btn-group">
+            <a href="{{ route('dashboard.images', 2) }}" type="button" class="btn btn-default btn-xs">
+              Set URL
+            </a>
+          </div>
+        </div>
       </div>
       <div class="panel-body">
         <div id="banner-top">
@@ -140,6 +154,13 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <i class="fa fa-bar-chart-o fa-fw"></i> Bottom Banner
+        <div class="pull-right">
+          <div class="btn-group">
+            <a href="{{ route('dashboard.images', 3) }}" type="button" class="btn btn-default btn-xs">
+              Set URL
+            </a>
+          </div>
+        </div>
       </div>
       <div class="panel-body">
         <div id="banner-bottom">

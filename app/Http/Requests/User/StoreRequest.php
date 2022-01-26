@@ -28,6 +28,7 @@ class StoreRequest extends FormRequest
             'name' => 'required',
             'password' => 'required',
             'role' => 'required',
+            // 'department_id' => 'required|numeric',
         ];
     }
 

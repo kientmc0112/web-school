@@ -27,7 +27,7 @@ class UpdateRequest extends FormRequest
             'name' => 'required',
             'sex' => 'required|numeric',
             'phone' => 'numeric',
-            'department_id' => 'required|numeric',
+            // 'department_id' => 'required|numeric',
         ];
     }
 

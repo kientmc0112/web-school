@@ -28,6 +28,8 @@ Route::prefix('admin')->group(function () {
             Route::get('/dashboard/list', 'HomeController@getList')->name('dashboard.getList');
             Route::post('/dashboard/{id}/upload', 'HomeController@upload')->name('dashboard.upload');
             Route::delete('/dashboard/remove', 'HomeController@remove')->name('dashboard.remove');
+            Route::get('/dashboard/{id}/images', 'HomeController@getListImage')->name('dashboard.images');
+            Route::put('/dashboard/{id}/url', 'HomeController@setUrl')->name('dashboard.url');
 
             // user
             Route::get('/users', 'UserController@index')->name('user.list');
@@ -40,9 +42,9 @@ Route::prefix('admin')->group(function () {
             Route::post('/users/update', 'UserController@update')->name('user.profile.update');
 
             // department
-            Route::get('/departments', 'DepartmentController@index')->name('department.list');
-            Route::post('/departments', 'DepartmentController@store')->name('department.store');
-            Route::get('/departments/{id}/destroy', 'DepartmentController@destroy')->name('department.delete');
+            // Route::get('/departments', 'DepartmentController@index')->name('department.list');
+            // Route::post('/departments', 'DepartmentController@store')->name('department.store');
+            // Route::get('/departments/{id}/destroy', 'DepartmentController@destroy')->name('department.delete');
             
             // gallery
             Route::resource('galleries', 'GalleryController')->except(['show']);

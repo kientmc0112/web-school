@@ -43,9 +43,13 @@
   <div class="col-lg-9 col-md-9 col-sm-12 d-flex align-items-center justify-content-center px-2">
     <div id="carouselSlider" class="carousel slide" data-ride="carousel" style="width: 720px; height: 300px">
       <ol class="carousel-indicators">
-        <li data-target="#carouselSlider" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselSlider" data-slide-to="1"></li>
-        <li data-target="#carouselSlider" data-slide-to="2"></li>
+        @foreach ($sliders as $key => $slide)
+          @if ($key == 1)
+            <li data-target="#carouselSlider" data-slide-to="{{ $key }}" class="active"></li>
+          @else
+            <li data-target="#carouselSlider" data-slide-to="{{ $key }}"></li>
+          @endif
+        @endforeach
       </ol>
       <div class="carousel-inner">
         @foreach ($sliders as $key => $slide)
@@ -54,7 +58,9 @@
           @else
             <div class="carousel-item">
           @endif
-            <img class="d-block image-slider" src="{{ asset($slide->path . '/' . $slide->filename) }}" alt="First slide" style="width: 720px; height: 300px; object-fit: contain">
+            <a href="{{ $slide->url }}">
+              <img class="d-block image-slider" src="{{ asset($slide->path . '/' . $slide->filename) }}" alt="First slide" style="width: 720px; height: 300px; object-fit: contain">
+            </a>
           </div>
         @endforeach
       </div>
@@ -74,7 +80,7 @@
       <a href="{{ route('categories.show', 1) . "?child_id=12" }}" class="list-group-item list-group-item-action py-2"><i class="bi bi-caret-right-fill"></i> Chuyên gia từ các khoa học liên ngành</a>
       <a href="{{ route('categories.show', 4) . "?child_id=25" }}" class="list-group-item list-group-item-action py-2 border-bottom-0"><i class="bi bi-caret-right-fill"></i> Báo chí nói gì về khoa học liên ngành</a>
       @foreach ($topBanners as $banner)
-        <a href="#"><img class="w-100" src="{{ asset($banner->path . '/' . $banner->filename) }}" style="object-fit: contain; height: 125px" /></a>
+        <a href="{{ $banner->url }}"><img class="w-100" src="{{ asset($banner->path . '/' . $banner->filename) }}" style="object-fit: contain; height: 125px" /></a>
       @endforeach
     </div>
   </div>
@@ -82,7 +88,9 @@
 <div class="row mb-3">
   @foreach ($botBanners as $banner)
     <div class="col-lg-4 col-md-4 col-sm-12 px-2">
-      <img class="w-100" src="{{ asset($banner->path . '/' . $banner->filename) }}" style="height: 150px; object-fit: contain" />
+      <a href="{{ $banner->url }}">
+        <img class="w-100" src="{{ asset($banner->path . '/' . $banner->filename) }}" style="height: 150px; object-fit: contain" />
+      </a>
     </div>
   @endforeach
 </div>
