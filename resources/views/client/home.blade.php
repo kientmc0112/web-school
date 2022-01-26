@@ -54,7 +54,7 @@
           @else
             <div class="carousel-item">
           @endif
-            <img class="d-block w-100 image-slider" src="{{ asset($slide->path . '/' . $slide->filename) }}" alt="First slide">
+            <img class="d-block image-slider" src="{{ asset($slide->path . '/' . $slide->filename) }}" alt="First slide" style="width: 720px; height: 300px; object-fit: contain">
           </div>
         @endforeach
       </div>
