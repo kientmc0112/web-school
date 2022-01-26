@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('facebook_link')->nullable();
             $table->text('info')->nullable();
             $table->text('info_en')->nullable();
-            $table->integer('role')->default(1);
+            $table->integer('role')->default(1)->comment('1: admin, 2: super admin');
             $table->rememberToken();
             $table->timestamps();
         });

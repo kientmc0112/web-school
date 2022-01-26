@@ -31,7 +31,9 @@ class HomeController extends Controller
         $childCategories = [];
         $this->getChildCategories($childCategories, $cats1);
 
-        $edus = Post::whereIn('category_id', $childCategories[DBConstant::EDUCATION])->orderBy('updated_at', 'desc')->paginate(3);
+        $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();
+
+        $edus = Post::whereIn('category_id', $childCategories[DBConstant::ADMISSIONS])->orderBy('updated_at', 'desc')->paginate(3);
         $eduCate = DBConstant::EDUCATION;
         $news = Post::whereIn('category_id', $childCategories[DBConstant::NEWS])->orderBy('updated_at', 'desc')->paginate(5);
         $newCate = DBConstant::NEWS;
@@ -40,7 +42,7 @@ class HomeController extends Controller
         $topBanners = Image::where('gallery_id', DBConstant::SYSTEM_GALLERY_ID)->where('type', DBConstant::BANNER_TOP_TYPE)->limit(2)->orderBy('created_at', 'ASC')->get();
         $botBanners = Image::where('gallery_id', DBConstant::SYSTEM_GALLERY_ID)->where('type', DBConstant::BANNER_BOT_TYPE)->limit(3)->orderBy('created_at', 'ASC')->get();
 
-        return view('client.home', compact('categoriesHeader', 'news', 'edus', 'eduCate', 'newCate', 'sliders', 'topBanners', 'botBanners'));
+        return view('client.home', compact('categoriesHeader', 'categoriesFooter', 'news', 'edus', 'eduCate', 'newCate', 'sliders', 'topBanners', 'botBanners'));
     }
     
     public function getChild(&$arr, $categories, $parentId = 0)
@@ -79,6 +81,8 @@ class HomeController extends Controller
         $categoriesHeader = [];
         $this->getChild($categoriesHeader, $cats);
 
+        $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();
+
         $categories = $this->getSubCategories($id);
 
         $cats1 = Category::all();
@@ -95,7 +99,7 @@ class HomeController extends Controller
                 ->orderBy('updated_at', 'desc')
                 ->paginate(10);
 
-            return view('client.posts.show', compact('categoriesHeader', 'categories', 'post', 'similarPosts', 'id'));
+            return view('client.posts.show', compact('categoriesHeader', 'categoriesFooter', 'categories', 'post', 'similarPosts', 'id'));
         }
 
         if (isset($request->child_id)) {
@@ -108,7 +112,7 @@ class HomeController extends Controller
             $posts = Post::whereIn('category_id', $childCategories[$id])->orderBy('updated_at', 'desc')->paginate(3);
         }
 
-        return view('client.posts.show', compact('categoriesHeader', 'categories', 'posts', 'id'));
+        return view('client.posts.show', compact('categoriesHeader', 'categoriesFooter', 'categories', 'posts', 'id'));
     }
 
     private function getSubCategories($parent_id, $ignore_id=null)
@@ -278,7 +282,7 @@ class HomeController extends Controller
             $this->getChild($categoriesHeader, $cats);
     
     
-            return view('client.users.info', compact('categoriesHeader', 'user'));
+            return view('client.users.info', compact('categoriesHeader', 'categoriesFooter', 'user'));
         } else {
             return redirect()->route('home.index');
         }
@@ -289,12 +293,15 @@ class HomeController extends Controller
         $cats = Category::all();
         $categoriesHeader = [];
         $this->getChild($categoriesHeader, $cats);
+
+        $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();
+
         $galleries = Gallery::select(
             '*',
             DB::raw('DATE_FORMAT(created_at, "%M %e, %Y") as created_date')
         )->orderBy('created_at', 'DESC')->get();
 
-        return view('client.galleries.index', compact('galleries', 'categoriesHeader'));
+        return view('client.galleries.index', compact('galleries', 'categoriesHeader', 'categoriesFooter'));
     }
 
     public function showGallery($id)
@@ -302,6 +309,8 @@ class HomeController extends Controller
         $cats = Category::all();
         $categoriesHeader = [];
         $this->getChild($categoriesHeader, $cats);
+
+        $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();
 
         $gallery = Gallery::select(
             '*',
@@ -320,6 +329,6 @@ class HomeController extends Controller
         ->take(5)
         ->get();
 
-        return view('client.galleries.show', compact('gallery', 'images', 'posts', 'categoriesHeader'));
+        return view('client.galleries.show', compact('gallery', 'images', 'posts', 'categoriesHeader', 'categoriesFooter'));
     }
 }
