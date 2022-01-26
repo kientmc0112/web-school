@@ -40,13 +40,13 @@
   </style>
 @endsection
 <div class="row mb-3">
-  <div class="col-lg-9 col-md-9 col-sm-12 d-flex align-items-center px-2">
-    <div id="carouselSlider" class="carousel slide w-100" data-ride="carousel">
+  <div class="col-lg-9 col-md-9 col-sm-12 d-flex align-items-center justify-content-center px-2">
+    <div id="carouselSlider" class="carousel slide" data-ride="carousel" style="width: 720px; height: 300px">
       <ol class="carousel-indicators">
-          <li data-target="#carouselSlider" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselSlider" data-slide-to="1"></li>
-          <li data-target="#carouselSlider" data-slide-to="2"></li>
-        </ol>
+        <li data-target="#carouselSlider" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselSlider" data-slide-to="1"></li>
+        <li data-target="#carouselSlider" data-slide-to="2"></li>
+      </ol>
       <div class="carousel-inner">
         @foreach ($sliders as $key => $slide)
           @if ($key == 1)
