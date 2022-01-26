@@ -7,6 +7,7 @@ use App\Models\Image;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Gallery;
 use Exception;
 use App\Http\Controllers\Controller;
 use App\Enums\DBConstant;
@@ -22,9 +23,24 @@ class HomeController extends Controller
         $numberCategory = Category::get()->count();
         $numberPost = Post::get()->count();
         $numberUser = User::get()->count();
-        $numberDepartment = DB::table('departments')->get()->count();
+        $numberGallery = Gallery::get()->count();
 
-        return view('portal.dashboard.index', compact('numberCategory', 'numberPost', 'numberUser', 'numberDepartment'));
+        return view('portal.dashboard.index', compact('numberCategory', 'numberPost', 'numberUser', 'numberGallery'));
+    }
+
+    public function getListImage($id)
+    {   
+        $images = Image::where('gallery_id', DBConstant::SYSTEM_GALLERY_ID)->where('type', $id)->get();
+
+        return view('portal.dashboard.images', compact('images'));
+    }
+
+    public function setUrl(Request $request, $id)
+    {   
+        $image = Image::find($id);
+        $image->update(['url' => $request->url]);
+
+        return redirect()->route('dashboard.images', $image->type);
     }
 
     public function getList(Request $request)

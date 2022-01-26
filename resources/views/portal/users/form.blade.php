@@ -39,18 +39,18 @@
                                 <label>{{ trans('messages.user.label.phone') }}</label>
                                 <input class="form-control" name="phone" placeholder="{{ trans('messages.user.placeholder.phone') }}" value="{{ isset($user) ? $user->phone : old('phone') }}">
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label>{{ trans('messages.user.label.department') }} <a style="color:red">*</a></label>
                                 <select class="form-control" name="department_id">
                                     @foreach ($departments as $department)
                                         <option value="{{ $department->id }}" {{ isset($user) ? ($user->department_id === $department->id ? "selected" : "") : "" }}>{{ $department->name }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 <label>{{ trans('messages.user.label.structure') }}</label>
                                 <select class="form-control" name="level">
-                                    <option value="">---{{ trans('messages.user.label.structure') }}----</option>
+                                    <option value="">--- {{ trans('messages.user.label.structure') }} ----</option>
                                     @foreach ($levels as $level)
                                         <option value="{{ $level->id }}" {{ isset($user) ? ($user->level === $level->id ? "selected" : "") : "" }}>{{ $level->title }}</option>
                                     @endforeach
@@ -59,7 +59,7 @@
                             <div class="form-group">
                                 <label>{{ trans('messages.user.label.position') }}</label>
                                 <select class="form-control" name="position">
-                                    <option value="">---{{ trans('messages.user.label.position') }}----</option>
+                                    <option value="">--- {{ trans('messages.user.label.position') }} ----</option>
                                     @foreach ($positions as $position)
                                         <option value="{{ $position->id }}" {{ isset($user) ? ($user->position === $position->id ? "selected" : "") : "" }}>{{ $position->name }}</option>
                                     @endforeach
