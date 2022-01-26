@@ -53,7 +53,7 @@
             @if (count($category['child']) > 0)
               <li class="nav-item dropdown">
                 <strong class="dropdown-toggle text-white">
-                  <a href="{{ route('categories.show', $category["id"]) }}" class="d-block px-5 py-3 text-white">
+                  <a href="{{ route('categories.show', $category["id"]) }}" class="d-block px-4 py-3 text-white">
                     {{  Session::get('website_language') == 'en' && isset($category['name_en']) ? $category['name_en'] : $category['name'] }}
                   </a>
                 </strong>
@@ -64,7 +64,7 @@
             @else
               <li class="nav-item">
                 <strong class="dropdown-toggle text-white">
-                  <a href="{{ route('categories.show', $category["id"]) }}" class="d-block px-5 py-3 text-white">
+                  <a href="{{ route('categories.show', $category["id"]) }}" class="d-block px-4 py-3 text-white">
                     {{ Session::get('website_language') == 'en' && isset($category['name_en']) ? $category['name_en'] : $category['name'] }}
                   </a>
                 </strong>
