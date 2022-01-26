@@ -86,6 +86,7 @@ return [
     'file_upload_path' => [
         'post_path' => env('POST_PATH', 'images/posts/'),
         'gallery_path' => env('GALLERY_PATH', 'images/galleries/'),
+        'system_path' => env('SYSTEM_PATH', 'images/system/'),
     ],
 
 ];

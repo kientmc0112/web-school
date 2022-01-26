@@ -68,11 +68,10 @@
   <div class="bg-vnu-blue" style="font-size: 12px">
     <div class="container px-2 py-3 text-right text-white">
       <ul class="px-0" style="list-style-type: none">
-        <li class="mb-1">Bản quyền thuộc về Trường Đại học Kinh tế - Đại học Quốc gia Hà Nội</li>
-        <li class="mb-1">Giấy phép số 3994/GP-TTĐT, do Sở Thông tin và Truyền Thông, UBND Thành phố Hà Nội cấp ngày 14/12/2015</li>
-        <li class="mb-1">144 đường Xuân Thủy, quận Cầu Giấy, Hà Nội.    Tel: (84.24) 37547506     Fax: (84.24) 37546765</li>
-        <li class="mb-1">Email: news_ueb@vnu.edu.vn</li>
-        <li class="mb-1">Website: http://ueb.edu.vn   -   http://ueb.edu.vn</li>
+        <li class="mb-1">Bản quyền thuộc về Khoa Các khoa học liên ngành, Đại học Quốc gia Hà Nội</li>
+        <li class="mb-1">Nhà G7, Đại học Quốc gia Hà Nội, số 144 Xuân Thủy, Cầu Giấy, Hà Nội.    Tel: 0243 754 7716</li>
+        <li class="mb-1">Email: tuyensinhliennganh@vnu.edu.vn</li>
+        <li class="mb-1">Facebook: <a href="https://www.facebook.com/khoacackhoahocliennganh" class="text-white">Khoa Các khoa học liên ngành, Đại học Quốc gia Hà Nội</a></li>
       </ul>
     </div>
   </div>

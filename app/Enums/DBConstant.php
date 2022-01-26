@@ -22,4 +22,10 @@ class DBConstant
     const SCIENTIFIC_RESEARCH = 6;
     const SIS_ALUMNI = 7;
     const SIS_STUDENT = 8;
+
+    // image
+    const SYSTEM_GALLERY_ID = 0;
+    const SLIDER_TYPE = 1;
+    const BANNER_TOP_TYPE = 2;
+    const BANNER_BOT_TYPE = 3;
 }
