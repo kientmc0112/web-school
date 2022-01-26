@@ -7,15 +7,15 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-9">
+    <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="dataTable_wrapper">
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Ảnh</th>
+                                <th width="50">#</th>
+                                <th width="300">Ảnh</th>
                                 <th>URL</th>
                             </tr>
                         </thead>
@@ -24,13 +24,13 @@
                             <tr class="odd gradeX">
                                 <td style="text-align: center;">{{ $key + 1 }}</td>
                                 <td class="text-center">
-                                    <img style="width: 500px; height: 200px; object-fit: contain" src="{{ asset($image->path . '/' . $image->filename) }}">
+                                    <img style="width: 300px; max-height: 200px; object-fit: contain" src="{{ asset($image->path . '/' . $image->filename) }}">
                                 </td>
                                 <td>
-                                    <form action="{{ route('dashboard.url', $image->id) }}" method="POST">
+                                    <form class="w-100" action="{{ route('dashboard.url', $image->id) }}" method="POST" style="display: flex">
                                         @csrf
                                         @method('PUT')
-                                        <input class="form-control" name="url" placeholder="URL ....." value="{{ $image->url }}" style="width: 500px">
+                                        <input class="form-control" name="url" placeholder="URL ....." value="{{ $image->url }}" style="width: 100%; margin-right: 5px">
                                         <button class="btn btn-info" type="submit">
                                             <i class="fa fa-check-square-o"></i>
                                         </button>
