@@ -48,15 +48,15 @@
           <li data-target="#carouselSlider" data-slide-to="2"></li>
         </ol>
       <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="d-block w-100 image-slider" src="{{ asset('images/banner1.jpg') }}" alt="First slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100 image-slider" src="{{ asset('images/banner2.jpg') }}" alt="Second slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100 image-slider" src="{{ asset('images/banner3.jpg') }}" alt="Third slide">
-        </div>
+        @foreach ($sliders as $key => $slide)
+          @if ($key == 1)
+            <div class="carousel-item active">
+          @else
+            <div class="carousel-item">
+          @endif
+            <img class="d-block w-100 image-slider" src="{{ asset($slide->path . '/' . $slide->filename) }}" alt="First slide">
+          </div>
+        @endforeach
       </div>
       <a class="carousel-control-prev" href="#carouselSlider" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -69,26 +69,22 @@
     </div>
   </div>
   <div class="col-lg-3 col-md-3 col-sm-12 px-2">
-    <div class="list-group list-group-flush" style="font-size: 14px">
-      <a href="#" class="list-group-item list-group-item-action py-2"><i class="bi bi-caret-right-fill"></i> Tin tức ĐHQGHN</a>
-      <a href="#" class="list-group-item list-group-item-action py-2"><i class="bi bi-caret-right-fill"></i> Tạp chí Kinh tế và Kinh doanh</a>
-      <a href="#" class="list-group-item list-group-item-action py-2"><i class="bi bi-caret-right-fill"></i> Cổng thông tin cán bộ</a>
-      <a href="#" class="list-group-item list-group-item-action py-2"><i class="bi bi-caret-right-fill"></i> Cổng thông tin người học</a>
-      <a href="#"><img class="w-100" src="{{ asset('images/news.jpg') }}" /></a>
-      <a href="#"><img class="w-100" src="{{ asset('images/news.jpg') }}" /></a>
+    <div class="list-group list-group-flush" style="font-size: 13px">
+      <a href="{{ route('categories.show', 4) . "?child_id=22" }}" class="list-group-item list-group-item-action py-2"><i class="bi bi-caret-right-fill"></i> Tin tức về ĐHQGHN</a>
+      <a href="{{ route('categories.show', 1) . "?child_id=12" }}" class="list-group-item list-group-item-action py-2"><i class="bi bi-caret-right-fill"></i> Chuyên gia từ các khoa học liên ngành</a>
+      <a href="{{ route('categories.show', 4) . "?child_id=25" }}" class="list-group-item list-group-item-action py-2 border-bottom-0"><i class="bi bi-caret-right-fill"></i> Báo chí nói gì về khoa học liên ngành</a>
+      @foreach ($topBanners as $banner)
+        <a href="#"><img class="w-100" src="{{ asset($banner->path . '/' . $banner->filename) }}" style="object-fit: contain; height: 125px" /></a>
+      @endforeach
     </div>
   </div>
 </div>
 <div class="row mb-3">
-  <div class="col-lg-4 col-md-4 col-sm-12 px-2">
-    <img class="w-100" src="{{ asset('images/news1.jpg') }}" style="height: 150px" />
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-12 px-2">
-    <img class="w-100" src="{{ asset('images/news1.jpg') }}" style="height: 150px" />
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-12 px-2">
-    <img class="w-100" src="{{ asset('images/news1.jpg') }}" style="height: 150px" />
-  </div>
+  @foreach ($botBanners as $banner)
+    <div class="col-lg-4 col-md-4 col-sm-12 px-2">
+      <img class="w-100" src="{{ asset($banner->path . '/' . $banner->filename) }}" style="height: 150px; object-fit: contain" />
+    </div>
+  @endforeach
 </div>
 <div class="row mb-3">
   <div class="col-lg-4 col-md-4 col-sm-12 px-2">

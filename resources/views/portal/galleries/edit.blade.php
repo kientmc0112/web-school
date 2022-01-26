@@ -82,16 +82,6 @@
         </div>
     </div>
 </div>
-<style>
-    .drop-region {
-        width: 400px;
-        height: 250px;
-        border: 2px dashed #028AF4 !important; 
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-    }
-</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.0/dropzone.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
@@ -113,7 +103,7 @@
     Dropzone.options.dropzone =
         {
             maxFilesize: 1000,
-            acceptedFiles: ".jpeg,.jpg,.png,.mp4",
+            acceptedFiles: ".jpeg,.jpg,.png",
             resizeMethod: "contain",
             addRemoveLinks: true,
             timeout: 50000,
@@ -125,6 +115,7 @@
                     type: 'GET',
                     dataType: 'json',
                     success: function (data) {
+                        console.log(myDropzone);
                         $.each(data, function (key, value) {
                             var file = {name: value.name, size: value.size};
                             myDropzone.options.addedfile.call(myDropzone, file);
@@ -209,6 +200,14 @@
         };
 </script>
 <style>
+    .drop-region {
+        width: 400px;
+        height: 250px;
+        border: 2px dashed #028AF4 !important; 
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
     .swal2-popup {
         font-size: 14px !important;
     }

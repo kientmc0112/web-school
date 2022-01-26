@@ -23,7 +23,12 @@ Route::prefix('admin')->group(function () {
         Route::post('/logout', 'AuthController@logout')->name('auth.post.logout');
 
         Route::middleware(['auth'])->group(function() {
+            // dashboard
             Route::get('/', 'HomeController@index')->name('dashboard');
+            Route::get('/dashboard/list', 'HomeController@getList')->name('dashboard.getList');
+            Route::post('/dashboard/{id}/upload', 'HomeController@upload')->name('dashboard.upload');
+            Route::delete('/dashboard/remove', 'HomeController@remove')->name('dashboard.remove');
+
             // user
             Route::get('/users', 'UserController@index')->name('user.list');
             Route::get('/users/create', 'UserController@create')->name('user.create');
