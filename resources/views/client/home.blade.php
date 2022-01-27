@@ -5,8 +5,9 @@
   <link rel="stylesheet" href="{{ asset('OwlCarousel2-2.3.4/dist/owl.carousel.min.js') }}">
   <style>
     .image-slider {
-      height: 300px;
-      object-fit: cover;
+      max-width: 720px;
+      max-height: 300px;
+      object-fit: contain;
     }
     #carouselSlider ol li {
       width: 7px;
@@ -41,7 +42,7 @@
 @endsection
 <div class="row mb-3">
   <div class="col-lg-9 col-md-9 col-sm-12 d-flex align-items-center justify-content-center px-2">
-    <div id="carouselSlider" class="carousel slide" data-ride="carousel" style="width: 720px; height: 300px">
+    <div id="carouselSlider" class="carousel slide" data-ride="carousel" style="width: 720px">
       <ol class="carousel-indicators">
         @foreach ($sliders as $key => $slide)
           @if ($key == 1)
@@ -59,7 +60,7 @@
             <div class="carousel-item">
           @endif
             <a href="{{ $slide->url }}">
-              <img class="d-block image-slider" src="{{ asset($slide->path . '/' . $slide->filename) }}" alt="First slide" style="width: 720px; height: 300px; object-fit: contain">
+              <img class="d-block image-slider w-100" src="{{ asset($slide->path . '/' . $slide->filename) }}" alt="First slide">
             </a>
           </div>
         @endforeach
