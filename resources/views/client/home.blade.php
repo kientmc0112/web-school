@@ -81,7 +81,7 @@
       <a href="{{ route('categories.show', 1) . "?child_id=12" }}" class="list-group-item list-group-item-action py-2"><i class="bi bi-caret-right-fill"></i> Chuyên gia từ các khoa học liên ngành</a>
       <a href="{{ route('categories.show', 4) . "?child_id=25" }}" class="list-group-item list-group-item-action py-2 border-bottom-0"><i class="bi bi-caret-right-fill"></i> Báo chí nói gì về khoa học liên ngành</a>
       @foreach ($topBanners as $banner)
-        <a href="{{ $banner->url }}"><img class="w-100" src="{{ asset($banner->path . '/' . $banner->filename) }}" style="object-fit: contain; height: 125px" /></a>
+        <a href="{{ $banner->url }}"><img class="w-100" src="{{ asset($banner->path . '/' . $banner->filename) }}" style="object-fit: contain; max-height: 125px" /></a>
       @endforeach
     </div>
   </div>
@@ -90,7 +90,7 @@
   @foreach ($botBanners as $banner)
     <div class="col-lg-4 col-md-4 col-sm-12 px-2">
       <a href="{{ $banner->url }}">
-        <img class="w-100" src="{{ asset($banner->path . '/' . $banner->filename) }}" style="height: 150px; object-fit: contain" />
+        <img class="w-100" src="{{ asset($banner->path . '/' . $banner->filename) }}" style="max-height: 150px; object-fit: contain" />
       </a>
     </div>
   @endforeach
