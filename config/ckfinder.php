@@ -29,8 +29,13 @@ $config['authentication'] = '\App\Http\Middleware\CustomCKFinderAuth';
 /*============================ License Key ============================================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
-$config['licenseName'] = env('CKFINDER_LICENSE_NAME', 'sis.vnu.edu.vn');
-$config['licenseKey']  = env('CKFINDER_LICENSE_KEY', 'KXDXA6V18DYRY9XF5CH4Y59RLHMDD');
+if (request()->getHost() == 'sisvnu.edu.vn') {
+    $config['licenseName'] = 'sisvnu.edu.vn';
+    $config['licenseKey']  = '71U1N5EPYUV6TZGH9YUXKAD65DCN9';
+} else {
+    $config['licenseName'] = env('CKFINDER_LICENSE_NAME', 'sis.vnu.edu.vn');
+    $config['licenseKey']  = env('CKFINDER_LICENSE_KEY', 'KXDXA6V18DYRY9XF5CH4Y59RLHMDD');
+}
 
 /*============================ CKFinder Internal Directory ============================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_privateDir

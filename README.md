@@ -16,6 +16,8 @@ php artisan vendor:publish --tag=ckfinder-assets --tag=ckfinder-config
 
 mkdir -m 777 public/userfiles
 
+sudo chmod 777 -R public/userfiles/
+
 php artisan storage:link
 
 npm install
