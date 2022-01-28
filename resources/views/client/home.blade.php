@@ -77,9 +77,9 @@
   </div>
   <div class="col-lg-3 col-md-3 col-sm-12 px-2">
     <div class="list-group list-group-flush" style="font-size: 13px">
-      <a href="{{ route('categories.show', 4) . "?child_id=22" }}" class="list-group-item list-group-item-action py-2"><i class="bi bi-caret-right-fill"></i> Tin tức về ĐHQGHN</a>
-      <a href="{{ route('categories.show', 1) . "?child_id=12" }}" class="list-group-item list-group-item-action py-2"><i class="bi bi-caret-right-fill"></i> Chuyên gia từ các khoa học liên ngành</a>
-      <a href="{{ route('categories.show', 4) . "?child_id=25" }}" class="list-group-item list-group-item-action py-2 border-bottom-0"><i class="bi bi-caret-right-fill"></i> Báo chí nói gì về khoa học liên ngành</a>
+      <a href="{{ route('categories.show', ['parent_id' => 4, 'child_id' => 22]) }}" class="list-group-item list-group-item-action py-2"><i class="bi bi-caret-right-fill"></i> Tin tức về ĐHQGHN</a>
+      <a href="{{ route('categories.show', ['parent_id' => 1, 'child_id' => 12]) }}" class="list-group-item list-group-item-action py-2"><i class="bi bi-caret-right-fill"></i> Chuyên gia từ các khoa học liên ngành</a>
+      <a href="{{ route('categories.show', ['parent_id' => 4, 'child_id' => 25]) }}" class="list-group-item list-group-item-action py-2 border-bottom-0"><i class="bi bi-caret-right-fill"></i> Báo chí nói gì về khoa học liên ngành</a>
       @foreach ($topBanners as $banner)
         <a href="{{ $banner->url }}"><img class="w-100" src="{{ asset($banner->path . '/' . $banner->filename) }}" style="object-fit: contain; max-height: 125px" /></a>
       @endforeach
@@ -102,7 +102,7 @@
     </div>
     @foreach ($news as $new)
       <div class="post-preview__sm">
-        <a href="{{ route('categories.show', $newCate) . '?post_id=' . $new->id }}">
+        <a href="{{ route('posts.show', $new->id) . '?category_id=' . $newCate }}">
           <img class="w-50 mr-2 float-left post-preview__img__sm" src="{{ asset($new->thumbnail_url) }}"/>
           <h3 class="mb-1 post-preview__h3__sm">{{ $new->title }}</h3>
           <span class="post-preview__p">{!! Str::limit(strip_tags($new->content), $limit = 250, $end = '...') !!}</span>
@@ -131,18 +131,18 @@
     <div class="mb-3">
       <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Tuyển sinh</strong>
     </div>
-    @foreach ($edus as $edu)
+    @foreach ($admissions as $admiss)
       <div class="row post-preview mr-0">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-          <a href="{{ route('categories.show', $eduCate) . '?post_id=' . $edu->id }}">
-            <img class="w-100 border-0 post-preview__img" src="{{ asset($edu->thumbnail_url) }}"/>
+          <a href="{{ route('posts.show', $admiss->id) . '?category_id=' . $admissCate }}">
+            <img class="w-100 border-0 post-preview__img" src="{{ asset($admiss->thumbnail_url) }}"/>
           </a>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 post-preview__div">
-          <a href="{{ route('categories.show', $eduCate) . '?post_id=' . $edu->id }}">
-            <h3 class="post-preview__h3">{{ $edu->title }}</h3>
-            <p class="post-preview__p">{!! Str::limit(strip_tags($edu->content), $limit = 300, $end = '...') !!}</p>
-            <span class="post-preview__span">By {{ $edu->user->name }} &nbsp; | &nbsp; {{ $edu->category->name }}</span>
+          <a href="{{ route('posts.show', $admiss->id) . '?category_id=' . $admissCate }}">
+            <h3 class="post-preview__h3">{{ $admiss->title }}</h3>
+            <p class="post-preview__p">{!! Str::limit(strip_tags($admiss->content), $limit = 300, $end = '...') !!}</p>
+            <span class="post-preview__span">By {{ $admiss->user->name }} &nbsp; | &nbsp; {{ $admiss->category->name }}</span>
           </a>
         </div>
       </div>

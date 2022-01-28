@@ -28,9 +28,10 @@ class PostController extends Controller
             $this->getChildCategories($childCategories[$cat1->id], $cats1, [$cat1->id]);
         }
         
-        $similarPosts = Post::where('category_id', $childCategories[$id])
+        $similarPosts = Post::whereIn('category_id', $childCategories[$categoryId])
             ->orderBy('updated_at', 'desc')
-            ->paginate(10);
+            ->limit(10)
+            ->get();
             
         return view('client.posts.show', compact('categoriesHeader', 'categoriesFooter', 'categories', 'post', 'similarPosts', 'categoryId'));
     }
