@@ -75,46 +75,6 @@ class HomeController extends Controller
         }
     }
 
-    public function show(Request $request, $id)
-    {
-        $cats = Category::all();
-        $categoriesHeader = [];
-        $this->getChild($categoriesHeader, $cats);
-
-        $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();
-
-        $categories = $this->getSubCategories($id);
-
-        $cats1 = Category::all();
-        $childCategories = [];
-        foreach ($cats1 as $key => $cat1) {
-            $childCategories[$cat1->id][] = $cat1->id;
-            $this->getChildCategories($childCategories[$cat1->id], $cats1, [$cat1->id]);
-        }
-
-        if (isset($request->post_id)) {
-            $post = Post::find($request->post_id);
-            $similarPosts = DB::table('posts')
-                ->where('category_id', $childCategories[$id])
-                ->orderBy('updated_at', 'desc')
-                ->paginate(10);
-
-            return view('client.posts.show', compact('categoriesHeader', 'categoriesFooter', 'categories', 'post', 'similarPosts', 'id'));
-        }
-
-        if (isset($request->child_id)) {
-            if ($request->child_id == 13) {
-                return redirect()->route('galleries.list');
-            } else {
-                $posts = Post::whereIn('category_id', $childCategories[$request->child_id])->orderBy('updated_at', 'desc')->paginate(3);
-            }
-        } else {
-            $posts = Post::whereIn('category_id', $childCategories[$id])->orderBy('updated_at', 'desc')->paginate(3);
-        }
-
-        return view('client.posts.show', compact('categoriesHeader', 'categoriesFooter', 'categories', 'posts', 'id'));
-    }
-
     private function getSubCategories($parent_id, $ignore_id=null)
     {
         $categories = Category::where('parent_id', $parent_id)
@@ -138,88 +98,6 @@ class HomeController extends Controller
                 $this->getChildCategoryIds($arr, $categories, $category->id);
             }
         }
-    }
-
-    public function categories(Request $request)
-    {
-        $cats = Category::all();
-        $categoriesHeader = [];
-        $this->getChild($categoriesHeader, $cats);
-
-        $parentId = $request->parent_id ?? 0;
-
-        $categories = $this->getSubCategories($parentId);
-        $isSingle = false;
-
-        if (isset($request->category_id)) {
-            $subPanel = $this->getSubPanel($request->category_id);
-
-            $isSingle = true;
-            $cateSelect = DB::table('categories')
-                ->where('id', $request->category_id)
-                ->first();
-                
-            if (isset($request->post_id)) {
-                $arryPosts = DB::table('posts')
-                    ->where('category_id', $request->category_id)
-                    ->orderBy('updated_at', 'desc')
-                    ->paginate(10)
-                    ->toArray();
-
-                $post = DB::table('posts')
-                    ->where('id', $request->post_id)
-                    ->first();
-
-                return view('client.posts.show1', compact(
-                    'isSingle', 
-                    'categories', 
-                    'cateSelect', 
-                    'arryPosts', 
-                    'post', 
-                    'subPanel', 
-                    'categoriesHeader',
-                    'parentId'
-                ));
-            }
-            
-            $childCategories = [intval($request->category_id)];
-            $cates = Category::all();
-            $this->getChildCategoryIds($childCategories, $cates, intval($request->category_id));
-            $arryPosts = DB::table('posts')
-                ->whereIn('category_id', $childCategories)
-                ->orderBy('updated_at', 'desc')
-                ->paginate(30)
-                ->toArray();
-
-            return view('client.posts.show1', compact(
-                'isSingle', 
-                'categories', 
-                'cateSelect', 
-                'arryPosts', 
-                'subPanel', 
-                'categoriesHeader',
-                'parentId'
-            ));
-        }
-        $arryPosts = [];
-
-        foreach ($categories as $key => $cate) {
-            $postOfCate = DB::table('posts')
-                ->where('category_id', $cate->id)
-                ->orderBy('updated_at', 'desc')
-                ->limit(3)
-                ->get()
-                ->toArray();
-            array_push($arryPosts, $postOfCate);
-        }
-
-        return view('client.posts.show1', compact(
-            'isSingle', 
-            'categories', 
-            'arryPosts', 
-            'categoriesHeader',
-            'parentId'
-        ));
     }
 
     public function getSubPanel($categoryId)
@@ -286,22 +164,6 @@ class HomeController extends Controller
         } else {
             return redirect()->route('home.index');
         }
-    }
-
-    public function getListGallery()
-    {
-        $cats = Category::all();
-        $categoriesHeader = [];
-        $this->getChild($categoriesHeader, $cats);
-
-        $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();
-
-        $galleries = Gallery::select(
-            '*',
-            DB::raw('DATE_FORMAT(created_at, "%M %e, %Y") as created_date')
-        )->orderBy('created_at', 'DESC')->get();
-
-        return view('client.galleries.index', compact('galleries', 'categoriesHeader', 'categoriesFooter'));
     }
 
     public function showGallery($id)
