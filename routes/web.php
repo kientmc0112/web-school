@@ -62,17 +62,22 @@ Route::prefix('admin')->group(function () {
 
 Route::group(['middleware' => 'locale'], function() {
     Route::namespace('Client')->group(function () {
+        // language
         Route::get('change-language/{language}', 'HomeController@changeLanguage')->name('user.change-language');
         
+        // home
         Route::get('/', 'HomeController@index')->name('home.index');
-        // Route::get('categories', 'HomeController@categories')->name('categories');
-        Route::get('/categories/{id}', 'HomeController@show')->name('categories.show');
+
+        // category
+        Route::get('/categories/{parent_id}/{child_id?}', 'CategoryController@show')->name('categories.show');
+
+        // post
+        Route::get('/posts/{id}', 'PostController@show')->name('posts.show');
 
         // user
         Route::get('/user/info', 'HomeController@previewUser')->name('user.info');
 
         // gallery
-        Route::get('/galleries', 'HomeController@getListGallery')->name('galleries.list');
         Route::get('/galleries/{id}', 'HomeController@showGallery')->name('galleries.show');
     });
 });

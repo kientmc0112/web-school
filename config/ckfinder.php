@@ -28,11 +28,12 @@ $config['authentication'] = '\App\Http\Middleware\CustomCKFinderAuth';
 
 /*============================ License Key ============================================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_licenseKey
-
-if (request()->getHost() == 'sisvnu.edu.vn') {
+if (isset($_SERVER["SERVER_NAME"]) && $_SERVER["SERVER_NAME"] == 'sisvnu.edu.vn') {
+    $appUrl = 'https://sisvnu.edu.vn';
     $config['licenseName'] = 'sisvnu.edu.vn';
     $config['licenseKey']  = '71U1N5EPYUV6TZGH9YUXKAD65DCN9';
 } else {
+    $appUrl = 'https://sis.vnu.edu.vn';
     $config['licenseName'] = env('CKFINDER_LICENSE_NAME', 'sis.vnu.edu.vn');
     $config['licenseKey']  = env('CKFINDER_LICENSE_KEY', 'KXDXA6V18DYRY9XF5CH4Y59RLHMDD');
 }
@@ -87,7 +88,8 @@ $config['backends']['laravel_logs'] = array(
 $config['backends']['default'] = array(
     'name'         => 'default',
     'adapter'      => 'local',
-    'baseUrl'      => config('app.url').'/userfiles/',
+    // 'baseUrl'      => config('app.url').'/userfiles/',
+    'baseUrl'      => $appUrl.'/userfiles/',
     'root'         => public_path('/userfiles/'),
     'chmodFiles'   => 0777,
     'chmodFolders' => 0755,
