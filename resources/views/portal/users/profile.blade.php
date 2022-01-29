@@ -67,14 +67,14 @@
                                 <label>{{ trans('messages.user.label.facebook') }}</label>
                                 <input class="form-control" name="facebook_link" placeholder="{{ trans('messages.user.placeholder.facebook') }}" value="{{ $user->facebook_link }}">
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label>{{ trans('messages.user.label.department') }} <a style="color:red">*</a></label>
                                 <select class="form-control" name="department_id">
                                     @foreach ($departments as $department)
                                         <option value="{{ $department->id }}" {{ $user->department_id === $department->id ? "selected" : "" }} >{{ $department->name }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 <label>{{ trans('messages.user.label.info') }}</label>
                                 <ul class="nav nav-tabs">

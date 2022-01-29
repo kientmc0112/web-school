@@ -47,9 +47,13 @@
                                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info btn-sm">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
-                                            <a href="{{ route('user.delete', $user->id) }}" class="btn btn-danger btn-sm">
-                                                <i class="fa fa-trash-o"></i>
-                                            </a>
+                                            <form action="{{ route('user.delete', $user->id) }}" method="POST" style="display: inline-block">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger btn-sm" type="submit">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     @endif
                                 </tr>
