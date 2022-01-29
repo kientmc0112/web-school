@@ -158,7 +158,8 @@ class HomeController extends Controller
             $cats = Category::all();
             $categoriesHeader = [];
             $this->getChild($categoriesHeader, $cats);
-    
+
+            $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();
     
             return view('client.users.info', compact('categoriesHeader', 'categoriesFooter', 'user'));
         } else {

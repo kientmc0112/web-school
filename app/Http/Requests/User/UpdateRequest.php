@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
         return [
             'name' => 'required',
             'sex' => 'required|numeric',
-            'phone' => 'numeric',
+            'phone' => 'numeric|nullable',
             // 'department_id' => 'required|numeric',
         ];
     }
