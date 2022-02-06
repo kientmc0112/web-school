@@ -43,16 +43,16 @@
             <a href="#"><i class="fa fa-user fa-fw"></i> {{ trans('messages.user.name') }}<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
                <li>
-                  <a href="{{ route('user.list') }}">{{ trans('messages.gallery.label.create') }}</a>
+                  <a href="{{ route('user.list') }}">{{ trans('messages.user.label.list_sidebar') }}</a>
                </li>
                <li>
-                  <a href="{{ route('structures.list') }}">{{ trans('messages.gallery.label.list') }}</a>
+                  <a href="{{ route('user.create') }}">{{ trans('messages.user.label.create_sidebar') }}</a>
                </li>
             </ul>
          </li>
-         {{-- <li>
+         <li>
             <a href="{{ route('structures.list') }}"><i class="fa fa-users fa-fw"></i> {{ trans('messages.structure_users.title') }}</a>
-         </li> --}}
+         </li>
          {{-- <li>
             <a href="{{ route('department.list') }}"><i class="fa fa-group fa-fw"></i> {{ trans('messages.departments.name') }}</a>
          </li> --}}

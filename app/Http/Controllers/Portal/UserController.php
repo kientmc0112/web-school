@@ -41,14 +41,23 @@ class UserController extends Controller
 
     public function store(StoreRequest $request)
     {
-        $data = $request->only([
-            'name', 'email', 'password', 'role', 'phone', 'level', 'position'
-        ]);
         $auth = Auth::user();
+        $data = $request->all();
+
+        if (isset($request->avatar)) {
+            $file = $request->file('avatar');
+            $originalname = $file->getClientOriginalName();
+            $arrOriName = explode('.', $originalname);
+            $mine = $arrOriName[count($arrOriName) - 1];
+            $fileName = $auth->id . "." . $mine;
+            $path = $file->storeAs('', $fileName, 'avatar_path');
+        }
+        
         if (!isset($data['level'])) $data['level'] = [];
 
         if ($auth->role == DBConstant::SUPPER_ADMIN) {
             $data['password'] = bcrypt($data['password']);
+            if (isset($request->avatar)) $data['avatar'] = "/avatar/" . $path;
             $user = User::create($data);
 
             foreach ($data['level'] as $key => $level) {
@@ -99,16 +108,25 @@ class UserController extends Controller
 
     public function updateUser(UpdateUserRequest $request, $id)
     {
-        $data = $request->only([
-            'name', 'email', 'password', 'role', 'phone', 'level', 'position'
-        ]);
+        $data = $request->all();
         $auth = Auth::user();
+
+        if (isset($request->avatar)) {
+            $file = $request->file('avatar');
+            $originalname = $file->getClientOriginalName();
+            $arrOriName = explode('.', $originalname);
+            $mine = $arrOriName[count($arrOriName) - 1];
+            $fileName = $auth->id . "." . $mine;
+            $path = $file->storeAs('', $fileName, 'avatar_path');
+        }
+
         if (!isset($data['level'])) $data['level'] = [];
 
         if ($auth->role == DBConstant::SUPPER_ADMIN) {
             $data['password'] = bcrypt($data['password']);
-            $data['created_at'] = now();
-            $data['updated_at'] = now();
+
+            if (isset($request->avatar)) $data['avatar'] = "/avatar/" . $path;
+            
             $user = User::findOrFail($id);
             $user->update($data);
 
@@ -147,9 +165,7 @@ class UserController extends Controller
             $path = $file->storeAs('', $fileName, 'avatar_path');
         }
 
-        $data = $request->only([
-            'name', 'sex', 'phone', 'facebook_link', 'department_id', 'date_of_birth', 'position', 'info', 'info_en'
-        ]);
+        $data = $request->all();
 
         if (isset($auth->avatar)) File::delete($auth->avatar);
         $data['updated_at'] = now();
