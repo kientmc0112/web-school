@@ -92,7 +92,7 @@ $config['backends']['default'] = array(
     'baseUrl'      => $appUrl.'/userfiles/',
     'root'         => public_path('/userfiles/'),
     'chmodFiles'   => 0777,
-    'chmodFolders' => 0755,
+    'chmodFolders' => 0777,
     'filesystemEncoding' => 'UTF-8'
 );
 
