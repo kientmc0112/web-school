@@ -52,7 +52,7 @@ Route::prefix('admin')->group(function () {
             Route::delete('/gallery/{id}/remove', 'GalleryController@remove')->name('galleries.remove');
             Route::get('/galleries/{id}/list', 'GalleryController@getList')->name('galleries.getList');
 
-            Route::get('/tessss', 'StructureController@index')->name('structures.list');
+            Route::get('/structure', 'StructureController@index')->name('structures.list');
             // Route::post('/departments', 'DepartmentController@store')->name('department.store');
             
             Route::resource('categories', 'CategoryController')->except(['show']);

@@ -30,6 +30,8 @@ return [
             'create' => 'Tạo người dùng',
             'edit' => 'Sửa người dùng',
             'position' => 'Chức vụ',
+            'list_sidebar' => 'Danh sách người dùng',
+            'create_sidebar' => 'Đăng ký người dùng',
         ],
         'placeholder' => [
             'name' => 'Nhập họ và tên',
