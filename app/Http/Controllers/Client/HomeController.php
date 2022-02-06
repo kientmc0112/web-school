@@ -130,9 +130,17 @@ class HomeController extends Controller
     public function getUserWithLevel(Request $request)
     {
         $users = DB::table("users")
-            ->where("level", $request->level)
-            ->leftJoin('positions', 'users.position', '=', 'positions.id')
-            ->select("users.id", "users.name", "users.avatar", "users.level", 'positions.name as position')
+            ->leftJoin('user_level', 'users.id', '=', 'user_level.user_id')
+            ->leftJoin('levels', 'levels.id', '=', 'user_level.level_id')
+            ->leftJoin('positions', 'positions.id', '=', 'user_level.position_id')
+            ->where('user_level.level_id', $request->level)
+            ->select(
+                "users.id", 
+                "users.name", 
+                "users.avatar", 
+                "levels.id as level", 
+                DB::raw('IFNULL(positions.name, "") as position')
+            )->orderBy('display_order', 'asc')
             ->get()
             ->toArray();
 
@@ -142,17 +150,19 @@ class HomeController extends Controller
     public function previewUser(Request $request)
     {
         if (isset($request->uid)) {
-            $user = DB::table("users")
+            $user = DB::table('users')
                 ->where('users.id', $request->uid)
-                ->leftJoin('levels', 'levels.id', '=', 'users.level')
-                ->leftJoin('positions', 'positions.id', '=', 'users.position')
-                ->leftJoin('departments', 'departments.id', '=', 'users.department_id')
+                ->leftJoin('user_level', 'users.id', '=', 'user_level.user_id')
+                ->leftJoin('levels', 'levels.id', '=', 'user_level.level_id')
+                ->leftJoin('positions', 'positions.id', '=', 'user_level.position_id')
                 ->select(
-                    'users.name', 'users.email', 'users.avatar', 'users.facebook_link', 'users.phone', 'users.date_of_birth', 'users.sex', 'users.info', 'users.info_en',
-                    'departments.name as department', 
-                    'levels.title as level', 'positions.name as position' 
-                )
-                ->first();
+                    'users.*', 
+                    'levels.title as level_title', 
+                    'levels.id as level_id', 
+                    'positions.name as position_title', 
+                    'positions.id as position_id'
+                )->get();
+
             if (!isset($user)) return redirect()->route('home.index');
 
             $cats = Category::all();

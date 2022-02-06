@@ -51,6 +51,9 @@ Route::prefix('admin')->group(function () {
             Route::post('/galleries/{id}/upload', 'GalleryController@upload')->name('galleries.upload');
             Route::delete('/gallery/{id}/remove', 'GalleryController@remove')->name('galleries.remove');
             Route::get('/galleries/{id}/list', 'GalleryController@getList')->name('galleries.getList');
+
+            Route::get('/tessss', 'StructureController@index')->name('structures.list');
+            // Route::post('/departments', 'DepartmentController@store')->name('department.store');
             
             Route::resource('categories', 'CategoryController')->except(['show']);
 

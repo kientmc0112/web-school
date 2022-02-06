@@ -38,8 +38,21 @@
             </ul>
          </li>
          <li>
-            <a href="{{ route('user.list') }}"><i class="fa fa-user fa-fw"></i> {{ trans('messages.user.name') }}</a>
+            {{-- <a href="{{ route('user.list') }}"><i class="fa fa-user fa-fw"></i> {{ trans('messages.user.name') }}</a> --}}
+
+            <a href="#"><i class="fa fa-user fa-fw"></i> {{ trans('messages.user.name') }}<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+               <li>
+                  <a href="{{ route('user.list') }}">{{ trans('messages.gallery.label.create') }}</a>
+               </li>
+               <li>
+                  <a href="{{ route('structures.list') }}">{{ trans('messages.gallery.label.list') }}</a>
+               </li>
+            </ul>
          </li>
+         {{-- <li>
+            <a href="{{ route('structures.list') }}"><i class="fa fa-users fa-fw"></i> {{ trans('messages.structure_users.title') }}</a>
+         </li> --}}
          {{-- <li>
             <a href="{{ route('department.list') }}"><i class="fa fa-group fa-fw"></i> {{ trans('messages.departments.name') }}</a>
          </li> --}}

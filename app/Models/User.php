@@ -19,7 +19,15 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'avatar',
+        'phone',
+        'date_of_birth',
+        'sex',
         'password',
+        'facebook_link',
+        'info',
+        'info_en',
+        'role',
     ];
 
     /**
@@ -40,4 +48,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function level()
+    {
+        return $this->belongsToMany(Level::class, 'user_level', 'level_id', 'user_id');
+    }
+
+    public function position()
+    {
+        return $this->belongsToMany(Position::class, 'user_level', 'position_id', 'user_id');
+    }
 }
