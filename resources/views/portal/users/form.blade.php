@@ -22,7 +22,7 @@
     <div class="col-lg-12">
         <h1 class="page-header">Forms</h1>
     </div>
-</div
+</div>
 <div class="row">
     @if ($errors->any())
         <div class="alert alert-danger">
