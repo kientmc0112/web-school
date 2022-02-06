@@ -15,7 +15,7 @@
         @endif
         <div class="panel panel-default">
             <div class="panel-heading">
-                @if (isset($user))
+                @if (isset($user[0]))
                     {{ trans('messages.user.label.edit') }}
                 @else
                     {{ trans('messages.user.label.create') }}
@@ -25,46 +25,60 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form role="form" name="user-form" class="form-transparent clearfix" method="POST" action="{{ isset($user) ? route('user.updateUser', $user->id) : route('user.store') }}">
+                        <form role="form" name="user-form" class="form-transparent clearfix" method="POST" action="{{ isset($user[0]) ? route('user.updateUser', $user[0]->id) : route('user.store') }}">
                             @csrf
                             <div class="form-group">
                                 <label>{{ trans('messages.user.label.name') }} <a style="color:red">*</a></label>
-                                <input class="form-control" name="name" placeholder="{{ trans('messages.user.placeholder.name') }}" value="{{ isset($user) ? $user->name : old('name') }}">
+                                <input class="form-control" name="name" placeholder="{{ trans('messages.user.placeholder.name') }}" value="{{ isset($user[0]) ? $user[0]->name : old('name') }}">
                             </div>
                             <div class="form-group">
                                 <label>{{ trans('messages.user.label.email') }} <a style="color:red">*</a></label>
-                                <input class="form-control" name="email" placeholder="{{ trans('messages.user.placeholder.email') }}" value="{{ isset($user) ? $user->email : old('email') }}">
+                                <input class="form-control" name="email" placeholder="{{ trans('messages.user.placeholder.email') }}" value="{{ isset($user[0]) ? $user[0]->email : old('email') }}">
                             </div>
                             <div class="form-group">
                                 <label>{{ trans('messages.user.label.phone') }}</label>
-                                <input class="form-control" name="phone" placeholder="{{ trans('messages.user.placeholder.phone') }}" value="{{ isset($user) ? $user->phone : old('phone') }}">
+                                <input class="form-control" name="phone" placeholder="{{ trans('messages.user.placeholder.phone') }}" value="{{ isset($user[0]) ? $user[0]->phone : old('phone') }}">
                             </div>
-                            {{-- <div class="form-group">
-                                <label>{{ trans('messages.user.label.department') }} <a style="color:red">*</a></label>
-                                <select class="form-control" name="department_id">
-                                    @foreach ($departments as $department)
-                                        <option value="{{ $department->id }}" {{ isset($user) ? ($user->department_id === $department->id ? "selected" : "") : "" }}>{{ $department->name }}</option>
+
+                            <div class="form-group" id="structure-position">
+                                <label>{{ trans('messages.user.label.structure') }} <button id="btn-append-row" type="button">+</button></label>
+                                @if (isset($user[0]))
+                                    @foreach ($user as $key => $item)
+                                        <div style="display: flex; flex-direction: row; margin-bottom: 10px">
+                                            <select class="form-control" name="level[]" style="margin-right: 10px">
+                                                <option value="">--- {{ trans('messages.user.label.structure') }} ----</option>
+                                                @foreach ($levels as $level)
+                                                    <option value="{{ $level->id }}" {{ isset($user[$key]) ? ($user[$key]->level_id === $level->id ? "selected" : "") : "" }}>{{ $level->title }}</option>
+                                                @endforeach
+                                            </select>
+                                            <select class="form-control" name="position[]" style="margin-right: 10px">
+                                                <option value="">--- {{ trans('messages.user.label.position') }} ----</option>
+                                                @foreach ($positions as $position)
+                                                    <option value="{{ $position->id }}" {{ isset($user[$key]) ? ($user[$key]->position_id === $position->id ? "selected" : "") : "" }}>{{ $position->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <button type="button" class="btn-del-row">-</button>
+                                        </div>
                                     @endforeach
-                                </select>
-                            </div> --}}
-                            <div class="form-group">
-                                <label>{{ trans('messages.user.label.structure') }}</label>
-                                <select class="form-control" name="level">
-                                    <option value="">--- {{ trans('messages.user.label.structure') }} ----</option>
-                                    @foreach ($levels as $level)
-                                        <option value="{{ $level->id }}" {{ isset($user) ? ($user->level === $level->id ? "selected" : "") : "" }}>{{ $level->title }}</option>
-                                    @endforeach
-                                </select>
+                                @else
+                                    <div style="display: flex; flex-direction: row; margin-bottom: 10px">
+                                        <select class="form-control" name="level[]" style="margin-right: 10px">
+                                            <option value="">--- {{ trans('messages.user.label.structure') }} ----</option>
+                                            @foreach ($levels as $level)
+                                                <option value="{{ $level->id }}">{{ $level->title }}</option>
+                                            @endforeach
+                                        </select>
+                                        <select class="form-control" name="position[]" style="margin-right: 10px">
+                                            <option value="">--- {{ trans('messages.user.label.position') }} ----</option>
+                                            @foreach ($positions as $position)
+                                                <option value="{{ $position->id }}">{{ $position->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <button type="button" class="btn-del-row">-</button>
+                                    </div>
+                                @endif
                             </div>
-                            <div class="form-group">
-                                <label>{{ trans('messages.user.label.position') }}</label>
-                                <select class="form-control" name="position">
-                                    <option value="">--- {{ trans('messages.user.label.position') }} ----</option>
-                                    @foreach ($positions as $position)
-                                        <option value="{{ $position->id }}" {{ isset($user) ? ($user->position === $position->id ? "selected" : "") : "" }}>{{ $position->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+
                             <div class="form-group">
                                 <label>{{ trans('messages.user.label.password') }} <a style="color:red">*</a></label>
                                 <input type="password" class="form-control" name="password" placeholder="{{ trans('messages.user.placeholder.password') }}" value="{{ old('password')}}">
@@ -72,8 +86,8 @@
                             <div class="form-group">
                                 <label>{{ trans('messages.user.label.role') }} <a style="color:red">*</a></label>
                                 <select class="form-control" name="role" value="{{ old('role')}}">
-                                    <option value="{{ \App\Enums\DBConstant::TEACHER }}" {{ Auth::user()->role === \App\Enums\DBConstant::TEACHER ? "selected" : "" }}>{{ trans('messages.role.teacher') }}</option>
-                                    <option value="{{ \App\Enums\DBConstant::SUPPER_ADMIN  }}" {{ Auth::user()->role === \App\Enums\DBConstant::SUPPER_ADMIN ? "selected" : "" }}>{{ trans('messages.role.sp_admin') }}</option>
+                                    <option value="{{ \App\Enums\DBConstant::TEACHER }}" {{ isset($user[0]) ? $user[0]->role === \App\Enums\DBConstant::TEACHER ? "selected" : "" : "" }}>{{ trans('messages.role.teacher') }}</option>
+                                    <option value="{{ \App\Enums\DBConstant::SUPPER_ADMIN  }}" {{ isset($user[0]) ? $user[0]->role === \App\Enums\DBConstant::SUPPER_ADMIN ? "selected" : "" : "" }}>{{ trans('messages.role.sp_admin') }}</option>
                                 </select>
                             </div>
                             <div style="text-align: right">
@@ -86,5 +100,37 @@
             </div>
         </div>
     </div>
+
+    <div id="row-append" style="display: none">
+        <div style="display: flex; flex-direction: row; margin-bottom: 10px">
+            <select class="form-control" name="level[]" style="margin-right: 10px">
+                <option value="">--- {{ trans('messages.user.label.structure') }} ----</option>
+                @foreach ($levels as $level)
+                    <option value="{{ $level->id }}">{{ $level->title }}</option>
+                @endforeach
+            </select>
+            <select class="form-control" name="position[]" style="margin-right: 10px">
+                <option value="">--- {{ trans('messages.user.label.position') }} ----</option>
+                @foreach ($positions as $position)
+                    <option value="{{ $position->id }}">{{ $position->name }}</option>
+                @endforeach
+            </select>
+            <button type="button" class="btn-del-row">-</button>
+        </div>
+    </div>
 </div>
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $("#btn-append-row").click(function() {
+                $("#row-append").children().clone().appendTo("#structure-position");
+            })
+
+            $(document).on("click", ".btn-del-row", function() {
+                const parent = $(this).parent()
+                parent.remove()
+            })
+        })
+    </script>
 @endsection

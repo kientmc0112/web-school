@@ -27,8 +27,6 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'phone' => $this->faker->phoneNumber,
             'department_id' => 1,
-            'level' => $this->faker->numberBetween($min = 1, $max = 13),
-            'position' => $this->faker->numberBetween($min = 1, $max = 5),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'role' => 1,

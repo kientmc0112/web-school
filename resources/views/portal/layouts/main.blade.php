@@ -20,6 +20,8 @@
     <link href="{{ asset('assets/bower_components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/dist/css/sb-admin-2.css') }}" rel="stylesheet">
     <script src="{{ asset('assets/bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/smoothness/jquery-ui.css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
     @yield('css')
 </head>
 

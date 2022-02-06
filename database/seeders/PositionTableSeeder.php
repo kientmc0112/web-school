@@ -20,6 +20,8 @@ class PositionTableSeeder extends Seeder
             'Trưởng phòng',
             'Phó Trưởng phòng',
             'Trưởng bộ phận',
+            'Chuyên viên',
+            'Giảng viên',
         ];
 
         foreach ($arrayPosition as $key => $position) {

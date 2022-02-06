@@ -67,7 +67,7 @@
                                             </div>
                                         </div>
                                         <div class=ho-ten>${user.name}</div>
-                                        <div class=chuc-vu>${user.position}</div>
+                                        <div class=chuc-vu>${user.position !== null ? user.position : ""}1</div>
                                     </div>
                                   </a>
                               </div>`

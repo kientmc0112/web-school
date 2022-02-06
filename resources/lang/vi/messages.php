@@ -111,5 +111,8 @@ return [
         ]
     ],
     'options' => 'Tùy chọn',
-    'created_by' => 'Người tạo'
+    'created_by' => 'Người tạo',
+    'structure_users' => [
+        'title' => 'Cơ cấu tổ chức',
+    ],
 ];
