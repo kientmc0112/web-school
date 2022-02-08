@@ -109,6 +109,22 @@
         </a>
       </div>
     @endforeach
+    <div class="mb-3" style="margin-top: 25px">
+      <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Sự kiện</strong>
+    </div>
+    <div class="list-group list-group-flush" style="font-size: 12px">
+      @foreach ($events as $event)
+        <a href="{{ route('posts.show', $event->id) . '?category_id=' . $eventCate }}" class="list-group-item list-group-item-action px-0">
+          <div class="row">
+            <div class="col-2 pr-1 d-flex flex-column justify-content-center">
+              <strong class="text-center bg-vnu-gray" style="font-size: 15px">{{ $event->created_at->format('d') }}</strong>
+              <p class="text-white text-center mb-0 bg-vnu-blue" style="font-size: 10px; text-transform: uppercase">{{ $event->created_at->format('M') }}</p>
+            </div>
+            <div class="col-10 ps-0">{{ $event->title }}</div>
+          </div>
+        </a>
+      @endforeach
+    </div>
     {{-- <nav aria-label="navigation" style="font-size: 12px">
       <ul class="pagination">
         <li class="page-item">

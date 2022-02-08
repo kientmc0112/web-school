@@ -1,6 +1,6 @@
-<div class="row" style="padding-top: 20px">
+<div class="row">
   @foreach ($galleries as $gallery)
-      <div class="col-md-6" style="padding: 15px">
+      <div class="col-md-6 py-0" style="padding: 15px; margin-bottom: 30px">
           <div class="gallery position-relative">
               <a href="{{ route('galleries.show', $gallery->id) }}">
                   <img class="gallery__img" src="{{ asset($gallery->thumbnail_url) }}" />
@@ -12,6 +12,9 @@
           </div>
       </div>
   @endforeach
+</div>
+<div class="d-flex justify-content-center">
+  {{ $galleries->links() }}
 </div>
 <style>
     .gallery__img {

@@ -76,6 +76,8 @@ Route::group(['middleware' => 'locale'], function() {
 
         // post
         Route::get('/posts/{id}', 'PostController@show')->name('posts.show');
+        Route::post('/posts/search', 'PostController@handleSearch')->name('posts.handleSearch');
+        Route::get('/search/{keyword?}', 'PostController@search')->name('posts.search');
 
         // user
         Route::get('/user/info', 'HomeController@previewUser')->name('user.info');
