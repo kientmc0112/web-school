@@ -34,8 +34,11 @@
           </ul>
         </div>
         <div class="input-group ml-auto" style="border-radius: 0.25rem; max-width: 300px">
-          <input type="text" class="form-control" placeholder="Từ khóa" style="font-size: 15px">
-          <button class="btn btn-outline-primary text-white bg-vnu-blue" type="button" style="border:1px solid #0d2c6c"><i class="bi bi-search"></i></button>
+          <form action="{{ route('posts.handleSearch') }}" method="POST" class="d-flex w-100">
+            @csrf
+            <input type="text" class="form-control" name="keyword" value="{{ $keyword ?? '' }}"placeholder="Từ khóa" style="font-size: 15px">
+            <button class="btn btn-outline-primary text-white bg-vnu-blue" type="submit" style="border:1px solid #0d2c6c"><i class="bi bi-search"></i></button>
+          </form>
         </div>
       </div>
     </div>

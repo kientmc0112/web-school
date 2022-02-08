@@ -55,7 +55,7 @@ a:hover {
 }
 .post-preview__img {
     width: 400px;
-    height: 250px;
+    height: 240px;
     object-fit: cover;
 }
 .post-preview__p {

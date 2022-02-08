@@ -32,7 +32,10 @@
           </div>
         </div>
       @endforeach
-      @php $posts = $posts->toArray() @endphp
+      <div class="d-flex justify-content-center">
+        {{ $posts->links() }}
+      </div>
+      {{-- @php $posts = $posts->toArray() @endphp
       @if ($posts['last_page'] > 1)    
         <nav aria-label="navigation" style="margin-top: 20px;">
           <ul class="pagination justify-content-center">
@@ -55,7 +58,7 @@
             </li>
           </ul>
         </nav>
-      @endif
+      @endif --}}
     @endif
   </div>
 </div>

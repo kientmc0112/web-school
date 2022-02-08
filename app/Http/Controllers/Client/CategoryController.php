@@ -35,7 +35,7 @@ class CategoryController extends Controller
                 $galleries = Gallery::select(
                     '*',
                     DB::raw('DATE_FORMAT(created_at, "%M %e, %Y") as created_date')
-                )->orderBy('created_at', 'DESC')->get();
+                )->orderBy('created_at', 'DESC')->paginate(6);
 
                 return view('client.categories.show', compact('categoriesHeader', 'categoriesFooter', 'categories', 'galleries', 'parentId', 'childId'));
             } else {

@@ -79,4 +79,39 @@ class PostController extends Controller
 
         return $categories;
     }
+
+    public function handleSearch(Request $request)
+    {
+        return redirect()->route('posts.search', $request->keyword);
+    }
+
+    public function search($keyword = null)
+    {
+        $cats = Category::all();
+        $categoriesHeader = [];
+        $this->getChild($categoriesHeader, $cats);
+        $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();
+
+        $cats1 = Category::all();
+        $parentCategories = [];
+        $this->getParentCategory($parentCategories, $cats1);
+
+        $posts = isset($keyword) ? Post::where('title', 'LIKE', "%$keyword%")->orderBy('updated_at', 'desc')->paginate(5) : [];
+
+        return view('client.posts.search', compact('posts', 'categoriesHeader', 'categoriesFooter', 'parentCategories'))->with('keyword', $keyword);
+    }
+
+    public function getParentCategory(&$arr, $categories, $categoryId = null, $parentId = null) {
+        foreach ($categories as $category) {
+            if (is_null($categoryId)) {
+                $arr[$category->id] = $category->id;
+                $this->getParentCategory($arr, $categories, $category->id, $category->parent_id);
+            } else {
+                if ($parentId != 0 && $category->id == $parentId) {
+                    $arr[$categoryId] = $category->id;
+                    $this->getParentCategory($arr, $categories, $categoryId, $category->parent_id);
+                }
+            }
+        }
+    }
 }

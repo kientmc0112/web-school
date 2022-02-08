@@ -29,20 +29,22 @@ class HomeController extends Controller
 
         $cats1 = Category::all();
         $childCategories = [];
-        $this->getChildCategories($childCategories, $cats1);
+        $this->getChildCategoryIds($childCategories, $cats1);
 
         $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();
 
         $admissions = Post::whereIn('category_id', $childCategories[DBConstant::ADMISSIONS])->orderBy('updated_at', 'desc')->paginate(3);
         $admissCate = DBConstant::ADMISSIONS;
-        $news = Post::whereIn('category_id', $childCategories[DBConstant::NEWS])->orderBy('updated_at', 'desc')->paginate(5);
+        $news = Post::whereIn('category_id', $childCategories[DBConstant::NEWS])->orderBy('updated_at', 'desc')->paginate(3);
         $newCate = DBConstant::NEWS;
+        $events = Post::whereIn('category_id', $childCategories[DBConstant::EVENT])->orderBy('updated_at', 'desc')->paginate(4);
+        $eventCate = DBConstant::EVENT;
 
         $sliders = Image::where('gallery_id', DBConstant::SYSTEM_GALLERY_ID)->where('type', DBConstant::SLIDER_TYPE)->orderBy('created_at', 'ASC')->get();
         $topBanners = Image::where('gallery_id', DBConstant::SYSTEM_GALLERY_ID)->where('type', DBConstant::BANNER_TOP_TYPE)->limit(2)->orderBy('created_at', 'ASC')->get();
         $botBanners = Image::where('gallery_id', DBConstant::SYSTEM_GALLERY_ID)->where('type', DBConstant::BANNER_BOT_TYPE)->limit(3)->orderBy('created_at', 'ASC')->get();
 
-        return view('client.home', compact('categoriesHeader', 'categoriesFooter', 'news', 'admissions', 'admissCate', 'newCate', 'sliders', 'topBanners', 'botBanners'));
+        return view('client.home', compact('categoriesHeader', 'categoriesFooter', 'news', 'admissions', 'admissCate', 'newCate', 'events', 'eventCate', 'sliders', 'topBanners', 'botBanners'));
     }
     
     public function getChild(&$arr, $categories, $parentId = 0)
@@ -89,13 +91,17 @@ class HomeController extends Controller
         return $categories;
     }
 
-    public function getChildCategoryIds(&$arr, $categories, $parentId = 0)
+    public function getChildCategoryIds(&$arr, $categories, $rootId = null, $parentId = 0)
     {
         foreach ($categories as $key => $category) {
-            if ($category->parent_id === $parentId) {
-                $arr[$key] = $category->id;
-                unset($categories[$key]);
-                $this->getChildCategoryIds($arr, $categories, $category->id);
+            if (!isset($arr[$category->id]) && is_null($rootId)) {
+                $arr[$category->id][] = $category->id;
+                $this->getChildCategoryIds($arr, $categories, $category->id, $category->id);
+            } else {
+                if ($category->parent_id == $parentId) {
+                    $arr[$rootId][] = $category->id;
+                    $this->getChildCategoryIds($arr, $categories, $rootId, $category->id);
+                }
             }
         }
     }
