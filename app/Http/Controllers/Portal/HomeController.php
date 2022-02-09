@@ -15,6 +15,7 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use DB;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class HomeController extends Controller
 {
@@ -101,6 +102,16 @@ class HomeController extends Controller
         } catch (\Exception $e) {
 
             return response()->json(['error' => 'Error!'], 500);
+        }
+    }
+
+    public function test()
+    {
+        $posts = Post::all();
+        foreach ($posts as $post) {
+            $result = $post->replicate();
+            $post->slug = $result->slug;
+            $post->save();
         }
     }
 }

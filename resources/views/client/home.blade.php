@@ -102,7 +102,7 @@
     </div>
     @foreach ($news as $new)
       <div class="post-preview__sm">
-        <a href="{{ route('posts.show', $new->id) . '?category_id=' . $newCate }}">
+        <a href="{{ route('posts.show', $new->slug) . '?category_id=' . $newCate }}">
           <img class="w-50 mr-2 float-left post-preview__img__sm" src="{{ asset($new->thumbnail_url) }}"/>
           <h3 class="mb-1 post-preview__h3__sm">{{ $new->title }}</h3>
           <span class="post-preview__p">{!! Str::limit(strip_tags($new->content), $limit = 250, $end = '...') !!}</span>
@@ -114,7 +114,7 @@
     </div>
     <div class="list-group list-group-flush" style="font-size: 12px">
       @foreach ($events as $event)
-        <a href="{{ route('posts.show', $event->id) . '?category_id=' . $eventCate }}" class="list-group-item list-group-item-action px-0">
+        <a href="{{ route('posts.show', $event->slug) . '?category_id=' . $eventCate }}" class="list-group-item list-group-item-action px-0">
           <div class="row">
             <div class="col-2 pr-1 d-flex flex-column justify-content-center">
               <strong class="text-center bg-vnu-gray" style="font-size: 15px">{{ $event->created_at->format('d') }}</strong>
@@ -150,12 +150,12 @@
     @foreach ($admissions as $admiss)
       <div class="row post-preview mr-0">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-          <a href="{{ route('posts.show', $admiss->id) . '?category_id=' . $admissCate }}">
+          <a href="{{ route('posts.show', $admiss->slug) . '?category_id=' . $admissCate }}">
             <img class="w-100 border-0 post-preview__img" src="{{ asset($admiss->thumbnail_url) }}"/>
           </a>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 post-preview__div">
-          <a href="{{ route('posts.show', $admiss->id) . '?category_id=' . $admissCate }}">
+          <a href="{{ route('posts.show', $admiss->slug) . '?category_id=' . $admissCate }}">
             <h3 class="post-preview__h3">{{ $admiss->title }}</h3>
             <p class="post-preview__p">{!! Str::limit(strip_tags($admiss->content), $limit = 300, $end = '...') !!}</p>
             <span class="post-preview__span">By {{ $admiss->user->name }} &nbsp; | &nbsp; {{ $admiss->category->name }}</span>

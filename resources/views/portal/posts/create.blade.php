@@ -102,7 +102,7 @@
             filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
             filebrowserImageUploadUrl: '{{ route('ckfinder_browser') . '?_token=' . csrf_token() }}',
             toolbarGroups: [
-                { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+                { name: 'document', groups: [ 'Source', 'mode', 'document', 'doctools' ] },
                 { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
                 { name: 'styles', groups: [ 'styles' ] },
                 { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
@@ -113,12 +113,12 @@
                 { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
                 { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
                 { name: 'links', groups: [ 'links' ] },
-                { name: 'insert', groups: [ 'insert' ] },
+                { name: 'insert', groups: [ 'insert', 'Iframe' ] },
                 '/',
                 { name: 'others', groups: [ 'others' ] },
                 { name: 'about', groups: [ 'about' ] }
             ],
-            removeButtons: 'Source,Save,Templates,NewPage,ExportPdf,Preview,Print,Find,Replace,SelectAll,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,CopyFormatting,CreateDiv,PageBreak,Iframe,ShowBlocks,About,Smiley,Anchor',
+            removeButtons: 'Source,Save,Templates,NewPage,ExportPdf,Preview,Print,Find,Replace,SelectAll,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,CopyFormatting,CreateDiv,PageBreak,ShowBlocks,About,Smiley,Anchor',
             editorplaceholder: 'Type your content...',
             height: '500'
         });
