@@ -23,6 +23,9 @@ Route::prefix('admin')->group(function () {
         Route::post('/logout', 'AuthController@logout')->name('auth.post.logout');
 
         Route::middleware(['auth'])->group(function() {
+            //test
+            Route::get('/test', 'HomeController@test')->name('test');
+
             // dashboard
             Route::get('/', 'HomeController@index')->name('dashboard');
             Route::get('/dashboard/list', 'HomeController@getList')->name('dashboard.getList');
@@ -74,16 +77,16 @@ Route::group(['middleware' => 'locale'], function() {
         // category
         Route::get('/categories/{parent_id}/{child_id?}', 'CategoryController@show')->name('categories.show');
 
-        // post
-        Route::get('/posts/{id}', 'PostController@show')->name('posts.show');
-        Route::post('/posts/search', 'PostController@handleSearch')->name('posts.handleSearch');
-        Route::get('/search/{keyword?}', 'PostController@search')->name('posts.search');
-
         // user
         Route::get('/user/info', 'HomeController@previewUser')->name('user.info');
 
         // gallery
         Route::get('/galleries/{id}', 'HomeController@showGallery')->name('galleries.show');
+
+        // post
+        Route::post('/posts/search', 'PostController@handleSearch')->name('posts.handleSearch');
+        Route::get('/search/{keyword?}', 'PostController@search')->name('posts.search');
+        Route::get('/{slug}', 'PostController@show')->name('posts.show');
     });
 });
 

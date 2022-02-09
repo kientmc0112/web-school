@@ -15,12 +15,12 @@
       @foreach ($posts as $post)
         <div class="row post-preview">
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <a href="{{ route('posts.show', $post->id) . '?category_id=' . $parentId }}">
+            <a href="{{ route('posts.show', $post->slug) . '?category_id=' . $parentId }}">
               <img class="w-100 mr-2 border-0 post-preview__img" src="{{ asset($post->thumbnail_url) }}"/>
             </a>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 post-preview__div">
-            <a href="{{ route('posts.show', $post->id) . '?category_id=' . $parentId }}">
+            <a href="{{ route('posts.show', $post->slug) . '?category_id=' . $parentId }}">
               <h3 class="post-preview__h3">{{ Session::get('website_language') == 'en' && isset($post->title_en) ? $post->title_en : $post->title }}</h3>
               @if (Session::get('website_language') == 'en' && isset($post->content_en))
                   <p class="post-preview__p">{!! Str::limit(strip_tags($post->content_en), $limit = 300, $end = '...') !!}</p>

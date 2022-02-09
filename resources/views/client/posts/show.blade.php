@@ -24,7 +24,7 @@
               @foreach ($similarPosts as $similarPost)
               <div class="content__item">
                   <img class="cate__icon" src="{{ asset('images/next_new_category.png') }}">
-                  <a href="{{ route('posts.show', $similarPost->id) . '?category_id=' . $categoryId }}" class="cate__title">
+                  <a href="{{ route('posts.show', $similarPost->slug) . '?category_id=' . $categoryId }}" class="cate__title">
                   {{ Session::get('website_language') == 'en' && isset($similarPost->title_en) ? $similarPost->title_en : $similarPost->title }}
                   </a>
                   <img class="cate__icon-new" src="{{ asset('images/newnew.gif') }}">

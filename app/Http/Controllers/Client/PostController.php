@@ -9,14 +9,14 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
-    public function show(Request $request, $id)
+    public function show(Request $request, $slug)
     {
         $cats = Category::all();
         $categoriesHeader = [];
         $this->getChild($categoriesHeader, $cats);
         $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();
 
-        $post = Post::find($id);
+        $post = Post::where('slug', $slug)->first();
 
         $categoryId = $request->category_id;
         $categories = $this->getSubCategories($categoryId);
