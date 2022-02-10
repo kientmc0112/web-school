@@ -120,6 +120,7 @@ a:hover {
 }
 .post__content img {
     max-width: 100% !important;
+    height: auto !important;
     margin-bottom: 10px;
 }
 .post__content iframe {
