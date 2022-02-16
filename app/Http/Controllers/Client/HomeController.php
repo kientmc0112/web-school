@@ -23,7 +23,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $cats = Category::all();
+        $cats = Category::orderBy('order')->get();
         $categoriesHeader = [];
         $this->getChild($categoriesHeader, $cats);
 
@@ -171,7 +171,7 @@ class HomeController extends Controller
 
             if (!isset($user)) return redirect()->route('home.index');
 
-            $cats = Category::all();
+            $cats = Category::orderBy('order')->get();
             $categoriesHeader = [];
             $this->getChild($categoriesHeader, $cats);
 
@@ -185,7 +185,7 @@ class HomeController extends Controller
 
     public function showGallery($id)
     {
-        $cats = Category::all();
+        $cats = Category::orderBy('order')->get();
         $categoriesHeader = [];
         $this->getChild($categoriesHeader, $cats);
 
