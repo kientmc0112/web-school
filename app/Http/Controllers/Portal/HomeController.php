@@ -25,8 +25,9 @@ class HomeController extends Controller
         $numberPost = Post::get()->count();
         $numberUser = User::get()->count();
         $numberGallery = Gallery::get()->count();
+        $textBanners = Image::where('gallery_id', DBConstant::SYSTEM_GALLERY_ID)->where('type', DBConstant::BANNER_TEXT_TYPE)->get();
 
-        return view('portal.dashboard.index', compact('numberCategory', 'numberPost', 'numberUser', 'numberGallery'));
+        return view('portal.dashboard.index', compact('numberCategory', 'numberPost', 'numberUser', 'numberGallery', 'textBanners'));
     }
 
     public function getListImage($id)
@@ -39,9 +40,9 @@ class HomeController extends Controller
     public function setUrl(Request $request, $id)
     {   
         $image = Image::find($id);
-        $image->update(['url' => $request->url]);
+        $image->update($request->all());
 
-        return redirect()->route('dashboard.images', $image->type);
+        return redirect()->back();
     }
 
     public function getList(Request $request)
@@ -107,11 +108,11 @@ class HomeController extends Controller
 
     public function test()
     {
-        $posts = Post::all();
-        foreach ($posts as $post) {
-            $result = $post->replicate();
-            $post->slug = $result->slug;
-            $post->save();
-        }
+        // $posts = Post::all();
+        // foreach ($posts as $post) {
+        //     $result = $post->replicate();
+        //     $post->slug = $result->slug;
+        //     $post->save();
+        // }
     }
 }

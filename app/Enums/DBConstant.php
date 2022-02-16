@@ -29,4 +29,5 @@ class DBConstant
     const SLIDER_TYPE = 1;
     const BANNER_TOP_TYPE = 2;
     const BANNER_BOT_TYPE = 3;
+    const BANNER_TEXT_TYPE = 4;
 }

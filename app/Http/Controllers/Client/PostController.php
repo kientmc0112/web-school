@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function show(Request $request, $slug)
     {
-        $cats = Category::all();
+        $cats = Category::orderBy('order')->get();
         $categoriesHeader = [];
         $this->getChild($categoriesHeader, $cats);
         $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();
@@ -87,7 +87,7 @@ class PostController extends Controller
 
     public function search($keyword = null)
     {
-        $cats = Category::all();
+        $cats = Category::orderBy('order')->get();
         $categoriesHeader = [];
         $this->getChild($categoriesHeader, $cats);
         $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();

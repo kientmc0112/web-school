@@ -100,6 +100,52 @@
   </div>
 </div>
 <div class="row">
+  <div class="col-lg-12">
+      <div class="panel panel-default">
+          <div class="panel-body">
+              <div class="dataTable_wrapper">
+                  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                      <thead>
+                          <tr>
+                              <th width="50">#</th>
+                              <th>Nội dung</th>
+                              <th>URL</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          @foreach ($textBanners as $key => $textBanner)
+                          <tr class="odd gradeX">
+                              <td style="text-align: center;">{{ $key + 1 }}</td>
+                              <td>
+                                  <form class="w-100" action="{{ route('dashboard.url', $textBanner->id) }}" method="POST" style="display: flex">
+                                    @csrf
+                                    @method('PUT')
+                                    <input class="form-control" name="filename" placeholder="Nội dung ....." value="{{ $textBanner->filename }}" style="width: 100%; margin-right: 5px">
+                                    <button class="btn btn-info" type="submit">
+                                        <i class="fa fa-check-square-o"></i>
+                                    </button>
+                                </form>
+                              </td>
+                              <td>
+                                  <form class="w-100" action="{{ route('dashboard.url', $textBanner->id) }}" method="POST" style="display: flex">
+                                      @csrf
+                                      @method('PUT')
+                                      <input class="form-control" name="url" placeholder="URL ....." value="{{ $textBanner->url }}" style="width: 100%; margin-right: 5px">
+                                      <button class="btn btn-info" type="submit">
+                                          <i class="fa fa-check-square-o"></i>
+                                      </button>
+                                  </form>
+                              </td>
+                          </tr>
+                          @endforeach
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="row">
   <div class="col-lg-8">
     <div class="panel panel-default">
       <div class="panel-heading">
