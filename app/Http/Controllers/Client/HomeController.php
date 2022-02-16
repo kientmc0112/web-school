@@ -43,8 +43,9 @@ class HomeController extends Controller
         $sliders = Image::where('gallery_id', DBConstant::SYSTEM_GALLERY_ID)->where('type', DBConstant::SLIDER_TYPE)->orderBy('created_at', 'ASC')->get();
         $topBanners = Image::where('gallery_id', DBConstant::SYSTEM_GALLERY_ID)->where('type', DBConstant::BANNER_TOP_TYPE)->limit(2)->orderBy('created_at', 'ASC')->get();
         $botBanners = Image::where('gallery_id', DBConstant::SYSTEM_GALLERY_ID)->where('type', DBConstant::BANNER_BOT_TYPE)->limit(3)->orderBy('created_at', 'ASC')->get();
+        $textBanners = Image::where('gallery_id', DBConstant::SYSTEM_GALLERY_ID)->where('type', DBConstant::BANNER_TEXT_TYPE)->limit(3)->orderBy('created_at', 'ASC')->get();
 
-        return view('client.home', compact('categoriesHeader', 'categoriesFooter', 'news', 'admissions', 'admissCate', 'newCate', 'events', 'eventCate', 'sliders', 'topBanners', 'botBanners'));
+        return view('client.home', compact('categoriesHeader', 'categoriesFooter', 'news', 'admissions', 'admissCate', 'newCate', 'events', 'eventCate', 'sliders', 'topBanners', 'botBanners', 'textBanners'));
     }
     
     public function getChild(&$arr, $categories, $parentId = 0)
