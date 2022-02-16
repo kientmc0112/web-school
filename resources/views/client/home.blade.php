@@ -77,9 +77,9 @@
   </div>
   <div class="col-lg-3 col-md-3 col-sm-12 px-2">
     <div class="list-group list-group-flush" style="font-size: 13px">
-      <a href="{{ route('categories.show', ['parent_id' => 4, 'child_id' => 22]) }}" class="list-group-item list-group-item-action py-2"><i class="bi bi-caret-right-fill"></i> Tin tức về ĐHQGHN</a>
-      <a href="{{ route('categories.show', ['parent_id' => 1, 'child_id' => 12]) }}" class="list-group-item list-group-item-action py-2"><i class="bi bi-caret-right-fill"></i> Chuyên gia từ các khoa học liên ngành</a>
-      <a href="{{ route('categories.show', ['parent_id' => 4, 'child_id' => 25]) }}" class="list-group-item list-group-item-action py-2 border-bottom-0"><i class="bi bi-caret-right-fill"></i> Báo chí nói gì về khoa học liên ngành</a>
+      @foreach ($textBanners as $textBanner)
+        <a href="{{ $textBanner->url }}" class="list-group-item list-group-item-action py-2"><i class="bi bi-caret-right-fill"></i> {{ $textBanner->filename }}</a>
+      @endforeach
       @foreach ($topBanners as $banner)
         <a href="{{ $banner->url }}"><img class="w-100" src="{{ asset($banner->path . '/' . $banner->filename) }}" style="object-fit: contain; max-height: 125px" /></a>
       @endforeach
