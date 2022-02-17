@@ -44,7 +44,7 @@ class CategoryController extends Controller
                     if ($posts->count() == 1) {
                         $post = $posts->first();
                         
-                        return redirect(route('posts.show', $post->id) . '?category_id=' . $parentId);
+                        return redirect(route('posts.show', $post->slug) . '?category_id=' . $parentId);
                     }
                 } else {
                     $posts = Post::whereIn('category_id', $childCategories[$childId])->orderBy('updated_at', 'desc')->paginate(3);
