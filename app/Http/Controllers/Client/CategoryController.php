@@ -13,7 +13,7 @@ class CategoryController extends Controller
 {
     public function show($parentId, $childId = null)
     {
-        $cats = Category::all();
+        $cats = Category::orderBy('order')->get();
         $categoriesHeader = [];
         $this->getChild($categoriesHeader, $cats);
 
