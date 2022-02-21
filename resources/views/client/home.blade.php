@@ -45,7 +45,7 @@
     <div id="carouselSlider" class="carousel slide" data-ride="carousel" style="width: 720px">
       <ol class="carousel-indicators">
         @foreach ($sliders as $key => $slide)
-          @if ($key == 1)
+          @if ($key == 0)
             <li data-target="#carouselSlider" data-slide-to="{{ $key }}" class="active"></li>
           @else
             <li data-target="#carouselSlider" data-slide-to="{{ $key }}"></li>
@@ -54,7 +54,7 @@
       </ol>
       <div class="carousel-inner">
         @foreach ($sliders as $key => $slide)
-          @if ($key == 1)
+          @if ($key == 0)
             <div class="carousel-item active">
           @else
             <div class="carousel-item">
