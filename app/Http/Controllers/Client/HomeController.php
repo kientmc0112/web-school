@@ -61,37 +61,7 @@ class HomeController extends Controller
             }
         }
     }
-
-    public function getChildCategories(&$arr, $categories, $parentId = [])
-    {
-        foreach ($categories as $key => $category) {
-            if (in_array($category->parent_id, $parentId) || (count($parentId) === 0 && $category->parent_id === 0)) {
-                if ($category->parent_id === 0) {
-                    $arr[$category->id][] = $category->id;    
-                    unset($categories[$key]);
-                    $this->getChildCategories($arr[$category->id], $categories, [$category->id]);
-                } else {
-                    $arr[] = $category->id;
-                    $this->getChildCategories($arr, $categories, [$category->id]);
-                }
-            }
-        }
-    }
-
-    private function getSubCategories($parent_id, $ignore_id=null)
-    {
-        $categories = Category::where('parent_id', $parent_id)
-            ->where('id', '<>', $ignore_id)
-            ->get()
-            ->map(function($query) use ($ignore_id) {
-                $query->sub = $this->getSubCategories($query->id, $ignore_id);
-
-                return $query;
-            });
-
-        return $categories;
-    }
-
+    
     public function getChildCategoryIds(&$arr, $categories, $rootId = null, $parentId = 0)
     {
         foreach ($categories as $key => $category) {
