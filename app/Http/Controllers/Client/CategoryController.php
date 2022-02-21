@@ -91,6 +91,7 @@ class CategoryController extends Controller
     {
         $categories = Category::where('parent_id', $parent_id)
             ->where('id', '<>', $ignore_id)
+            ->orderBy('order')
             ->get()
             ->map(function($query) use ($ignore_id) {
                 $query->sub = $this->getSubCategories($query->id, $ignore_id);
