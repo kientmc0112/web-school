@@ -17,7 +17,17 @@ class CategoryController extends Controller
         $categoriesHeader = [];
         $this->getChild($categoriesHeader, $cats);
 
-        $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();
+        $categoriesFooter = Category::where('parent_id', 0)
+            ->orderBy('order')
+            ->get()
+            ->map(function($query) {
+                $query->categories = Category::where('parent_id', $query->id)
+                    ->orderBy('order')
+                    ->get();
+
+                return $query;
+            })
+            ->toArray();
 
         $categories = $this->getSubCategories($parentId);
 

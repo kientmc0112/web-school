@@ -31,7 +31,17 @@ class HomeController extends Controller
         $childCategories = [];
         $this->getChildCategoryIds($childCategories, $cats1);
 
-        $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();
+        $categoriesFooter = Category::where('parent_id', 0)
+            ->orderBy('order')
+            ->get()
+            ->map(function($query) {
+                $query->categories = Category::where('parent_id', $query->id)
+                    ->orderBy('order')
+                    ->get();
+
+                return $query;
+            })
+            ->toArray();
 
         $admissions = Post::whereIn('category_id', $childCategories[DBConstant::ADMISSIONS])->orderBy('updated_at', 'desc')->paginate(3);
         $admissCate = DBConstant::ADMISSIONS;
@@ -146,7 +156,17 @@ class HomeController extends Controller
             $categoriesHeader = [];
             $this->getChild($categoriesHeader, $cats);
 
-            $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();
+            $categoriesFooter = Category::where('parent_id', 0)
+                ->orderBy('order')
+                ->get()
+                ->map(function($query) {
+                    $query->categories = Category::where('parent_id', $query->id)
+                        ->orderBy('order')
+                        ->get();
+
+                    return $query;
+                })
+                ->toArray();
     
             return view('client.users.info', compact('categoriesHeader', 'categoriesFooter', 'user'));
         } else {
@@ -160,7 +180,17 @@ class HomeController extends Controller
         $categoriesHeader = [];
         $this->getChild($categoriesHeader, $cats);
 
-        $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();
+        $categoriesFooter = Category::where('parent_id', 0)
+            ->orderBy('order')
+            ->get()
+            ->map(function($query) {
+                $query->categories = Category::where('parent_id', $query->id)
+                    ->orderBy('order')
+                    ->get();
+
+                return $query;
+            })
+            ->toArray();
 
         $gallery = Gallery::select(
             '*',
