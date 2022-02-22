@@ -14,7 +14,17 @@ class PostController extends Controller
         $cats = Category::orderBy('order')->get();
         $categoriesHeader = [];
         $this->getChild($categoriesHeader, $cats);
-        $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();
+        $categoriesFooter = Category::where('parent_id', 0)
+            ->orderBy('order')
+            ->get()
+            ->map(function($query) {
+                $query->categories = Category::where('parent_id', $query->id)
+                    ->orderBy('order')
+                    ->get();
+
+                return $query;
+            })
+            ->toArray();
 
         $post = Post::where('slug', $slug)->first();
 
@@ -91,7 +101,17 @@ class PostController extends Controller
         $cats = Category::orderBy('order')->get();
         $categoriesHeader = [];
         $this->getChild($categoriesHeader, $cats);
-        $categoriesFooter = Category::with('categories')->where('parent_id', 0)->get()->toArray();
+        $categoriesFooter = Category::where('parent_id', 0)
+            ->orderBy('order')
+            ->get()
+            ->map(function($query) {
+                $query->categories = Category::where('parent_id', $query->id)
+                    ->orderBy('order')
+                    ->get();
+
+                return $query;
+            })
+            ->toArray();
 
         $cats1 = Category::all();
         $parentCategories = [];
