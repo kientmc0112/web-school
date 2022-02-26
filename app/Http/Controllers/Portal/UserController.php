@@ -116,7 +116,7 @@ class UserController extends Controller
             $originalname = $file->getClientOriginalName();
             $arrOriName = explode('.', $originalname);
             $mine = $arrOriName[count($arrOriName) - 1];
-            $fileName = $auth->id . "." . $mine;
+            $fileName = $id . "." . $mine;
             $path = $file->storeAs('', $fileName, 'avatar_path');
         }
 
