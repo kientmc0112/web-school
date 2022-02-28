@@ -50,18 +50,18 @@ class CategoryController extends Controller
                 return view('client.categories.show', compact('categoriesHeader', 'categoriesFooter', 'categories', 'galleries', 'parentId', 'childId'));
             } else {
                 if ($childId == 10) {
-                    $posts = Post::where('category_id', 10)->orderBy('updated_at', 'desc')->paginate(3);
+                    $posts = Post::where('category_id', 10)->orderBy('updated_at', 'desc')->paginate(4);
                     if ($posts->count() == 1) {
                         $post = $posts->first();
                         
                         return redirect(route('posts.show', $post->slug) . '?category_id=' . $parentId);
                     }
                 } else {
-                    $posts = Post::whereIn('category_id', $childCategories[$childId])->orderBy('updated_at', 'desc')->paginate(3);
+                    $posts = Post::whereIn('category_id', $childCategories[$childId])->orderBy('updated_at', 'desc')->paginate(4);
                 }
             }
         } else {
-            $posts = Post::whereIn('category_id', $childCategories[$parentId])->orderBy('updated_at', 'desc')->paginate(3);
+            $posts = Post::whereIn('category_id', $childCategories[$parentId])->orderBy('updated_at', 'desc')->paginate(4);
         }
 
         return view('client.categories.show', compact('categoriesHeader', 'categoriesFooter', 'categories', 'posts', 'parentId', 'childId'));

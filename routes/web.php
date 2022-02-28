@@ -60,7 +60,7 @@ Route::prefix('admin')->group(function () {
             
             Route::resource('categories', 'CategoryController')->except(['show']);
 
-            Route::resource('posts', 'PostController');
+            Route::resource('posts', 'PostController')->except(['show']);
         });
     });
 });
