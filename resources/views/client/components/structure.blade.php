@@ -65,13 +65,13 @@
         hội đồng khoa học và đào tạo
       </td>
       <td>
-        <i class="fas fa-caret-left" style="position: absolute;
+        <i class="fas fa-caret-right" style="position: absolute;
         bottom: -6.5px; 
         color: #213671;
-        left: 0;">
+        right: 0;">
         </i>
         <div
-          style="width: calc(100% - 2px); height: 2px; background-color: #213671; position: absolute; bottom: -1px; right: 0;">
+          style="width: calc(100% - 2px); height: 2px; background-color: #213671; position: absolute; bottom: -1px; right: 2px;">
         </div>
       </td>
       <td colspan="4" rowspan="2" class="b-all" data-id="3">ban chủ nhiêm khoa</td>
@@ -133,7 +133,7 @@
           style="width: calc(100% - 2px); height: 2px; background-color: #213671; position: absolute; bottom: 0px; left: 0;">
         </div>
       </td>
-      <td colspan="4" rowspan="2" class="b-all" data-id="6">phòng ban chức năng</td>
+      <td colspan="4" rowspan="2" class="b-all" data-id="6">phòng ban chức năng và Trung tâm</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
     </tr>
@@ -239,13 +239,9 @@
       </td>
       <td class="b-right b-bottom">&nbsp;</td>
       <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td colspan="3" rowspan="2" class="b-all" data-id="15">TT KHCN và Hỗ trợ đào tạo</td>
     </tr>
     <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
