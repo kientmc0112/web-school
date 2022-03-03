@@ -11,6 +11,7 @@ use Auth;
 use Illuminate\Support\Facades\File;
 use DB;
 use App\Http\Requests\GalleryRequest;
+use Exception;
 
 class GalleryController extends Controller
 {

@@ -6,44 +6,49 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
+use Exception;
 
 class PostController extends Controller
 {
     public function show(Request $request, $slug)
     {
-        $cats = Category::orderBy('order')->get();
-        $categoriesHeader = [];
-        $this->getChild($categoriesHeader, $cats);
-        $categoriesFooter = Category::where('parent_id', 0)
-            ->orderBy('order')
-            ->get()
-            ->map(function($query) {
-                $query->categories = Category::where('parent_id', $query->id)
-                    ->orderBy('order')
-                    ->get();
+        try {
+            $cats = Category::orderBy('order')->get();
+            $categoriesHeader = [];
+            $this->getChild($categoriesHeader, $cats);
+            $categoriesFooter = Category::where('parent_id', 0)
+                ->orderBy('order')
+                ->get()
+                ->map(function($query) {
+                    $query->categories = Category::where('parent_id', $query->id)
+                        ->orderBy('order')
+                        ->get();
 
-                return $query;
-            })
-            ->toArray();
+                    return $query;
+                })
+                ->toArray();
 
-        $post = Post::where('slug', $slug)->first();
+            $post = Post::where('slug', $slug)->first();
 
-        $categoryId = $request->category_id;
-        $categories = $this->getSubCategories($categoryId);
+            $categoryId = $request->category_id;
+            $categories = $this->getSubCategories($categoryId);
 
-        $cats1 = Category::all();
-        $childCategories = [];
-        foreach ($cats1 as $key => $cat1) {
-            $childCategories[$cat1->id][] = $cat1->id;
-            $this->getChildCategories($childCategories[$cat1->id], $cats1, [$cat1->id]);
-        }
-        
-        $similarPosts = Post::whereIn('category_id', $childCategories[$categoryId])
-            ->orderBy('updated_at', 'desc')
-            ->limit(10)
-            ->get();
+            $cats1 = Category::all();
+            $childCategories = [];
+            foreach ($cats1 as $key => $cat1) {
+                $childCategories[$cat1->id][] = $cat1->id;
+                $this->getChildCategories($childCategories[$cat1->id], $cats1, [$cat1->id]);
+            }
             
-        return view('client.posts.show', compact('categoriesHeader', 'categoriesFooter', 'categories', 'post', 'similarPosts', 'categoryId'));
+            $similarPosts = Post::whereIn('category_id', $childCategories[$categoryId])
+                ->orderBy('updated_at', 'desc')
+                ->limit(10)
+                ->get();
+                
+            return view('client.posts.show', compact('categoriesHeader', 'categoriesFooter', 'categories', 'post', 'similarPosts', 'categoryId'));
+        } catch (Exception $e) {
+            return redirect()->route('home.index');
+        }
     }
 
     public function getChild(&$arr, $categories, $parentId = 0)
