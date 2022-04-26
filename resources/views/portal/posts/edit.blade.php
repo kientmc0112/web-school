@@ -53,8 +53,8 @@
                             </div>
                             <div class="form-group">
                                 <label>{{ trans('messages.post.label.thumbnail') }}</label>
-                                <div class="drop-region" onclick="document.getElementById('uploadImage').click()" style="background-image: url('{{ asset($post->thumbnail_url) }}');">
-                                    <input name="thumbnail_url" id="uploadImage" type="file" style="display: none">
+                                <div class="drop-region" onclick="document.getElementById('uploadImage').click()" style="background-image: url('{{ asset($post->thumbnail) }}');">
+                                    <input name="thumbnail" id="uploadImage" type="file" style="display: none">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -95,8 +95,8 @@
         background-size: contain;
     }
 </style>
-{{-- <script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script> --}}
 <script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready(function() {
         $("#uploadImage").val(null);
@@ -151,6 +151,13 @@
         
         $('#uploadImage').on('change', function () {
             if (this.files && this.files[0]) {
+                if (this.files[0].size > 1024 * 1024 * 5) {
+                    return Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Dung lượng ảnh không được vượt quá 5MB!'
+                    })
+                }
                 var image = $(this).parents(".drop-region");
                 var reader = new FileReader();
                 reader.onload = function (e) {

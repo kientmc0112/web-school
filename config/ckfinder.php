@@ -28,15 +28,8 @@ $config['authentication'] = '\App\Http\Middleware\CustomCKFinderAuth';
 
 /*============================ License Key ============================================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_licenseKey
-if (isset($_SERVER["SERVER_NAME"]) && $_SERVER["SERVER_NAME"] == 'sisvnu.edu.vn') {
-    $appUrl = 'https://sisvnu.edu.vn';
-    $config['licenseName'] = 'sisvnu.edu.vn';
-    $config['licenseKey']  = '71U1N5EPYUV6TZGH9YUXKAD65DCN9';
-} else {
-    $appUrl = 'https://sis.vnu.edu.vn';
-    $config['licenseName'] = env('CKFINDER_LICENSE_NAME', 'sis.vnu.edu.vn');
-    $config['licenseKey']  = env('CKFINDER_LICENSE_KEY', 'KXDXA6V18DYRY9XF5CH4Y59RLHMDD');
-}
+$config['licenseName'] = 'localhost';
+$config['licenseKey']  = '8VPVL459BL9AKC67DLH14VMAB6BKF';
 
 /*============================ CKFinder Internal Directory ============================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_privateDir
@@ -88,8 +81,7 @@ $config['backends']['laravel_logs'] = array(
 $config['backends']['default'] = array(
     'name'         => 'default',
     'adapter'      => 'local',
-    // 'baseUrl'      => config('app.url').'/userfiles/',
-    'baseUrl'      => $appUrl.'/userfiles/',
+    'baseUrl'      => config('app.url').'/userfiles/',
     'root'         => public_path('/userfiles/'),
     'chmodFiles'   => 0777,
     'chmodFolders' => 0777,

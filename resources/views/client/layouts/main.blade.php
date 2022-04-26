@@ -29,6 +29,7 @@
         <div class="container" style="margin-bottom: 30px; min-height: 65vh;">
             @yield('content')
         </div>
+        @include('client.layouts.contact')
 
         @include('client.layouts.footer')
     {{-- </div> --}}

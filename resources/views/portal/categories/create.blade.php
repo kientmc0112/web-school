@@ -42,7 +42,7 @@
                             <div class="form-group">
                                 <label>{{ trans('messages.category.label.parent') }}</label>
                                 <select class="form-control" name="parent_id">
-                                    <option></option>
+                                    <option value="0"></option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category['id'] }}">{!! $category['name'] !!}</option>
                                     @endforeach

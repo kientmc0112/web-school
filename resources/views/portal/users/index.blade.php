@@ -1,17 +1,16 @@
 @extends('portal.layouts.main')
-@section('title', 'Dashboard')
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">{{ trans('messages.user.label.user_list') }}</h1>
+        <h1 class="page-header">Danh sách</h1>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                @if (Auth::user()->role === \App\Enums\DBConstant::SUPPER_ADMIN )
-                    <a href="{{ route('user.create') }}">+ Thêm nhân sự</a>
+                @if (Auth::user()->role === \App\Enums\DBConstant::ADMIN )
+                <a href="{{ route('users.create') }}">+ Thêm nhân sự</a>
                 @endif
             </div>
             <div class="panel-body">
@@ -20,43 +19,44 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>{{ trans('messages.user.label.name') }}</th>
-                                <th>{{ trans('messages.user.label.email') }}</th>
-                                <th>{{ trans('messages.user.label.role') }}</th>
-                                @if (Auth::user()->role === \App\Enums\DBConstant::SUPPER_ADMIN )
-                                    <th>{{ trans('messages.user.label.option') }}</th>
+                                <th>Họ và tên</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                                <th>Role</th>
+                                @if (Auth::user()->role === \App\Enums\DBConstant::ADMIN )
+                                <th>Options</th>
                                 @endif
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($users as $key => $user)
-                                <tr class="odd gradeX">
-                                    <td style="text-align: center;">{{ $key + 1 }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td class="center" style="text-align: center;">
-                                        {{ $user->role === \App\Enums\DBConstant::TEACHER 
-                                            ? trans('messages.role.teacher') 
-                                            :  trans('messages.role.sp_admin') }}
-                                    </td>
-                                    @if (Auth::user()->role === \App\Enums\DBConstant::SUPPER_ADMIN)
-                                        <td class="center" style="text-align: center;">
-                                            {{-- <a href="#" class="btn btn-primary btn-sm">
-                                                <i class="fa fa-eye"></i>
-                                            </a> --}}
-                                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info btn-sm">
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
-                                            <form action="{{ route('user.delete', $user->id) }}" method="POST" style="display: inline-block">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger btn-sm" type="submit">
-                                                    <i class="fa fa-trash-o"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    @endif
-                                </tr>
+                            <tr class="odd gradeX">
+                                <td style="text-align: center;">{{ $key + 1 }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->phone }}</td>
+                                <td class="center" style="text-align: center;">
+                                    {{ $user->role === \App\Enums\DBConstant::MOD ? 'MOD' : 'ADMIN' }}
+                                </td>
+                                @if (Auth::user()->role === \App\Enums\DBConstant::ADMIN)
+                                <td class="center" style="text-align: center;">
+                                    {{-- <a href="#" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-eye"></i>
+                                    </a> --}}
+                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info btn-sm">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                        style="display: inline-block">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger btn-sm" type="submit">
+                                            <i class="fa fa-trash-o"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                                @endif
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>

@@ -12,14 +12,14 @@ use DB;
 use Auth;
 use File;
 use App\Models\User;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
     public function index()
     {
         $auth = Auth::user();
-        $users = DB::table('users')
-            ->where('id', '!=', $auth->id)
+        $users = User::where('id', '!=', $auth->id)
             ->where('role', '<=', $auth->role)
             ->get();
 
@@ -29,155 +29,88 @@ class UserController extends Controller
     public function create(Request $request)
     {
         $auth = Auth::user();
-        if ($auth->role == DBConstant::SUPPER_ADMIN) {
-            $levels = DB::table('levels')->get();
-            $positions = DB::table('positions')->get();
-
-            return view('portal.users.form', compact('levels', 'positions'));
+        if ($auth->role == DBConstant::ADMIN) {
+            return view('portal.users.create');
         }
         
-        return redirect()->route('user.list');
+        return redirect()->route('users.index');
     }
 
     public function store(StoreRequest $request)
     {
-        $auth = Auth::user();
-        $data = $request->all();
-
-        if (isset($request->avatar)) {
-            $file = $request->file('avatar');
-            $originalname = $file->getClientOriginalName();
-            $arrOriName = explode('.', $originalname);
-            $mine = $arrOriName[count($arrOriName) - 1];
-            $fileName = $auth->id . "." . $mine;
-            $path = $file->storeAs('', $fileName, 'avatar_path');
-        }
-        
-        if (!isset($data['level'])) $data['level'] = [];
-
-        if ($auth->role == DBConstant::SUPPER_ADMIN) {
-            $data['password'] = bcrypt($data['password']);
-            if (isset($request->avatar)) $data['avatar'] = "/avatar/" . $path;
-            $user = User::create($data);
-
-            foreach ($data['level'] as $key => $level) {
-                $checkUserLevel = DB::table("user_level")
-                    ->where('user_id', $user->id)
-                    ->where('level_id', $level)
-                    ->first();
-
-                if (!is_null($level) && !isset($checkUserLevel)) {
-                    DB::table("user_level")->insert([
-                        'user_id' => $user->id,
-                        'level_id' => $level,
-                        'position_id' => $data['position'][$key],
-                    ]);
+        DB::beginTransaction();
+        try {
+            $authUser = Auth::user();
+            if ($authUser->role == DBConstant::ADMIN) {
+                $data = $request->all();
+                $data['password'] = bcrypt($data['password']);
+                $user = User::create($data);
+                if ($request->hasFile('avatar')) {
+                    $image = $request->file('avatar');
+                    $name = 'avatar_' . $user->id . '_' . Carbon::now()->format('Y_m_d_his') . '.' . $image->getClientOriginalExtension();
+                    $path = config('filesystems.file_upload_path.user_path');
+                    $image->move($path, $name, 'public');
+                    $user->update(['avatar' => $path . $name]);
                 }
             }
+            DB::commit();
 
-            return redirect()->route('user.list');
+            return redirect()->route('users.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return redirect()->back();
         }
-
-        return view('portal.users.form');
     }
 
     public function edit($id)
     {
-        $auth = Auth::user();
-        if ($auth->role == DBConstant::SUPPER_ADMIN) {
-            $levels = DB::table('levels')->get();
-            $positions = DB::table('positions')->get();
-            $user = DB::table('users')
-                ->where('users.id', $id)
-                ->leftJoin('user_level', 'users.id', '=', 'user_level.user_id')
-                ->leftJoin('levels', 'levels.id', '=', 'user_level.level_id')
-                ->leftJoin('positions', 'positions.id', '=', 'user_level.position_id')
-                ->select(
-                    'users.*', 
-                    'levels.title as level_title', 
-                    'levels.id as level_id', 
-                    'positions.name as position_title', 
-                    'positions.id as position_id'
-                )->get();
-
-            return view('portal.users.form', compact('levels', 'user', 'positions'));
+        $authUser = Auth::user();
+        $user = User::findOrFail($id);
+        if ($authUser->id == $user->id) {
+            return view('portal.users.profile', compact('user'));
+        } elseif ($authUser->role == DBConstant::ADMIN && $authUser->role > $user->role) {
+            return view('portal.users.edit', compact('user'));
         }
         
-        return redirect()->route('user.list');
+        return redirect()->route('users.index');
     }
 
-    public function updateUser(UpdateUserRequest $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        $data = $request->all();
-        $auth = Auth::user();
-
-        if (isset($request->avatar)) {
-            $file = $request->file('avatar');
-            $originalname = $file->getClientOriginalName();
-            $arrOriName = explode('.', $originalname);
-            $mine = $arrOriName[count($arrOriName) - 1];
-            $fileName = $id . "." . $mine;
-            $path = $file->storeAs('', $fileName, 'avatar_path');
-        }
-
-        if (!isset($data['level'])) $data['level'] = [];
-
-        if ($auth->role == DBConstant::SUPPER_ADMIN) {
-            $data['password'] = bcrypt($data['password']);
-
-            if (isset($request->avatar)) $data['avatar'] = "/avatar/" . $path;
-            
+        DB::beginTransaction();
+        try {
+            $authUser = Auth::user();
             $user = User::findOrFail($id);
-            $user->update($data);
-
-            DB::table("user_level")->where('user_id', $user->id)->delete();
-
-            foreach ($data['level'] as $key => $level) {
-                $checkUserLevel = DB::table("user_level")
-                    ->where('user_id', $user->id)
-                    ->where('level_id', $level)
-                    ->first();
-
-                if (!is_null($level) && !isset($checkUserLevel)) {
-                    DB::table("user_level")->insert([
-                        'user_id' => $user->id,
-                        'level_id' => $level,
-                        'position_id' => $data['position'][$key],
-                    ]);
+            if (($authUser->role == DBConstant::ADMIN && $authUser->role > $user->role) || $authUser->id == $user->id) {
+                if ($authUser->id == $user->id) {
+                    $data = $request->except(['email']);
+                } else {
+                    $data = $request->all();
                 }
+                if ($request->has('password')) {
+                    $data['password'] = bcrypt($data['password']);
+                }
+                if ($request->hasFile('avatar')) {
+                    if (File::exists($user->avatar)) {
+                        File::delete($user->avatar);
+                    }
+                    $image = $request->file('avatar');
+                    $name = 'avatar_' . $user->id . '_' . Carbon::now()->format('Y_m_d_his') . '.' . $image->getClientOriginalExtension();
+                    $path = config('filesystems.file_upload_path.user_path');
+                    $image->move($path, $name, 'public');
+                    $data['avatar'] = $path . $name;
+                }
+                $user->update($data);
             }
+            DB::commit();
 
-            return redirect()->route('user.list');
+            return redirect()->route('users.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return redirect()->back();
         }
-
-        return view('portal.users.form');
-    }
-
-    public function update(UpdateRequest $request)
-    {
-        $auth = Auth::user();
-        if (isset($request->avatar)) {
-            $file = $request->file('avatar');
-            $originalname = $file->getClientOriginalName();
-            $arrOriName = explode('.', $originalname);
-            $mine = $arrOriName[count($arrOriName) - 1];
-            $fileName = $auth->id . "." . $mine;
-            $path = $file->storeAs('', $fileName, 'avatar_path');
-        }
-
-        $data = $request->all();
-
-        if (isset($auth->avatar)) File::delete($auth->avatar);
-        $data['updated_at'] = now();
-        if (!is_null($data['date_of_birth'])) {
-            $data['date_of_birth'] = $data['date_of_birth'];
-        }
-        if (isset($request->avatar)) $data['avatar'] = "/avatar/" . $path;
-
-        $user = DB::table('users')->where('id', $auth->id)->update($data);
-
-
-        return redirect()->route('user.profile', compact('user'));
     }
 
     public function profile()
@@ -191,19 +124,19 @@ class UserController extends Controller
     {
         DB::beginTransaction();
         try {
-            $auth = Auth::user();
-            $user = DB::table('users')->where('id', '=', $id)->first();
-            if (!isset($user) || $auth->role <= $user->role || $auth->id == $id) {
-                return redirect()->route('user.list');
+            $authUser = Auth::user();
+            $user = User::findOrFail($id);
+            if (!isset($user) || $authUser->role <= $user->role || $authUser->id == $id || $authUser->role != DBConstant::ADMIN) {
+                return redirect()->back();
             }
-            $user = DB::table('users')->where('id', '=', $id)->delete();
+            $user->delete();
             DB::commit();
 
-            return redirect()->route('user.list');
+            return redirect()->route('users.index');
         } catch (\Throwable $th) {
             DB::rollBack();
 
-            return redirect()->route('user.list');
+            return redirect()->back();
         }
     }
 }

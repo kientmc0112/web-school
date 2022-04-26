@@ -10,8 +10,24 @@ namespace App\Enums;
 class DBConstant
 {
     // user role
-    const TEACHER = 1;
-    const SUPPER_ADMIN = 2;
+    const MOD = 1;
+    const ADMIN = 2;
+
+    // user male
+    const MALE = 1;
+    const FEMALE = 2;
+
+    // image
+    const SYSTEM = [
+        '1' => 'slider',
+        '2' => 'banner',
+        // '3' => 'banner-bot'
+    ];
+
+    // image
+    const SLIDER_TYPE = 1;
+    const BANNER_TYPE = 2;
+    // const BANNER_BOT_TYPE = 3;
 
     // categories
     const INTRODUCTION = 1;
@@ -23,11 +39,9 @@ class DBConstant
     const SIS_ALUMNI = 7;
     const SIS_STUDENT = 8;
     const EVENT = 68;
-
-    // image
-    const SYSTEM_GALLERY_ID = 0;
-    const SLIDER_TYPE = 1;
-    const BANNER_TOP_TYPE = 2;
-    const BANNER_BOT_TYPE = 3;
-    const BANNER_TEXT_TYPE = 4;
+ 
+    // contact status
+    const NEW_STATUS = 0;
+    const PROCESS_STATUS = 1;
+    const COMPLETE_STATUS = 2;
 }

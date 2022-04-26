@@ -12,7 +12,7 @@
         <div class="row post-preview">
           <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <a href="{{ route('posts.show', $post->slug) . '?category_id=' . $parentCategories[$post->category_id] }}">
-              <img class="w-100 mr-2 border-0 post-preview__img" src="{{ asset($post->thumbnail_url) }}"/>
+              <img class="w-100 mr-2 border-0 post-preview__img" src="{{ asset($post->thumbnail) }}"/>
             </a>
           </div>
           <div class="col-lg-9 col-md-6 col-sm-6 col-xs-12 post-preview__div">

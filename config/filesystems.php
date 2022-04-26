@@ -84,8 +84,8 @@ return [
     ],
 
     'file_upload_path' => [
+        'user_path' => env('USER_PATH', 'images/users/'),
         'post_path' => env('POST_PATH', 'images/posts/'),
-        'gallery_path' => env('GALLERY_PATH', 'images/galleries/'),
         'system_path' => env('SYSTEM_PATH', 'images/system/'),
     ],
 

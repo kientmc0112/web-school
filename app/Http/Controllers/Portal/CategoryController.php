@@ -42,8 +42,9 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $data = $request->only([
-            'name', 'description', 'parent_id', 'name_en', 'description_en'
+            'name', 'description', 'name_en', 'description_en'
         ]);
+        $data['parent_id'] = $request->parent_id ?? 0;
         Category::create($data);
 
         return redirect()->route('categories.index');
@@ -67,8 +68,9 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         $data = $request->only([
-            'name', 'description', 'parent_id', 'name_en', 'description_en'
+            'name', 'description', 'name_en', 'description_en'
         ]);
+        $data['parent_id'] = $request->parent_id ?? 0;
         Category::find($id)->update($data);
 
         return redirect()->route('categories.index');

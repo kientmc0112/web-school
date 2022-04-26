@@ -43,19 +43,34 @@ class HomeController extends Controller
             })
             ->toArray();
 
-        $admissions = Post::whereIn('category_id', $childCategories[DBConstant::ADMISSIONS])->orderBy('updated_at', 'desc')->paginate(3);
-        $admissCate = DBConstant::ADMISSIONS;
-        $news = Post::whereIn('category_id', $childCategories[DBConstant::NEWS])->orderBy('updated_at', 'desc')->paginate(3);
-        $newCate = DBConstant::NEWS;
-        $events = Post::whereIn('category_id', $childCategories[DBConstant::EVENT])->orderBy('updated_at', 'desc')->paginate(4);
-        $eventCate = DBConstant::EVENT;
+        // $admissions = Post::whereIn('category_id', $childCategories[DBConstant::ADMISSIONS])->orderBy('updated_at', 'desc')->paginate(3);
+        // $admissCate = DBConstant::ADMISSIONS;
+        // $news = Post::whereIn('category_id', $childCategories[DBConstant::NEWS])->orderBy('updated_at', 'desc')->paginate(3);
+        // $newCate = DBConstant::NEWS;
+        $admissions = Post::orderBy('updated_at', 'desc')->paginate(3);
+        $admissCate = 1;
+        $news = Post::orderBy('updated_at', 'desc')->paginate(3);
+        $newCate = 2;
 
-        $sliders = Image::where('gallery_id', DBConstant::SYSTEM_GALLERY_ID)->where('type', DBConstant::SLIDER_TYPE)->orderBy('created_at', 'ASC')->get();
-        $topBanners = Image::where('gallery_id', DBConstant::SYSTEM_GALLERY_ID)->where('type', DBConstant::BANNER_TOP_TYPE)->limit(2)->orderBy('created_at', 'ASC')->get();
-        $botBanners = Image::where('gallery_id', DBConstant::SYSTEM_GALLERY_ID)->where('type', DBConstant::BANNER_BOT_TYPE)->limit(3)->orderBy('created_at', 'ASC')->get();
-        $textBanners = Image::where('gallery_id', DBConstant::SYSTEM_GALLERY_ID)->where('type', DBConstant::BANNER_TEXT_TYPE)->limit(3)->orderBy('created_at', 'ASC')->get();
+        $sliders = Image::where('type', DBConstant::SLIDER_TYPE)
+            ->orderBy('created_at', 'ASC')
+            ->get()
+            ->map(function ($slider) {
+                $slider->image_url = config('filesystems.file_upload_path.system_path') . DBConstant::SYSTEM[DBConstant::SLIDER_TYPE] . '/' . $slider->filename;
+                
+                return $slider;
+            });
+        $banners = Image::where('type', DBConstant::BANNER_TYPE)
+            ->limit(3)
+            ->orderBy('created_at', 'ASC')
+            ->get()
+            ->map(function ($banner) {
+                $banner->image_url = config('filesystems.file_upload_path.system_path') . DBConstant::SYSTEM[DBConstant::BANNER_TYPE] . '/' . $banner->filename;
+                
+                return $banner;
+            });;
 
-        return view('client.home', compact('categoriesHeader', 'categoriesFooter', 'news', 'admissions', 'admissCate', 'newCate', 'events', 'eventCate', 'sliders', 'topBanners', 'botBanners', 'textBanners'));
+        return view('client.home', compact('categoriesHeader', 'categoriesFooter', 'news', 'admissions', 'admissCate', 'newCate', 'sliders', 'banners'));
     }
     
     public function getChild(&$arr, $categories, $parentId = 0)

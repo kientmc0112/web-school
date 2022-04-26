@@ -10,12 +10,10 @@ class Image extends Model
     use HasFactory;
 
     protected $fillable = [
-        'filename',
-        'path',
-        'gallery_id',
         'url',
-        'type',
-        'created_by',
-        'updated_by'
+        'link',
+        'title',
+        'content',
+        'type'
     ];
 }

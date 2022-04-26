@@ -24,17 +24,13 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'email' => 'required|unique:users,email,' . $this->user,
             'name' => 'required',
-            'sex' => 'required|numeric',
+            'date_of_birth' => 'date|nullable',
+            'role' => 'required',
+            'sex' => 'required',
             'phone' => 'numeric|nullable',
-            // 'department_id' => 'required|numeric',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:5012',
         ];
-    }
-
-    public function validated()
-    {
-        $paramValidated = $this->validator->validated();
-
-        return $paramValidated;
     }
 }

@@ -24,11 +24,14 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|unique:users,email,' . $this->id,
+            'email' => 'required|unique:users,email',
             'name' => 'required',
             'password' => 'required',
+            'date_of_birth' => 'date|nullable',
             'role' => 'required',
-            // 'department_id' => 'required|numeric',
+            'sex' => 'required',
+            'phone' => 'numeric|nullable',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:5012'
         ];
     }
 

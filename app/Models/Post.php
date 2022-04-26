@@ -16,7 +16,7 @@ class Post extends Model
         'title_en',
         'content',
         'content_en',
-        'thumbnail_url',
+        'thumbnail',
         'category_id',
         'created_by',
         'updated_by'

@@ -25,7 +25,7 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" name="login-form" class="form-transparent clearfix" method="POST" action="{{ route('login') }}">
+                        <form role="form" name="login-form" class="form-transparent clearfix" method="POST" action="{{ route('portal.auth.login') }}">
                             @csrf
                             <fieldset>
                                 <div class="form-group">
@@ -34,7 +34,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
                                 </div>
-                                <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
+                                <button type="submit" class="btn btn-lg btn-success btn-block">Đăng nhập</button>
                             </fieldset>
                         </form>
                     </div>

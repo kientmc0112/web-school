@@ -46,7 +46,7 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <img style="width: 100%" src="{{ asset($post->thumbnail_url) }}">
+                                    <img style="width: 100%" src="{{ asset($post->thumbnail) }}">
                                 </td>
                                 <td class="text-left">
                                     <div class="content">{!! Str::limit(strip_tags($post->content), $limit = 1000, $end = '...') !!}</div>

@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
-use App\Http\Requests\PostRequest;
+use App\Http\Requests\Post\StoreRequest;
+use App\Http\Requests\Post\UpdateRequest;
 use Carbon\Carbon;
 use Auth;
 use DB;
@@ -49,23 +50,19 @@ class PostController extends Controller
         }
     }
 
-    public function store(PostRequest $request)
+    public function store(StoreRequest $request)
     {
         DB::beginTransaction();
         try {
-            $data = $request->only([
-                'title', 'title_en', 'category_id', 'content', 'content_en'
-            ]);
+            $data = $request->all();
             $data = array_merge($data, ['created_by' => Auth::user()->id]);
             $post = Post::create($data);
-            if ($request->hasFile('thumbnail_url')) {
-                $image = $request->file('thumbnail_url');
-                $name = Carbon::now()->format('Y_m_d_his') . '.' . $image->getClientOriginalExtension();
-                $path = config('filesystems.file_upload_path.post_path') . $post->id;
+            if ($request->hasFile('thumbnail')) {
+                $image = $request->file('thumbnail');
+                $name = 'post_' . $post->id . '_' . Carbon::now()->format('Y_m_d_his') . '.' . $image->getClientOriginalExtension();
+                $path = config('filesystems.file_upload_path.post_path');
                 $image->move($path, $name, 'public');
-                $post->update(['thumbnail_url' => $path . '/' . $name]);
-            } else {
-                return redirect()->back()->withErrors(['msg' => trans('messages.post.validate.thumbnail_image')]);
+                $post->update(['thumbnail' => $path . $name]);
             }
             DB::commit();
 
@@ -87,23 +84,21 @@ class PostController extends Controller
         return view('portal.posts.edit', compact('post', 'categories'));
     }
 
-    public function update(PostRequest $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         DB::beginTransaction();
         try {
-            $post = Post::find($id);
-            $data = $request->only([
-                'title', 'title_en', 'category_id', 'content', 'content_en'
-            ]);
-            if ($request->hasFile('thumbnail_url')) {
-                if (File::exists($post->thumbnail_url)) {
-                    File::delete($post->thumbnail_url);
+            $post = Post::findOrFail($id);
+            $data = $request->all();
+            if ($request->hasFile('thumbnail')) {
+                if (File::exists($post->thumbnail)) {
+                    File::delete($post->thumbnail);
                 }
-                $image = $request->file('thumbnail_url');
-                $name = Carbon::now()->format('Y_m_d_his') . '.' . $image->getClientOriginalExtension();
-                $path = config('filesystems.file_upload_path.post_path') . $id;
+                $image = $request->file('thumbnail');
+                $name = 'post_' . $id . '_' . Carbon::now()->format('Y_m_d_his') . '.' . $image->getClientOriginalExtension();
+                $path = config('filesystems.file_upload_path.post_path');
                 $image->move($path, $name, 'public');
-                $data['thumbnail_url'] = $path . '/' . $name;
+                $data['thumbnail'] = $path . $name;
             }
             $data['updated_by'] = Auth::user()->id;
             $post->update($data);
@@ -122,13 +117,8 @@ class PostController extends Controller
         DB::beginTransaction();
         try {
             $post = Post::find($id);
-            if (File::exists($post->thumbnail_url)) {
-                File::delete($post->thumbnail_url);
-                $path = public_path(config('filesystems.file_upload_path.post_path') . $id);
-                $files = scandir($path);
-                if (count($files) <= 2) {
-                    File::deleteDirectory($path);
-                }
+            if (File::exists($post->thumbnail)) {
+                File::delete($post->thumbnail);
             }
             $post->delete();
             DB::commit();

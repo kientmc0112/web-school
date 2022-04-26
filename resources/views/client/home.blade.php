@@ -41,7 +41,7 @@
   </style>
 @endsection
 <div class="row mb-3">
-  <div class="col-lg-9 col-md-9 col-sm-12 d-flex align-items-center justify-content-center px-2">
+  <div class="col-lg-12 col-md-12 col-sm-12 d-flex align-items-center justify-content-center px-2">
     <div id="carouselSlider" class="carousel slide" data-ride="carousel" style="width: 720px">
       <ol class="carousel-indicators">
         @foreach ($sliders as $key => $slide)
@@ -60,7 +60,7 @@
             <div class="carousel-item">
           @endif
             <a href="{{ $slide->url }}">
-              <img class="d-block image-slider w-100" src="{{ asset($slide->path . '/' . $slide->filename) }}" alt="First slide">
+              <img class="d-block image-slider w-100" src="{{ asset($slide->image_url) }}" alt="First slide">
             </a>
           </div>
         @endforeach
@@ -75,7 +75,7 @@
       </a>
     </div>
   </div>
-  <div class="col-lg-3 col-md-3 col-sm-12 px-2">
+  {{-- <div class="col-lg-3 col-md-3 col-sm-12 px-2">
     <div class="list-group list-group-flush" style="font-size: 13px">
       @foreach ($textBanners as $textBanner)
         <a href="{{ $textBanner->url }}" class="list-group-item list-group-item-action py-2"><i class="bi bi-caret-right-fill"></i> {{ $textBanner->filename }}</a>
@@ -84,13 +84,13 @@
         <a href="{{ $banner->url }}"><img class="w-100" src="{{ asset($banner->path . '/' . $banner->filename) }}" style="object-fit: contain; max-height: 125px" /></a>
       @endforeach
     </div>
-  </div>
+  </div> --}}
 </div>
 <div class="row mb-3">
-  @foreach ($botBanners as $banner)
+  @foreach ($banners as $banner)
     <div class="col-lg-4 col-md-4 col-sm-12 px-2">
       <a href="{{ $banner->url }}">
-        <img class="w-100" src="{{ asset($banner->path . '/' . $banner->filename) }}" style="max-height: 150px; object-fit: contain" />
+        <img class="w-100" src="{{ asset($banner->image_url) }}" style="max-height: 150px; object-fit: contain" />
       </a>
     </div>
   @endforeach
@@ -112,7 +112,7 @@
     <div class="mb-3" style="margin-top: 25px">
       <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Sự kiện</strong>
     </div>
-    <div class="list-group list-group-flush" style="font-size: 12px; margin-bottom: 20px">
+    {{-- <div class="list-group list-group-flush" style="font-size: 12px; margin-bottom: 20px">
       @foreach ($events as $event)
         <a href="{{ route('posts.show', $event->slug) . '?category_id=' . $eventCate }}" class="list-group-item list-group-item-action px-0">
           <div class="row w-100 mx-0">
@@ -124,7 +124,7 @@
           </div>
         </a>
       @endforeach
-    </div>
+    </div> --}}
     {{-- <nav aria-label="navigation" style="font-size: 12px">
       <ul class="pagination">
         <li class="page-item">
