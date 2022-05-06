@@ -39,6 +39,9 @@ class DBConstant
     const SIS_ALUMNI = 7;
     const SIS_STUDENT = 8;
     const EVENT = 68;
+
+    const SERVICE = 2;
+    const TEAM = 3;
  
     // contact status
     const NEW_STATUS = 0;

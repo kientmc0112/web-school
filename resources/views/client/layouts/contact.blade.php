@@ -1,5 +1,5 @@
 <div class="contact" style="background-color: #d7d7d7; padding: 35px 0">
-  <h2 class="text-danger text-center text-uppercase" style="font-size: 30px; font-weight: bold; padding-bottom: 35px">ĐĂNG KÝ NHẬN TƯ VẤN<br>LỘ TRÌNH HỌC MIỄN PHÍ</h2>
+  <h2 class="text-center text-uppercase" style="font-size: 30px; font-weight: bold; padding-bottom: 35px; color: #f53b57">ĐĂNG KÝ NHẬN TƯ VẤN<br>LỘ TRÌNH HỌC MIỄN PHÍ</h2>
   <div style="width: 900px; max-width: 100%; margin: 0 auto; padding: 0 20px">
     <div class="row">
       <div class="col-md-7 col-sm-12">

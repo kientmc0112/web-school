@@ -14,7 +14,7 @@
     <div class="row d-flex align-items-center">
       <div class="col-md-6 text-left">
         <a href="{{ route('home.index') }}">
-          <img style="width: 100%; max-width: 400px; max-height: 150px" alt="" src="{{ asset('images/VNU-SIS-logo(vns).png') }}" />
+          <img style="width: 100%; max-width: 150px; max-height: 150px" alt="" src="{{ asset('images/bk-logo.png') }}" />
         </a>
       </div>
       <div class="col-md-6 text-right">
@@ -37,7 +37,7 @@
           <form action="{{ route('posts.handleSearch') }}" method="POST" class="d-flex w-100">
             @csrf
             <input type="text" class="form-control" name="keyword" value="{{ $keyword ?? '' }}"placeholder="Từ khóa" style="font-size: 15px">
-            <button class="btn btn-outline-primary text-white bg-vnu-blue" type="submit" style="border:1px solid #0d2c6c"><i class="bi bi-search"></i></button>
+            <button class="btn btn-outline-primary text-white bg-vnu-blue" type="submit" style="border:1px solid #f53b57"><i class="bi bi-search"></i></button>
           </form>
         </div>
       </div>
@@ -92,10 +92,10 @@
     padding: 0;
   }
   .header .nav-item:hover {
-    background-color: #46a5e5;
+    background-color: #faa1af;
   }
   .header .dropdown-menu li {
-    background-color: #46a5e5;
+    background-color: #faa1af;
   }
 
   .header .dropdown-menu li a {
@@ -105,14 +105,14 @@
   }
   .header .dropdown-menu li:hover {
     color: var(--text-white);
-    background-color: #176ac4;
+    background-color: #f53b57;
   }
   .header .dropdown-menu li:hover > a {
     color: white !important;
   }
   .header .dropdown-submenu {
     position: relative;
-    background-color: #46a5e5;
+    background-color: #faa1af;
   }
   .header .dropdown-submenu .dropdown-menu {
     top: 0;

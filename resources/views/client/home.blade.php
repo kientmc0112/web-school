@@ -5,8 +5,8 @@
   <link rel="stylesheet" href="{{ asset('OwlCarousel2-2.3.4/dist/owl.carousel.min.js') }}">
   <style>
     .image-slider {
-      max-width: 720px;
-      max-height: 300px;
+      /* max-width: 720px; */
+      /* max-height: 300px; */
       object-fit: contain;
     }
     #carouselSlider ol li {
@@ -40,9 +40,9 @@
     }
   </style>
 @endsection
-<div class="row mb-3">
+<div class="row mb-3 mt-3">
   <div class="col-lg-12 col-md-12 col-sm-12 d-flex align-items-center justify-content-center px-2">
-    <div id="carouselSlider" class="carousel slide" data-ride="carousel" style="width: 720px">
+    <div id="carouselSlider" class="carousel slide" data-ride="carousel" style="width: 100%">
       <ol class="carousel-indicators">
         @foreach ($sliders as $key => $slide)
           @if ($key == 0)
@@ -98,131 +98,54 @@
 <div class="row mb-3">
   <div class="col-lg-4 col-md-4 col-sm-12 px-2">
     <div class="mb-3">
-      <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Tin tức</strong>
+      <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Giới thiệu</strong>
     </div>
-    @foreach ($news as $new)
+    @foreach ($intros as $intro)
       <div class="post-preview__sm">
-        <a href="{{ route('posts.show', $new->slug) . '?category_id=' . $newCate }}">
-          <img class="w-50 mr-2 float-left post-preview__img__sm" src="{{ asset($new->thumbnail_url) }}"/>
-          <h3 class="mb-1 post-preview__h3__sm">{{ $new->title }}</h3>
-          <span class="post-preview__p">{!! Str::limit(strip_tags($new->content), $limit = 250, $end = '...') !!}</span>
+        <a href="{{ route('posts.show', $intro->slug) . '?category_id=' . $introCate }}">
+          <img class="w-50 mr-2 float-left post-preview__img__sm" src="{{ asset($intro->thumbnail) }}"/>
+          <h3 class="mb-1 post-preview__h3__sm">{{ $intro->title }}</h3>
+          <span class="post-preview__p">{!! Str::limit(strip_tags($intro->content), $limit = 250, $end = '...') !!}</span>
         </a>
       </div>
     @endforeach
     <div class="mb-3" style="margin-top: 25px">
-      <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Sự kiện</strong>
+      <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Đội ngũ và hoạt động</strong>
     </div>
-    {{-- <div class="list-group list-group-flush" style="font-size: 12px; margin-bottom: 20px">
-      @foreach ($events as $event)
-        <a href="{{ route('posts.show', $event->slug) . '?category_id=' . $eventCate }}" class="list-group-item list-group-item-action px-0">
+    <div class="list-group list-group-flush" style="font-size: 12px; margin-bottom: 20px">
+      @foreach ($teams as $team)
+        <a href="{{ route('posts.show', $team->slug) . '?category_id=' . $teamCate }}" class="list-group-item list-group-item-action px-0">
           <div class="row w-100 mx-0">
             <div class="col-2 d-flex flex-column justify-content-center" style="padding-left: 0; padding-right: 10px">
-              <strong class="text-center bg-vnu-gray" style="font-size: 15px">{{ $event->created_at->format('d') }}</strong>
-              <p class="text-white text-center mb-0 bg-vnu-blue" style="font-size: 10px; text-transform: uppercase">{{ $event->created_at->format('M') }}</p>
+              <strong class="text-center bg-vnu-gray" style="font-size: 15px">{{ $team->created_at->format('d') }}</strong>
+              <p class="text-white text-center mb-0 bg-vnu-blue" style="font-size: 10px; text-transform: uppercase">{{ $team->created_at->format('M') }}</p>
             </div>
-            <div class="col-10 px-0">{{ $event->title }}</div>
+            <div class="col-10 px-0">{{ $team->title }}</div>
           </div>
         </a>
       @endforeach
-    </div> --}}
-    {{-- <nav aria-label="navigation" style="font-size: 12px">
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link text-secondary" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link text-secondary" href="#">1</a></li>
-        <li class="page-item"><a class="page-link text-secondary" href="#">2</a></li>
-        <li class="page-item"><a class="page-link text-secondary" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link text-secondary" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav> --}}
+    </div>
   </div>
   <div class="col-lg-8 col-md-8 col-sm-12 px-2">
     <div class="mb-3">
-      <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Tuyển sinh</strong>
+      <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Sản phẩm và dịch vụ</strong>
     </div>
-    @foreach ($admissions as $admiss)
+    @foreach ($services as $service)
       <div class="row post-preview mr-0">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-          <a href="{{ route('posts.show', $admiss->slug) . '?category_id=' . $admissCate }}">
-            <img class="w-100 border-0 post-preview__img" src="{{ asset($admiss->thumbnail_url) }}"/>
+          <a href="{{ route('posts.show', $service->slug) . '?category_id=' . $serviceCate }}">
+            <img class="w-100 border-0 post-preview__img" src="{{ asset($service->thumbnail) }}"/>
           </a>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 post-preview__div">
-          <a href="{{ route('posts.show', $admiss->slug) . '?category_id=' . $admissCate }}">
-            <h3 class="post-preview__h3">{{ $admiss->title }}</h3>
-            <p class="post-preview__p">{!! Str::limit(strip_tags($admiss->content), $limit = 300, $end = '...') !!}</p>
-            <span class="post-preview__span">By {{ $admiss->user->name }} &nbsp; | &nbsp; {{ $admiss->category->name }}</span>
+          <a href="{{ route('posts.show', $service->slug) . '?category_id=' . $serviceCate }}">
+            <h3 class="post-preview__h3">{{ $service->title }}</h3>
+            <p class="post-preview__p">{!! Str::limit(strip_tags($service->content), $limit = 300, $end = '...') !!}</p>
+            <span class="post-preview__span">By {{ $service->user->name }} &nbsp; | &nbsp; {{ $service->category->name }}</span>
           </a>
         </div>
       </div>
     @endforeach
   </div>
-  {{-- <div class="col-lg-4 col-md-4 col-sm-12 px-2">
-    <div class="mb-3">
-      <div class="mb-3">
-        <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Thông báo</strong>
-      </div>
-      <div class="list-group list-group-flush" style="font-size: 12px">
-        @for ($i = 0; $i < 10; $i++)
-          <a href="#" class="list-group-item list-group-item-action py-2 px-0"><i class="bi bi-caret-right-fill"></i> Thông báo: Về việc thực hiện thu tiền bảo hiểm y tế (BHYT) sinh viên năm 2022 (đợt tháng 01/2022)</a>
-        @endfor
-      </div>
-    </div>
-    <div class="mb-3">
-      <div class="mb-3">
-        <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Sắp diễn ra</strong>
-      </div>
-      <div class="list-group list-group-flush" style="font-size: 12px">
-        @for ($i = 0; $i < 3; $i++)
-          <a href="#" class="list-group-item list-group-item-action px-0">
-            <div class="row">
-              <div class="col-2 pr-1 d-flex flex-column justify-content-center">
-                <strong class="text-center bg-vnu-gray" style="font-size: 15px">23</strong>
-                <p class="text-white text-center mb-0 bg-vnu-blue" style="font-size: 10px">NOV</p>
-              </div>
-              <div class="col-10 px-0">
-                UEB JOB FAIR 2021 – Ngày hội tuyển dụng việc làm lớn nhất UEB năm nay có gì khác biệt? 
-              </div>
-            </div>
-          </a>
-        @endfor
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-12 px-2">
-    <div class="mb-3">
-      <div class="mb-3">
-        <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Tuyển sinh đại học</strong>
-      </div>
-      <div class="list-group list-group-flush" style="font-size: 12px">
-        @for ($i = 0; $i < 5; $i++)
-          <a href="#" class="list-group-item list-group-item-action py-2 px-0"><i class="bi bi-caret-right-fill"></i> Những điều cần biết về chương trình đào tạo đại học chất lượng cao - Trường Đại học Kinh tế - ĐHQGHN</a>
-        @endfor
-      </div>
-    </div>
-    <div class="mb-3">
-      <div class="mb-3">
-        <strong class="title fw-bold p-2 text-white" style="font-size: 16px">Tuyển sinh sau đại học</strong>
-      </div>
-      <div class="list-group list-group-flush" style="font-size: 12px">
-        @for ($i = 0; $i < 5; $i++)
-          <a href="#" class="list-group-item list-group-item-action py-2 px-0"><i class="bi bi-caret-right-fill"></i> Phương án tổ chức tuyển sinh sau đại học Đợt 2 năm 2021 theo hình thức trực tuyến</a>
-        @endfor
-      </div>
-    </div>
-    <div class="mb-3">
-      <div class="input-group" style="border-radius: 0.25rem">
-        <input type="text" class="form-control" placeholder="Tìm trong thư viện ĐHQG" style="font-size: 15px">
-        <button class="btn btn-outline-primary text-white bg-vnu-blue" type="button" style="border:1px solid #0d2c6c"><i class="bi bi-search"></i></button>
-      </div>
-    </div>
-  </div> --}}
 </div>
 @endsection
