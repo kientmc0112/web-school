@@ -52,6 +52,13 @@
       </div>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav d-flex align-items-center justify-content-center w-100">
+          <li class="nav-item">
+            <strong class="dropdown-toggle text-white">
+              <a href="{{ route('home.index') }}" class="d-block px-4 py-3 text-white">
+                {{ trans('label.home') }}
+              </a>
+            </strong>
+          </li>
           @foreach ($categoriesHeader as $category)
             @if (count($category['child']) > 0)
               <li class="nav-item dropdown">

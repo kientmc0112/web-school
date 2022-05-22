@@ -1,4 +1,4 @@
-<div class="contact" style="background-color: #d7d7d7; padding: 35px 0">
+<div class="contact">
   <h2 class="text-center text-uppercase" style="font-size: 30px; font-weight: bold; padding-bottom: 35px; color: #f53b57">ĐĂNG KÝ NHẬN TƯ VẤN<br>LỘ TRÌNH HỌC MIỄN PHÍ</h2>
   <div style="width: 900px; max-width: 100%; margin: 0 auto; padding: 0 20px">
     <div class="row">
@@ -26,9 +26,16 @@
   </div>
 </div>
 <style>
+  .contact {
+    /* background-color: #d7d7d7; */
+    /* background-color: white; */
+    background-image: url({{url('images/contact-bg.png')}});
+    background-position: center;
+    padding: 35px 0;
+  }
   .form-input {
     width: 100%;
-    border: none;
+    border: 1px solid #d7d7d7;
     height: 45px;
     border-radius: 25px;
     padding: 0px 20px;
@@ -46,5 +53,6 @@
     display: inline-block;
     font-weight: bold;
     font-size: 16px;
+    border: none;
   }
 </style>

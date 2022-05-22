@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'home' => 'HOME',
     'name' => 'Fullname',
     'email' => 'Email',
     'telephone' => 'Telephone',

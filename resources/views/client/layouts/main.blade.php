@@ -26,9 +26,8 @@
     {{-- <div class="main"> --}}
         @include('client.layouts.header')
 
-        <div class="container" style="margin-bottom: 30px; min-height: 65vh;">
-            @yield('content')
-        </div>
+        @yield('content')
+        
         @include('client.layouts.contact')
 
         @include('client.layouts.footer')

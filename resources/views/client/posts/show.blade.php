@@ -1,38 +1,40 @@
 @extends('client.layouts.main')
 @section('title', 'SIS')
 @section('content')
-<div class="row" style="padding-top: 20px">
-  <div class="col-lg-3 col-md-4 col-sm-12">
-    @include('client.layouts.sidebar', ['level' => 0, 'parentId' => $categoryId])
-  </div>
+<div class="container" style="margin-bottom: 30px; min-height: 65vh;">
+  <div class="row" style="padding-top: 20px">
+    <div class="col-lg-3 col-md-4 col-sm-12">
+      @include('client.layouts.sidebar', ['level' => 0, 'parentId' => $categoryId])
+    </div>
 
-  <div class="col-lg-9 col-md-8 col-sm-12 p-0" style="margin-top: 5px">
-    <div class="post">
-      <div class="post__title">
-        <a href="">{{ Session::get('website_language') == 'en' && isset($post->title_en) ? $post->title_en : $post->title }}</a>
-        <p>Cập nhật lúc {{ $post->updated_at }} </p>
-      </div>
-      <div class="post__content">
-        <img src="{{ asset($post->thumbnail) }}" alt="">
-        {!! Session::get('website_language') == 'en' && isset($post->content_en) ? $post->content_en : $post->content !!}
-      </div>
+    <div class="col-lg-9 col-md-8 col-sm-12 p-0" style="margin-top: 5px">
+      <div class="post">
+        <div class="post__title">
+          <a href="">{{ Session::get('website_language') == 'en' && isset($post->title_en) ? $post->title_en : $post->title }}</a>
+          <p>Cập nhật lúc {{ $post->updated_at }} </p>
+        </div>
+        <div class="post__content">
+          <img src="{{ asset($post->thumbnail) }}" alt="">
+          {!! Session::get('website_language') == 'en' && isset($post->content_en) ? $post->content_en : $post->content !!}
+        </div>
 
-      @if (count($similarPosts) > 0)
-          <div class="post__other">
-          <p>CÁC TIN KHÁC</p>
-          <div style="margin-left: 30px">
-              @foreach ($similarPosts as $similarPost)
-              <div class="content__item">
-                  <img class="cate__icon" src="{{ asset('images/next_new_category.png') }}">
-                  <a href="{{ route('posts.show', $similarPost->slug) . '?category_id=' . $categoryId }}" class="cate__title">
-                  {{ Session::get('website_language') == 'en' && isset($similarPost->title_en) ? $similarPost->title_en : $similarPost->title }}
-                  </a>
-                  <img class="cate__icon-new" src="{{ asset('images/newnew.gif') }}">
-              </div>
-              @endforeach
-          </div>
-          </div>
-      @endif
+        @if (count($similarPosts) > 0)
+            <div class="post__other">
+            <p>CÁC TIN KHÁC</p>
+            <div style="margin-left: 30px">
+                @foreach ($similarPosts as $similarPost)
+                <div class="content__item">
+                    <img class="cate__icon" src="{{ asset('images/next_new_category.png') }}">
+                    <a href="{{ route('posts.show', $similarPost->slug) . '?category_id=' . $categoryId }}" class="cate__title">
+                    {{ Session::get('website_language') == 'en' && isset($similarPost->title_en) ? $similarPost->title_en : $similarPost->title }}
+                    </a>
+                    <img class="cate__icon-new" src="{{ asset('images/newnew.gif') }}">
+                </div>
+                @endforeach
+            </div>
+            </div>
+        @endif
+      </div>
     </div>
   </div>
 </div>
