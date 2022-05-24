@@ -188,40 +188,40 @@
     <div class="container">
       <h1 class="service__title text-center mb-0">DỊCH VỤ CỦA CHÚNG TÔI</h1>
       <div class="row" style="justify-content: space-evenly">
-        <div class="col-lg-3 col-md-4 col-9" style="padding: 40px 40px 0 0; margin: 10px 10px 20px 10px">
+        <div class="col-lg-3 col-md-5 col-10" style="padding: 40px 40px 0 0; margin: 10px">
           <div class="position-relative text-center text-white service__div d-flex flex-column justify-content-center">
             <h1 class="mb-2 service__h1">ĐÀO TẠO TIẾNG ANH</h1>
             <p class="service__p">Lứa tuổi 4 - 18</p>
             <img class="position-absolute bg-white service__img" src="{{ asset('images/bk-logo.png') }}" />
           </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-9" style="padding: 40px 40px 0 0; margin: 10px 10px 20px 10px">
+        <div class="col-lg-3 col-md-5 col-10" style="padding: 40px 40px 0 0; margin: 10px">
           <div class="position-relative text-center text-white service__div service__dark d-flex flex-column justify-content-center">
             <h1 class="mb-2 service__h1">ĐÀO TẠO STEM</h1>
             <img class="position-absolute bg-white service__img" src="{{ asset('images/bk-logo.png') }}" />
           </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-9" style="padding: 40px 40px 0 0; margin: 10px 10px 20px 10px">
+        <div class="col-lg-3 col-md-5 col-10" style="padding: 40px 40px 0 0; margin: 10px">
           <div class="position-relative text-center text-white service__div service__dark d-flex flex-column justify-content-center">
             <h1 class="mb-2 service__h1">TƯ VẤN DU HỌC</h1>
             <img class="position-absolute bg-white service__img" src="{{ asset('images/bk-logo.png') }}" />
           </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-9" style="padding: 40px 40px 0 0; margin: 10px 10px 20px 10px">
+        <div class="col-lg-3 col-md-5 col-10" style="padding: 40px 40px 0 0; margin: 10px">
           <div class="position-relative text-center text-white service__div d-flex flex-column justify-content-center">
             <h1 class="mb-2 service__h1">ĐÀO TẠO TẬP HUẤN TIẾNG ANH/STEM</h1>
             <p class="service__p">Theo yêu cầu Cơ quan, tổ chức, doanh nghiệp</p>
             <img class="position-absolute bg-white service__img" src="{{ asset('images/bk-logo.png') }}" />
           </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-9" style="padding: 40px 40px 0 0; margin: 10px 10px 20px 10px">
+        <div class="col-lg-3 col-md-5 col-10" style="padding: 40px 40px 0 0; margin: 10px">
           <div class="position-relative text-center text-white service__div d-flex flex-column justify-content-center">
             <h1 class="mb-2 service__h1">THI VÀ CẤP CHỨNG CHỈ IELTS</h1>
             <p class="service__p">Đối tác chính thức của Hội đồng Anh (British Council)</p>
             <img class="position-absolute bg-white service__img" src="{{ asset('images/bk-logo.png') }}" />
           </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-9" style="padding: 40px 40px 0 0; margin: 10px 10px 20px 10px">
+        <div class="col-lg-3 col-md-5 col-10" style="padding: 40px 40px 0 0; margin: 10px">
           <div class="position-relative text-center text-white service__div service__dark d-flex flex-column justify-content-center">
             <h1 class="mb-2 service__h1">CUNG CẤP VÀ PHÂN PHỐI THIẾT BỊ GIẢNG DẠY</h1>
             <img class="position-absolute bg-white service__img__red" src="{{ asset('images/tp-logo.png') }}" />
@@ -370,8 +370,8 @@
   .core__h1 {
     font-size: 40px;
     font-weight: bold;
-    margin: 20px 0;
-    color: #f53b57;
+    margin-top: 0;
+    margin-bottom: 35px;
   }
   .core__img {
     width: 60px;
