@@ -91,7 +91,7 @@ a:hover {
 }
 .sidebar {
     height: auto;
-    background: #0d2c6c;
+    background:  var(--blue-vnu);
     display: flex;
     align-items: center;
     padding-left: 10px;
@@ -110,7 +110,7 @@ a:hover {
     padding: 10px;
 }
 .post .post__title a {
-    color: #0d2c6c;
+    color: var(--blue-vnu);
     font-size: 18px;
     font-weight: bold;
     text-decoration: none;
