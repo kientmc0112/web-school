@@ -19,7 +19,7 @@
           </div>
         </form>
       </div>
-      <div class="col-md-5 d-md-block d-sm-none">
+      <div class="col-md-5 d-md-block d-none">
         <img src="{{ url('images/contact.png') }}" class="w-100" style="object-fit: contain; max-height: 305px;">
       </div>
     </div>
