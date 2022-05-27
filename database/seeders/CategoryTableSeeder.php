@@ -74,11 +74,6 @@ class CategoryTableSeeder extends Seeder
             ],
             // ĐỘI NGŨ VÀ HOẠT ĐỘNG
             [
-			    "name" => "Cơ cấu tổ chức",
-			    "parent_id" => DBConstant::TEAM,
-                "order" => 0
-            ],
-            [
 			    "name" => "Đội ngũ nhân sự",
 			    "parent_id" => DBConstant::TEAM,
                 "order" => 1
