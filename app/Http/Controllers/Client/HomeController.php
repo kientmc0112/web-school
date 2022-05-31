@@ -43,12 +43,12 @@ class HomeController extends Controller
             })
             ->toArray();
 
-        $intros = Post::whereIn('category_id', $childCategories[DBConstant::INTRODUCTION])->orderBy('updated_at', 'desc')->paginate(3);
-        $introCate = DBConstant::INTRODUCTION;
-        $services = Post::whereIn('category_id', $childCategories[DBConstant::SERVICE])->orderBy('updated_at', 'desc')->paginate(3);
-        $serviceCate = DBConstant::SERVICE;
-        $teams = Post::whereIn('category_id', $childCategories[DBConstant::TEAM])->orderBy('updated_at', 'desc')->paginate(3);
-        $teamCate = DBConstant::TEAM;
+        // $intros = Post::whereIn('category_id', $childCategories[DBConstant::INTRODUCTION])->orderBy('updated_at', 'desc')->paginate(3);
+        // $introCate = DBConstant::INTRODUCTION;
+        // $services = Post::whereIn('category_id', $childCategories[DBConstant::SERVICE])->orderBy('updated_at', 'desc')->paginate(3);
+        // $serviceCate = DBConstant::SERVICE;
+        // $teams = Post::whereIn('category_id', $childCategories[DBConstant::TEAM])->orderBy('updated_at', 'desc')->paginate(3);
+        // $teamCate = DBConstant::TEAM;
 
         $sliders = Image::where('type', DBConstant::SLIDER_TYPE)
             ->orderBy('created_at', 'ASC')
@@ -68,7 +68,8 @@ class HomeController extends Controller
                 return $banner;
             });;
 
-        return view('client.home', compact('categoriesHeader', 'categoriesFooter', 'intros', 'teams', 'services', 'introCate', 'serviceCate', 'teamCate', 'sliders', 'banners'));
+        // return view('client.home', compact('categoriesHeader', 'categoriesFooter', 'intros', 'teams', 'services', 'introCate', 'serviceCate', 'teamCate', 'sliders', 'banners'));
+        return view('client.home', compact('categoriesHeader', 'categoriesFooter', 'sliders', 'banners'));
     }
     
     public function getChild(&$arr, $categories, $parentId = 0)
