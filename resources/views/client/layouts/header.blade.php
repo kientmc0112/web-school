@@ -80,6 +80,11 @@
                 </strong>
               </li>
             @endif
+            <li class="nav-item">
+              <strong class="dropdown-toggle text-white">
+                <a href="http://103.124.93.10:1100"  class="d-block px-4 py-3 text-white">LMS</a>
+              </strong>
+            </li>
           @endforeach
         </ul>
       </div>
