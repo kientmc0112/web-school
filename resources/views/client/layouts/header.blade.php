@@ -83,7 +83,7 @@
           @endforeach
           <li class="nav-item">
             <strong class="dropdown-toggle text-white">
-              <a href="https://lms.bksteam.edu.vn/"  class="d-block px-4 py-3 text-white">LMS</a>
+              <a href="http://lms.bksteam.edu.vn/"  class="d-block px-4 py-3 text-white">LMS</a>
             </strong>
           </li>
         </ul>
